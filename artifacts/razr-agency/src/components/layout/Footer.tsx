@@ -58,7 +58,7 @@ export default function Footer() {
             </h1>
           </div>
           <div className="w-full flex flex-col md:flex-row justify-between items-center mt-8 text-xs font-medium tracking-widest text-muted-foreground uppercase">
-            <span>&copy; {new Date().getFullYear()} RAZR AGENCY</span>
+            <span>&copy; {new Date().getFullYear()} RAZR.MARKETING</span>
             <span className="mt-4 md:mt-0 text-primary">PERFORMANCE. WITHOUT COMPROMISE.</span>
             <span className="mt-4 md:mt-0">SAN FRANCISCO • DUBAI • LONDON</span>
           </div>

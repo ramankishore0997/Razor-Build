@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import PageWrapper from "@/components/layout/PageWrapper";
 
-const CONTACT_EMAIL = "scale@razr.agency";
+const CONTACT_EMAIL = "scale@razr.marketing";
 const TELEGRAM_HANDLE = "razrsupport";
 const WHATSAPP_NUMBER = "917065339146";
 
