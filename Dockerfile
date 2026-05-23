@@ -4,7 +4,7 @@ RUN corepack enable && corepack prepare pnpm@10.26.1 --activate
 COPY . .
 ENV PORT=3000
 ENV BASE_PATH=/
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --no-frozen-lockfile
 RUN pnpm --filter @workspace/razr-agency run build
 
 FROM node:24-alpine
