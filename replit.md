@@ -12,7 +12,7 @@ A premium multi-page marketing website for RAZR Agency — a Meta Agency Ad Acco
 ## Stack
 
 - pnpm workspaces, Node.js 24, TypeScript 5.9
-- Frontend: React + Vite, Tailwind CSS v4, Framer Motion
+- Frontend: React + Vite, Tailwind CSS v4, Framer Motion, recharts v3 (React 19 compatible)
 - Routing: Wouter
 - Icons: lucide-react, react-icons/si
 - API: Express 5 (api-server artifact, minimal — site is frontend-only)
@@ -51,7 +51,10 @@ _Populate as you build — explicit user instructions worth remembering across s
 ## Gotchas
 
 - Google Fonts `@import url(...)` MUST be first line of index.css — PostCSS fails silently otherwise
-- Loading screen auto-dismisses after 2.2 seconds — screenshot tools may catch it mid-animation
+- Loading screen auto-dismisses after 1.2 seconds — screenshot tools may catch it mid-animation
+- Recharts must be v3+ for React 19 (v2 throws "Cannot read properties of null (reading 'useRef')")
+- The shadcn `ui/chart.tsx` wrapper is NOT compatible with recharts v3 — do not reintroduce it
+- Global effects (CustomCursor, MouseGlow, NoiseOverlay) mount once in App.tsx inside TooltipProvider
 - The site has no backend API calls — do not add react-query hooks unless adding a real backend endpoint
 
 ## Pointers

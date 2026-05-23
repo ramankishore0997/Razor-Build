@@ -1,163 +1,115 @@
 import PageWrapper from "@/components/layout/PageWrapper";
-import { motion } from "framer-motion";
-import { MessageCircle, Eye, Settings, Rocket, TrendingUp, Zap } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const steps = [
   {
-    icon: MessageCircle,
     step: "01",
-    title: "Contact Team",
-    description:
-      "Reach out via Telegram or WhatsApp. Our team responds within minutes — not hours. Tell us about your business, your niche, and your current ad spend goals.",
-    detail: "Average response time: under 30 minutes",
+    title: "Initial Contact & Vetting",
+    desc: "Reach out via Telegram. We respond within minutes. We'll briefly review your vertical and spend goals to ensure we're a fit.",
+    bullets: [
+      "Share your niche/vertical",
+      "Discuss target daily spend",
+      "Confirm policy compliance"
+    ]
   },
   {
-    icon: Eye,
     step: "02",
-    title: "View Account Access First",
-    description:
-      "Before committing, we show you the account — spending history, limit tiers, and infrastructure setup. Full transparency, no surprises.",
-    detail: "See everything before you buy",
+    title: "Transparent Review",
+    desc: "Before you pay a dime, we show you the exact account you'll receive. Full transparency on history and limit tiers.",
+    bullets: [
+      "Live screen-share or screenshots",
+      "Verify BM structure",
+      "Confirm billing setup"
+    ]
   },
   {
-    icon: Settings,
     step: "03",
-    title: "Activation Process",
-    description:
-      "Once you decide to proceed, we handle the full activation process — business manager setup, billing configuration, and team access provisioning.",
-    detail: "Activated within 24 hours",
+    title: "Activation & Provisioning",
+    desc: "Once confirmed, we handle the technical heavy lifting. We assign the account to your Business Manager with proper roles.",
+    bullets: [
+      "Admin access granted",
+      "Pixel/Domain connections",
+      "Backup admins assigned"
+    ]
   },
   {
-    icon: Rocket,
     step: "04",
-    title: "Campaign Launch",
-    description:
-      "Your account is live and ready. Launch your campaigns with confidence. Our team remains on standby for the critical first 48 hours of activity.",
-    detail: "Go live the same day",
-  },
-  {
-    icon: TrendingUp,
-    step: "05",
-    title: "Scaling Support",
-    description:
-      "As you scale, we scale with you. Ongoing support, spending limit increase recommendations, and account health monitoring — for the long haul.",
-    detail: "Unlimited ongoing support",
-  },
+    title: "Launch & Scale",
+    desc: "Your account is live. Launch your campaigns. Our team monitors the critical first 48 hours to ensure zero friction.",
+    bullets: [
+      "Publish first campaigns",
+      "Monitor initial spend",
+      "Gradual limit scaling"
+    ]
+  }
 ];
 
 export default function HowItWorks() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"]
+  });
+  
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
   return (
     <PageWrapper>
-      <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/6 via-background to-background" />
+      <section className="pt-40 pb-20">
+        <div className="container mx-auto px-4 max-w-4xl text-center">
+          <span className="text-xs font-bold tracking-[0.2em] text-primary uppercase mb-8 block">The Process</span>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none mb-12">
+            From first message <br/>
+            <span className="text-white/50">to live campaigns.</span>
+          </h1>
+        </div>
+      </section>
 
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-24"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
-              <Zap size={14} />
-              <span>Simple Process</span>
-            </div>
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              How It{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
-                Works
-              </span>
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              From first contact to running campaigns — our process is
-              streamlined to get you operational as fast as possible.
-            </p>
-          </motion.div>
-
-          <div className="relative max-w-4xl mx-auto">
-            {/* Vertical timeline line */}
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border to-transparent md:-translate-x-px hidden md:block" />
-
-            <div className="flex flex-col gap-0">
-              {steps.map((step, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className={`relative flex items-center gap-8 md:gap-0 mb-16 ${
-                    i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                  }`}
-                >
-                  {/* Content card */}
-                  <div
-                    className={`flex-1 ${
-                      i % 2 === 0 ? "md:pr-16 md:text-right" : "md:pl-16"
-                    }`}
-                  >
-                    <div className="group p-8 rounded-2xl border border-border bg-card/50 backdrop-blur-sm hover:border-primary/40 hover:shadow-[0_0_30px_rgba(0,102,255,0.1)] transition-all duration-300 hover:bg-card/80">
-                      <div
-                        className={`flex items-center gap-4 mb-4 ${
-                          i % 2 === 0 ? "md:flex-row-reverse" : ""
-                        }`}
-                      >
-                        <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 group-hover:border-primary/40 transition-all duration-300">
-                          <step.icon className="text-primary" size={22} />
-                        </div>
-                        <div
-                          className={`text-6xl font-black text-primary/10 leading-none select-none ${
-                            i % 2 === 0 ? "md:ml-auto" : ""
-                          }`}
-                        >
-                          {step.step}
-                        </div>
-                      </div>
-                      <h3 className="text-xl font-bold text-white mb-3">
-                        {step.title}
-                      </h3>
-                      <p className="text-muted-foreground leading-relaxed mb-4">
-                        {step.description}
-                      </p>
-                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-medium">
-                        {step.detail}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Timeline node */}
-                  <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-14 h-14 rounded-full bg-background border-2 border-primary/40 items-center justify-center z-10 shadow-[0_0_20px_rgba(0,102,255,0.3)]">
-                    <step.icon className="text-primary" size={20} />
-                  </div>
-
-                  {/* Spacer for the other side on desktop */}
-                  <div className="hidden md:block flex-1" />
-                </motion.div>
-              ))}
-            </div>
+      <section className="py-20 relative pb-40" ref={containerRef}>
+        <div className="container mx-auto px-4 max-w-4xl relative">
+          
+          {/* Glowing Line */}
+          <div className="absolute left-4 md:left-12 top-0 bottom-0 w-1 bg-white/5 rounded-full overflow-hidden">
+            <motion.div 
+              className="absolute top-0 left-0 right-0 bg-primary shadow-[0_0_15px_rgba(0,102,255,1)]"
+              style={{ height: lineHeight }}
+            />
           </div>
 
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mt-8"
-          >
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Ready to Start?
-            </h2>
-            <p className="text-muted-foreground mb-8 text-lg">
-              Step one is just a message away.
-            </p>
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-primary text-white font-semibold text-lg hover:bg-primary/90 transition-all duration-200 shadow-[0_0_25px_rgba(0,102,255,0.35)] hover:shadow-[0_0_40px_rgba(0,102,255,0.55)]"
-              data-testid="link-contact-team"
-            >
-              Contact the Team
-            </a>
-          </motion.div>
+          <div className="flex flex-col gap-32">
+            {steps.map((step, i) => (
+              <div key={i} className="relative pl-16 md:pl-32 flex flex-col md:flex-row gap-8 md:gap-16">
+                
+                {/* Node */}
+                <div className="absolute left-2.5 md:left-[2.6rem] top-2 w-4 h-4 -translate-x-1/2 rounded-full border-[4px] border-background bg-primary z-10" />
+
+                {/* Content */}
+                <div className="flex-1">
+                  <div className="text-[5rem] md:text-[7rem] font-black leading-none text-white/5 -mt-6 md:-mt-12 mb-4 select-none">
+                    {step.step}
+                  </div>
+                  <h2 className="text-3xl md:text-5xl font-bold mb-6">{step.title}</h2>
+                  <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                    {step.desc}
+                  </p>
+                  
+                  <div className="bg-white/[0.02] border border-white/5 p-6 rounded-2xl">
+                    <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-4">What happens here</h4>
+                    <ul className="flex flex-col gap-3">
+                      {step.bullets.map((b, idx) => (
+                        <li key={idx} className="flex items-center gap-3 text-sm text-white/80">
+                          <div className="w-1.5 h-1.5 rounded-full bg-white/30" />
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
         </div>
       </section>
     </PageWrapper>

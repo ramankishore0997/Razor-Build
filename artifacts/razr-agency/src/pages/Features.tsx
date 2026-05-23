@@ -1,150 +1,125 @@
 import PageWrapper from "@/components/layout/PageWrapper";
 import { motion } from "framer-motion";
-import {
-  TrendingUp, Shield, Zap, Building2, Headphones, BarChart3,
-  Layers, Users, Clock, RefreshCw, ArrowLeftRight, Star
-} from "lucide-react";
-
-const features = [
-  {
-    icon: TrendingUp,
-    title: "High Spending Capacity",
-    description: "Access agency-tier ad accounts with significantly higher daily and lifetime spending limits — scale without hitting walls.",
-  },
-  {
-    icon: Shield,
-    title: "Lower Restriction Risk",
-    description: "Agency accounts carry established trust signals that dramatically reduce the chance of account restrictions or bans.",
-  },
-  {
-    icon: Zap,
-    title: "Fast Activation",
-    description: "Get your account activated and running within hours, not days. Our streamlined onboarding gets you live fast.",
-  },
-  {
-    icon: Building2,
-    title: "Business Friendly Setup",
-    description: "Clean business manager structures, proper billing setup, and compliant account architecture from day one.",
-  },
-  {
-    icon: Headphones,
-    title: "Agency Support",
-    description: "Direct line to our agency specialists who understand Meta advertising at a deep operational level.",
-  },
-  {
-    icon: BarChart3,
-    title: "Better Scaling",
-    description: "Purpose-built accounts for scaling — designed to handle aggressive budget increases without performance degradation.",
-  },
-  {
-    icon: Layers,
-    title: "Multiple Niches",
-    description: "Support for a wide range of verticals including e-commerce, lead gen, SaaS, health, finance, and more.",
-  },
-  {
-    icon: Users,
-    title: "Team Access",
-    description: "Add your team members, media buyers, and collaborators with proper role-based access control.",
-  },
-  {
-    icon: Clock,
-    title: "Long-Term Support",
-    description: "Ongoing support beyond initial activation. We're with you for the entire lifecycle of your campaigns.",
-  },
-  {
-    icon: RefreshCw,
-    title: "Lifetime Replacement",
-    description: "If your account ever gets restricted through no fault of your own, we replace it at no additional cost.",
-  },
-  {
-    icon: ArrowLeftRight,
-    title: "Balance Transfer Support",
-    description: "Seamlessly transfer existing ad balances into your new account. No money left stranded.",
-  },
-  {
-    icon: Star,
-    title: "Priority Assistance",
-    description: "Jump the queue with priority support tickets, faster response times, and dedicated account management.",
-  },
-];
+import { TrendingUp, Shield, Zap, Building2, Headphones, BarChart3, Layers, Users, RefreshCw } from "lucide-react";
+import FloatingOrbs from "@/components/FloatingOrbs";
 
 export default function Features() {
   return (
     <PageWrapper>
-      <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/8 via-background to-background" />
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-20"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
-              <Zap size={14} />
-              <span>Everything You Need</span>
-            </div>
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              Built for{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
-                Performance
-              </span>
+      <FloatingOrbs />
+      
+      {/* TALL EDITORIAL INTRO */}
+      <section className="pt-40 pb-20 relative z-10">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="max-w-2xl">
+            <span className="text-xs font-bold tracking-[0.2em] text-primary uppercase mb-8 block">The Arsenal</span>
+            <h1 className="text-6xl md:text-8xl font-black tracking-tighter uppercase leading-[0.9] mb-12">
+              Engineered <br/><span className="font-light italic text-white/70">for dominance.</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Every feature we offer is engineered to give your campaigns the
-              infrastructure advantage they need to dominate.
+            <p className="text-xl md:text-2xl text-muted-foreground font-medium leading-relaxed border-l-2 border-primary pl-6">
+              Every feature we offer is designed to remove bottlenecks. We don't just provide accounts; we provide the entire infrastructure needed to scale aggressive campaigns.
             </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.06, duration: 0.5 }}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className="group relative p-8 rounded-2xl border border-border bg-card/50 backdrop-blur-sm cursor-default overflow-hidden transition-all duration-300 hover:border-primary/40 hover:shadow-[0_0_30px_rgba(0,102,255,0.12)] hover:bg-card/80"
-                data-testid={`feature-card-${i}`}
-              >
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-primary/8 to-transparent" />
-                
-                <div className="relative z-10">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 group-hover:bg-primary/20 group-hover:border-primary/40 group-hover:shadow-[0_0_15px_rgba(0,102,255,0.2)] transition-all duration-300">
-                    <feature.icon className="text-primary" size={22} />
-                  </div>
-                  <h3 className="text-lg font-semibold text-white mb-3 group-hover:text-primary transition-colors duration-300">
-                    {feature.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mt-20"
-          >
-            <p className="text-muted-foreground text-lg mb-6">
-              Ready to get the infrastructure your campaigns deserve?
-            </p>
-            <a
-              href="/plans"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-primary text-white font-semibold text-lg hover:bg-primary/90 transition-all duration-200 shadow-[0_0_25px_rgba(0,102,255,0.35)] hover:shadow-[0_0_35px_rgba(0,102,255,0.5)]"
-              data-testid="link-view-plans"
-            >
-              View Plans
-            </a>
-          </motion.div>
         </div>
+      </section>
+
+      {/* TRUE BENTO GRID */}
+      <section className="py-20 relative z-10">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 auto-rows-[200px] gap-4 md:gap-6">
+            
+            {/* Large Card 1 - Spans 4 cols, 2 rows */}
+            <div className="md:col-span-4 md:row-span-2 rounded-[2rem] border border-white/10 bg-white/[0.02] p-10 flex flex-col justify-between relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 blur-3xl rounded-full" />
+              <div className="relative z-10">
+                <Shield className="w-12 h-12 text-primary mb-6" />
+                <h3 className="text-4xl font-bold mb-4 w-2/3">Impenetrable Trust Signals</h3>
+                <p className="text-lg text-muted-foreground max-w-md">Our agency structures are pre-vetted and hold significant trust score history with Meta, practically eliminating random algorithmic bans.</p>
+              </div>
+              <div className="relative z-10 mt-8 flex gap-4">
+                {/* Visual metric pills */}
+                <div className="px-4 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary text-sm font-bold uppercase tracking-widest">Trust Score: High</div>
+                <div className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white text-sm font-bold uppercase tracking-widest">Ban Rate: {'<'}0.1%</div>
+              </div>
+            </div>
+
+            {/* Medium Card 1 */}
+            <div className="md:col-span-2 md:row-span-1 rounded-[2rem] border border-white/10 bg-white/[0.02] p-8 flex flex-col justify-center group hover:bg-white/5 transition-colors">
+              <Zap className="w-8 h-8 text-white mb-4" />
+              <h3 className="text-xl font-bold mb-2">Same-Day Go Live</h3>
+              <p className="text-sm text-muted-foreground">Accounts provisioned and ready within hours, not days.</p>
+            </div>
+
+            {/* Medium Card 2 */}
+            <div className="md:col-span-2 md:row-span-1 rounded-[2rem] border border-white/10 bg-primary/5 p-8 flex flex-col justify-center">
+              <h3 className="text-4xl font-black text-primary mb-2">∞</h3>
+              <h4 className="text-lg font-bold">No Cap Scaling</h4>
+              <p className="text-sm text-white/70">Unrestricted daily budgets from day one.</p>
+            </div>
+
+            {/* Medium Card 3 */}
+            <div className="md:col-span-2 md:row-span-2 rounded-[2rem] border border-white/10 bg-white/[0.02] p-8 flex flex-col relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-0" />
+              <Users className="w-10 h-10 text-primary mb-6 relative z-10" />
+              <div className="mt-auto relative z-10">
+                <h3 className="text-2xl font-bold mb-4">Multi-Seat BM</h3>
+                <p className="text-sm text-muted-foreground mb-6">Proper role isolation for media buyers, analysts, and admins.</p>
+                <div className="w-full h-24 border border-white/10 rounded-xl bg-white/5 flex flex-col justify-center px-4 gap-2">
+                  <div className="h-2 w-3/4 bg-white/20 rounded-full" />
+                  <div className="h-2 w-1/2 bg-white/10 rounded-full" />
+                  <div className="h-2 w-5/6 bg-white/10 rounded-full" />
+                </div>
+              </div>
+            </div>
+
+            {/* Large Card 2 */}
+            <div className="md:col-span-4 md:row-span-2 rounded-[2rem] border border-white/10 bg-black p-10 flex items-center gap-8 relative overflow-hidden">
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-primary/10 blur-3xl" />
+              <div className="flex-1 relative z-10">
+                <RefreshCw className="w-12 h-12 text-white mb-6" />
+                <h3 className="text-4xl font-bold mb-4">Lifetime Replacements</h3>
+                <p className="text-lg text-muted-foreground">If an account goes down and you haven't violated core policies, we replace it. Instantly. Free of charge.</p>
+              </div>
+              <div className="flex-1 hidden md:flex items-center justify-center relative z-10">
+                <div className="w-48 h-48 rounded-full border-[8px] border-primary/20 border-t-primary animate-spin-slow flex items-center justify-center">
+                  <div className="w-32 h-32 rounded-full border border-white/10 flex items-center justify-center text-primary font-bold">24/7</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Small icon cards */}
+            <div className="md:col-span-2 md:row-span-1 rounded-[2rem] border border-white/10 bg-white/[0.02] p-8 flex items-center gap-6 group hover:border-white/20 transition-colors">
+              <Building2 className="w-10 h-10 text-white opacity-50 group-hover:opacity-100 transition-opacity" />
+              <div>
+                <div className="font-bold">Clean Billing</div>
+                <div className="text-xs text-muted-foreground">Pre-warmed cards</div>
+              </div>
+            </div>
+
+            <div className="md:col-span-2 md:row-span-1 rounded-[2rem] border border-white/10 bg-white/[0.02] p-8 flex items-center gap-6 group hover:border-white/20 transition-colors">
+              <Layers className="w-10 h-10 text-white opacity-50 group-hover:opacity-100 transition-opacity" />
+              <div>
+                <div className="font-bold">Niche Agnostic</div>
+                <div className="text-xs text-muted-foreground">BH/WH supported</div>
+              </div>
+            </div>
+
+            <div className="md:col-span-2 md:row-span-1 rounded-[2rem] border border-white/10 bg-white/[0.02] p-8 flex items-center gap-6 group hover:border-white/20 transition-colors">
+              <Headphones className="w-10 h-10 text-white opacity-50 group-hover:opacity-100 transition-opacity" />
+              <div>
+                <div className="font-bold">Direct Line</div>
+                <div className="text-xs text-muted-foreground">Telegram support</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      
+      <section className="py-24 relative z-10 text-center">
+        <a href="/plans" className="inline-block px-12 py-6 bg-white text-black font-black text-xl uppercase tracking-widest hover:scale-105 transition-transform duration-300">
+          View Pricing
+        </a>
       </section>
     </PageWrapper>
   );

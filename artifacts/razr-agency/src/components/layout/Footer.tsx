@@ -1,60 +1,67 @@
 import { Link } from "wouter";
-import { SiTelegram, SiWhatsapp, SiInstagram, SiX } from "react-icons/si";
+import { ArrowRight } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-card border-t border-border mt-20">
-      <div className="container mx-auto px-4 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-          <div className="md:col-span-2">
-            <Link href="/" className="inline-block mb-6">
-              <span className="text-2xl font-bold tracking-tighter text-white">
-                RAZR<span className="text-primary">.</span>
-              </span>
-            </Link>
-            <p className="text-muted-foreground mb-6 max-w-md">
-              Premium Meta Agency Ad Accounts. Scale your campaigns with higher spending limits, lower restriction risk, and agency-level infrastructure.
-            </p>
-            <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors">
-                <SiTelegram />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors">
-                <SiWhatsapp />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors">
-                <SiInstagram />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors">
-                <SiX />
-              </a>
+    <footer className="bg-background border-t border-white/5 overflow-hidden">
+      <div className="container mx-auto px-4 py-24 md:py-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 mb-24">
+          <div className="lg:col-span-6 flex flex-col justify-between">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white mb-6 uppercase">
+                Stay Ahead of<br/>the Curve.
+              </h2>
+              <p className="text-muted-foreground text-lg max-w-md mb-8">
+                Join our newsletter for weekly insights on Meta policy changes, scaling strategies, and agency infrastructure.
+              </p>
+              <div className="flex items-center gap-2 max-w-md border-b border-white/20 pb-2">
+                <input 
+                  type="email" 
+                  placeholder="Email address" 
+                  className="bg-transparent border-none outline-none flex-1 text-white placeholder:text-muted-foreground"
+                />
+                <button className="text-white hover:text-primary transition-colors p-2">
+                  <ArrowRight size={20} />
+                </button>
+              </div>
             </div>
           </div>
 
-          <div>
-            <h4 className="text-white font-semibold mb-6">Quick Links</h4>
-            <ul className="flex flex-col gap-4">
-              <li><Link href="/" className="text-muted-foreground hover:text-primary transition-colors">Home</Link></li>
-              <li><Link href="/features" className="text-muted-foreground hover:text-primary transition-colors">Features</Link></li>
-              <li><Link href="/how-it-works" className="text-muted-foreground hover:text-primary transition-colors">How It Works</Link></li>
-              <li><Link href="/plans" className="text-muted-foreground hover:text-primary transition-colors">Plans & Pricing</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white font-semibold mb-6">Support</h4>
-            <ul className="flex flex-col gap-4">
-              <li><Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
-              <li><Link href="/faq" className="text-muted-foreground hover:text-primary transition-colors">FAQ</Link></li>
-              <li><Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">Contact</Link></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Terms of Service</a></li>
-            </ul>
+          <div className="lg:col-span-6 grid grid-cols-2 md:grid-cols-3 gap-8">
+            <div className="flex flex-col gap-6">
+              <h4 className="text-white font-bold uppercase tracking-wider text-xs">Platform</h4>
+              <Link href="/features" className="text-muted-foreground hover:text-white transition-colors text-sm">Features</Link>
+              <Link href="/solutions" className="text-muted-foreground hover:text-white transition-colors text-sm">Solutions</Link>
+              <Link href="/plans" className="text-muted-foreground hover:text-white transition-colors text-sm">Pricing</Link>
+              <Link href="/how-it-works" className="text-muted-foreground hover:text-white transition-colors text-sm">Process</Link>
+            </div>
+            <div className="flex flex-col gap-6">
+              <h4 className="text-white font-bold uppercase tracking-wider text-xs">Company</h4>
+              <Link href="/about" className="text-muted-foreground hover:text-white transition-colors text-sm">About Us</Link>
+              <Link href="/contact" className="text-muted-foreground hover:text-white transition-colors text-sm">Contact</Link>
+              <a href="#" className="text-muted-foreground hover:text-white transition-colors text-sm">Careers</a>
+              <a href="#" className="text-muted-foreground hover:text-white transition-colors text-sm">Press</a>
+            </div>
+            <div className="flex flex-col gap-6 col-span-2 md:col-span-1">
+              <h4 className="text-white font-bold uppercase tracking-wider text-xs">Legal</h4>
+              <a href="#" className="text-muted-foreground hover:text-white transition-colors text-sm">Privacy Policy</a>
+              <a href="#" className="text-muted-foreground hover:text-white transition-colors text-sm">Terms of Service</a>
+              <Link href="/faq" className="text-muted-foreground hover:text-white transition-colors text-sm">FAQ</Link>
+            </div>
           </div>
         </div>
-        
-        <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} RAZR Agency. All rights reserved.</p>
-          <p>Built for performance.</p>
+
+        <div className="flex flex-col items-center border-t border-white/5 pt-16">
+          <div className="w-full text-center">
+            <h1 className="text-[12vw] md:text-[15vw] font-black tracking-tighter leading-none bg-clip-text text-transparent bg-gradient-to-b from-white to-white/10 select-none">
+              RAZR
+            </h1>
+          </div>
+          <div className="w-full flex flex-col md:flex-row justify-between items-center mt-8 text-xs font-medium tracking-widest text-muted-foreground uppercase">
+            <span>&copy; {new Date().getFullYear()} RAZR AGENCY</span>
+            <span className="mt-4 md:mt-0 text-primary">PERFORMANCE. WITHOUT COMPROMISE.</span>
+            <span className="mt-4 md:mt-0">SAN FRANCISCO • DUBAI • LONDON</span>
+          </div>
         </div>
       </div>
     </footer>

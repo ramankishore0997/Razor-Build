@@ -1,187 +1,85 @@
 import PageWrapper from "@/components/layout/PageWrapper";
-import { motion } from "framer-motion";
-import { Check, Zap, Star } from "lucide-react";
-
-const setupFeatures = [
-  "1 Agency Ad Account",
-  "Standard spending limit tier",
-  "Business manager setup",
-  "48h activation",
-  "7-day onboarding support",
-  "Telegram/WhatsApp access",
-  "Basic account documentation",
-  "One-time replacement (30 days)",
-];
-
-const fullFeatures = [
-  "1 Premium Agency Ad Account",
-  "Maximum spending limit tier",
-  "Full business manager setup",
-  "Same-day activation",
-  "Unlimited ongoing support",
-  "Priority Telegram/WhatsApp line",
-  "Team access for 3 seats",
-  "Lifetime replacement guarantee",
-  "Balance transfer support",
-  "Dedicated account manager",
-  "Scaling strategy consultation",
-  "Account health monitoring",
-];
+import { Check } from "lucide-react";
+import FloatingOrbs from "@/components/FloatingOrbs";
 
 export default function Plans() {
   return (
     <PageWrapper>
-      <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/8 via-background to-background" />
-
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-20"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
-              <Star size={14} />
-              <span>Choose Your Access</span>
-            </div>
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              Plans &{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
-                Pricing
-              </span>
+      <FloatingOrbs />
+      
+      <section className="pt-40 pb-20 relative z-10">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-20 border-b border-white/10 pb-12">
+            <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none">
+              Access <br/><span className="text-white/40">Tiers</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Both plans include real agency-tier accounts. Pick the access
-              level that matches your campaign goals.
-            </p>
-          </motion.div>
+            <div className="bg-white/[0.05] border border-white/10 px-6 py-3 rounded-full backdrop-blur-md">
+              <span className="text-sm font-bold uppercase tracking-widest text-primary">Starting from $499</span>
+            </div>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* Setup Access */}
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              whileHover={{ y: -6, transition: { duration: 0.2 } }}
-              className="relative p-8 rounded-2xl border border-border bg-card/50 backdrop-blur-sm hover:border-primary/30 hover:shadow-[0_0_40px_rgba(0,102,255,0.1)] transition-all duration-300"
-              data-testid="plan-card-setup"
-            >
-              <div className="mb-8">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/60 border border-border text-muted-foreground text-xs font-medium mb-4">
-                  Entry Level
-                </div>
-                <h2 className="text-3xl font-bold text-white mb-2">
-                  Setup Access
-                </h2>
-                <p className="text-muted-foreground">
-                  Get started with a verified agency account and all the
-                  essentials to launch your first campaigns.
-                </p>
-              </div>
-
-              <div className="mb-8">
-                <div className="text-4xl font-black text-white mb-1">
-                  Contact Us
-                </div>
-                <div className="text-muted-foreground text-sm">
-                  Pricing based on account tier
-                </div>
-              </div>
-
-              <ul className="flex flex-col gap-4 mb-10">
-                {setupFeatures.map((feature, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <Check className="text-primary flex-shrink-0" size={16} />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href="/contact"
-                className="block w-full py-4 rounded-xl border border-primary/40 text-primary font-semibold text-center hover:bg-primary/10 hover:border-primary transition-all duration-200"
-                data-testid="btn-setup-cta"
-              >
-                Get Setup Access
+          <div className="flex flex-col lg:flex-row items-end gap-8 lg:gap-0 mt-20">
+            {/* Setup Access - Narrower */}
+            <div className="w-full lg:w-[40%] p-10 lg:pr-16 bg-background border-t border-l border-r lg:border-b lg:border-r-0 border-white/10 rounded-t-3xl lg:rounded-tr-none lg:rounded-l-3xl relative z-10">
+              <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-8">Entry Tier</div>
+              <h2 className="text-4xl font-bold mb-4">Setup Access</h2>
+              <p className="text-muted-foreground mb-12">Perfect for advertisers needing verified infrastructure to launch initial campaigns.</p>
+              
+              <div className="text-3xl font-black mb-12">Contact Us</div>
+              
+              <a href="/contact" className="block w-full py-5 text-center border border-white/20 font-bold uppercase tracking-widest text-sm hover:bg-white/5 transition-colors">
+                Inquire
               </a>
-            </motion.div>
+            </div>
 
-            {/* Full Access */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              whileHover={{ y: -6, transition: { duration: 0.2 } }}
-              className="relative p-8 rounded-2xl border border-primary/40 bg-card/60 backdrop-blur-sm shadow-[0_0_40px_rgba(0,102,255,0.15)] hover:shadow-[0_0_60px_rgba(0,102,255,0.25)] transition-all duration-300 overflow-hidden"
-              data-testid="plan-card-full"
-            >
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 to-transparent pointer-events-none" />
-
+            {/* Full Access - Wider & Taller */}
+            <div className="w-full lg:w-[60%] p-12 bg-white/[0.02] backdrop-blur-xl border border-primary/30 rounded-3xl lg:-ml-8 lg:-mt-8 relative z-20 shadow-[0_0_50px_rgba(0,102,255,0.15)]">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 blur-3xl rounded-full" />
+              
               <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary text-white text-xs font-bold tracking-wider uppercase">
-                    <Star size={11} fill="currentColor" />
-                    Best Value
-                  </div>
+                <div className="flex justify-between items-start mb-8">
+                  <div className="text-xs font-bold uppercase tracking-widest text-primary">Premium Tier</div>
+                  <div className="px-3 py-1 bg-primary text-black text-[10px] font-black uppercase tracking-widest">Most Popular</div>
                 </div>
-
-                <div className="mb-8">
-                  <h2 className="text-3xl font-bold text-white mb-2">
-                    Full Access
-                  </h2>
-                  <p className="text-muted-foreground">
-                    The complete package. Maximum limits, lifetime support, and
-                    everything you need to scale without constraints.
-                  </p>
-                </div>
-
-                <div className="mb-8">
-                  <div className="text-4xl font-black text-white mb-1">
-                    Contact Us
-                  </div>
-                  <div className="text-muted-foreground text-sm">
-                    Premium tier pricing available on request
-                  </div>
-                </div>
-
-                <ul className="flex flex-col gap-4 mb-10">
-                  {fullFeatures.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-3 text-sm text-foreground">
-                      <div className="w-5 h-5 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center flex-shrink-0">
-                        <Check className="text-primary" size={12} />
-                      </div>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <a
-                  href="/contact"
-                  className="block w-full py-4 rounded-xl bg-primary text-white font-semibold text-center hover:bg-primary/90 transition-all duration-200 shadow-[0_0_20px_rgba(0,102,255,0.4)] hover:shadow-[0_0_30px_rgba(0,102,255,0.6)]"
-                  data-testid="btn-full-cta"
-                >
+                <h2 className="text-5xl font-bold mb-4">Full Access</h2>
+                <p className="text-lg text-white/80 max-w-sm mb-12">The complete package. Maximum limits, lifetime support, and everything needed to scale without constraints.</p>
+                
+                <div className="text-4xl font-black mb-12">Contact Us</div>
+                
+                <a href="/contact" className="block w-full py-6 text-center bg-primary text-black font-black uppercase tracking-widest text-sm hover:bg-white hover:text-black transition-colors shadow-[0_0_20px_rgba(0,102,255,0.4)]">
                   Get Full Access
                 </a>
               </div>
-            </motion.div>
+            </div>
           </div>
 
-          {/* Bottom note */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mt-16"
-          >
-            <div className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-card/50 border border-border text-muted-foreground text-sm">
-              <Zap size={14} className="text-primary" />
-              Not sure which plan is right for you? Contact us — we'll recommend
-              the best fit for your goals.
+          {/* Comparison Matrix */}
+          <div className="mt-32">
+            <h3 className="text-2xl font-bold uppercase tracking-widest mb-12 text-center">Feature Comparison</h3>
+            <div className="w-full border-t border-white/10">
+              {[
+                { name: "Premium Agency Ad Account", setup: true, full: true },
+                { name: "Daily Spending Limit", setup: "Standard ($250-$5k)", full: "Maximum / No Limit" },
+                { name: "Activation Time", setup: "24-48 Hours", full: "Same Day" },
+                { name: "Support Level", setup: "7-Day Onboarding", full: "Unlimited Ongoing" },
+                { name: "Team Seats", setup: "1 Admin", full: "Up to 3 Roles" },
+                { name: "Replacement Guarantee", setup: "30 Days (One-Time)", full: "Lifetime" },
+                { name: "Dedicated Account Manager", setup: false, full: true },
+                { name: "Balance Transfer Support", setup: false, full: true },
+              ].map((row, i) => (
+                <div key={i} className="flex flex-col sm:flex-row border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+                  <div className="w-full sm:w-1/2 py-6 px-4 font-medium">{row.name}</div>
+                  <div className="w-full sm:w-1/4 py-6 px-4 text-muted-foreground border-l border-white/5">
+                    {typeof row.setup === 'boolean' ? (row.setup ? <Check className="text-white/30" /> : <span className="text-white/10">-</span>) : row.setup}
+                  </div>
+                  <div className="w-full sm:w-1/4 py-6 px-4 text-primary font-bold border-l border-white/5 bg-primary/[0.02]">
+                    {typeof row.full === 'boolean' ? (row.full ? <Check className="text-primary" /> : <span className="text-white/10">-</span>) : row.full}
+                  </div>
+                </div>
+              ))}
             </div>
-          </motion.div>
+          </div>
+
         </div>
       </section>
     </PageWrapper>

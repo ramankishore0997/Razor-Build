@@ -1,497 +1,300 @@
 import PageWrapper from "@/components/layout/PageWrapper";
-import ParticleBackground from "@/components/ParticleBackground";
-import { Button } from "@/components/ui/button";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, Zap, Shield, Globe, Clock, Target, CreditCard, Lock, Infinity as InfinityIcon } from "lucide-react";
 import { Link } from "wouter";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useRef } from "react";
-import {
-  ArrowRight, Zap, Shield, Clock, Building2, Headphones,
-  TrendingUp, ChevronLeft, ChevronRight, ChevronDown
-} from "lucide-react";
+import MarqueeLogos from "@/components/MarqueeLogos";
+import CommandCenter from "@/components/CommandCenter";
+import FloatingOrbs from "@/components/FloatingOrbs";
+import WorldMap from "@/components/WorldMap";
+import { useRef } from "react";
 
-function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: string }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setInView(true); },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!inView) return;
-    let start = 0;
-    const duration = 1800;
-    const step = target / (duration / 16);
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= target) { setCount(target); clearInterval(timer); }
-      else setCount(Math.floor(start));
-    }, 16);
-    return () => clearInterval(timer);
-  }, [inView, target]);
-
-  return <div ref={ref} className="text-4xl md:text-5xl font-black text-white">{count}{suffix}</div>;
-}
-
-const whyFeatures = [
-  { icon: Shield, title: "Lower Restriction Risk", desc: "Established trust signals that minimize account bans and policy flags." },
-  { icon: TrendingUp, title: "High Spending Capacity", desc: "Agency-tier accounts with significantly higher daily and lifetime limits." },
-  { icon: Zap, title: "Fast Activation", desc: "Get up and running in hours — not days — with our streamlined process." },
-  { icon: Clock, title: "Long-Term Support", desc: "Ongoing assistance from our team beyond the initial account setup." },
-  { icon: Building2, title: "Business-Friendly Setup", desc: "Proper BM structure, billing, and compliant architecture from day one." },
-  { icon: Headphones, title: "Agency Expertise", desc: "Our team has run campaigns across dozens of verticals at scale." },
+const features = [
+  { icon: Shield, title: "Lower Restriction Risk", desc: "Established trust signals that minimize account bans." },
+  { icon: Target, title: "High Spending Capacity", desc: "Agency-tier accounts with higher daily limits." },
+  { icon: Zap, title: "Fast Activation", desc: "Get up and running in hours." },
+  { icon: Clock, title: "Long-Term Support", desc: "Ongoing assistance from our team." },
 ];
-
-const testimonials = [
-  {
-    quote: "We went from hitting $500/day limits to running $12k/day budgets within the first week. RAZR changed how we approach scaling entirely.",
-    name: "Marcus T.",
-    role: "Media Buyer, 7-Figure eCom Brand",
-  },
-  {
-    quote: "The lifetime replacement policy alone is worth it. We've had zero downtime across 8 months of aggressive campaign scaling.",
-    name: "Priya L.",
-    role: "Performance Marketing Lead",
-  },
-  {
-    quote: "Setup was done same day. Their team walked us through everything and has been available every time we needed support. Best investment this year.",
-    name: "Jordan K.",
-    role: "Founder, Lead Gen Agency",
-  },
-  {
-    quote: "Tried three other providers before RAZR. None of them came close on either account quality or the support experience. Wish I started here.",
-    name: "Alex M.",
-    role: "Media Buyer, Finance Vertical",
-  },
-];
-
-const faqItems = [
-  { q: "How fast can I get activated?", a: "Setup Access activates in 24–48 hours. Full Access clients typically get same-day activation with our team managing the entire process." },
-  { q: "What if my account gets restricted?", a: "Setup Access includes a 30-day replacement. Full Access comes with a lifetime replacement guarantee — as long as you're following Meta's policies." },
-  { q: "What niches do you support?", a: "E-commerce, lead gen, SaaS, health, finance, real estate, education, travel, and more. Contact us if you're unsure about your niche." },
-  { q: "Do you offer team access?", a: "Yes. Full Access includes team access for up to 3 seats with proper role-based permissions inside Business Manager." },
-];
-
-function TestimonialsSlider() {
-  const [current, setCurrent] = useState(0);
-
-  const prev = () => setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length);
-  const next = () => setCurrent((c) => (c + 1) % testimonials.length);
-
-  useEffect(() => {
-    const t = setInterval(next, 5000);
-    return () => clearInterval(t);
-  }, []);
-
-  return (
-    <div className="relative max-w-3xl mx-auto">
-      <div className="overflow-hidden rounded-2xl border border-border bg-card/50 backdrop-blur-sm p-8 md:p-12 min-h-[220px] flex items-center">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={current}
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -30 }}
-            transition={{ duration: 0.4 }}
-            className="w-full"
-          >
-            <div className="text-4xl text-primary/30 font-serif mb-4 leading-none">"</div>
-            <p className="text-lg md:text-xl text-foreground leading-relaxed mb-8">
-              {testimonials[current].quote}
-            </p>
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-bold text-sm">
-                {testimonials[current].name[0]}
-              </div>
-              <div>
-                <div className="text-white font-semibold">{testimonials[current].name}</div>
-                <div className="text-muted-foreground text-sm">{testimonials[current].role}</div>
-              </div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      <div className="flex items-center justify-center gap-4 mt-6">
-        <button
-          onClick={prev}
-          className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:border-primary/40 hover:text-primary transition-all"
-          data-testid="btn-prev-testimonial"
-        >
-          <ChevronLeft size={18} />
-        </button>
-        <div className="flex gap-2">
-          {testimonials.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(i)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${i === current ? "bg-primary w-6" : "bg-border"}`}
-              data-testid={`btn-testimonial-dot-${i}`}
-            />
-          ))}
-        </div>
-        <button
-          onClick={next}
-          className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:border-primary/40 hover:text-primary transition-all"
-          data-testid="btn-next-testimonial"
-        >
-          <ChevronRight size={18} />
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function FaqAccordion() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  return (
-    <div className="flex flex-col gap-3 max-w-3xl mx-auto">
-      {faqItems.map((item, i) => (
-        <div
-          key={i}
-          className={`rounded-xl border transition-all duration-300 overflow-hidden ${openIndex === i ? "border-primary/40 bg-card/80" : "border-border bg-card/40"}`}
-          data-testid={`home-faq-${i}`}
-        >
-          <button
-            onClick={() => setOpenIndex(openIndex === i ? null : i)}
-            className="w-full flex items-center justify-between px-6 py-5 text-left gap-4"
-            data-testid={`home-faq-toggle-${i}`}
-          >
-            <span className={`font-medium text-sm transition-colors ${openIndex === i ? "text-primary" : "text-white"}`}>{item.q}</span>
-            <motion.div animate={{ rotate: openIndex === i ? 180 : 0 }} transition={{ duration: 0.25 }}>
-              <ChevronDown size={16} className={openIndex === i ? "text-primary" : "text-muted-foreground"} />
-            </motion.div>
-          </button>
-          <AnimatePresence initial={false}>
-            {openIndex === i && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.25 }}
-              >
-                <div className="px-6 pb-5 text-muted-foreground text-sm leading-relaxed border-t border-border/50 pt-4">
-                  {item.a}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      ))}
-    </div>
-  );
-}
 
 export default function Home() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start end", "end start"] });
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+
   return (
     <PageWrapper>
-      {/* HERO */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/12 via-background to-background" />
-        <ParticleBackground />
-
-        <div className="container relative z-10 px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/25 text-primary text-sm font-medium mb-8"
-            >
-              <Zap size={14} />
-              <span>Meta Agency Ad Accounts Provider</span>
-            </motion.div>
-
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-white mb-6 leading-none">
-              Premium Meta
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-primary bg-[length:200%_auto] animate-[gradient_3s_ease_infinite]">
-                Agency Ad Accounts
-              </span>
-            </h1>
-
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed">
-              Scale campaigns with agency-level advertising solutions. Higher limits, lower restriction risk, and real support.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button
-                size="lg"
-                className="w-full sm:w-auto text-base h-14 px-8 bg-primary hover:bg-primary/90 text-white shadow-[0_0_25px_rgba(0,102,255,0.45)] hover:shadow-[0_0_40px_rgba(0,102,255,0.65)] transition-all duration-200"
-                asChild
-                data-testid="btn-get-started"
-              >
-                <Link href="/plans">
-                  Get Started <ArrowRight className="ml-2" size={18} />
-                </Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full sm:w-auto text-base h-14 px-8 border-border hover:border-primary/50 hover:bg-primary/8 transition-all duration-200"
-                asChild
-                data-testid="btn-view-account"
-              >
-                <Link href="/contact">View Account First</Link>
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ChevronDown className="text-muted-foreground/50" size={24} />
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* STATS */}
-      <section className="py-20 border-y border-border bg-card/20">
-        <div className="container px-4 mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { label: "Active Clients", value: 500, suffix: "+" },
-              { label: "Ad Spend Managed", value: 10, suffix: "M+" },
-              { label: "Satisfaction Rate", value: 98, suffix: "%" },
-              { label: "Avg Response (min)", value: 30, suffix: "" },
-            ].map((stat, i) => (
-              <motion.div
-                key={i}
+      <FloatingOrbs />
+      
+      {/* HERO SECTION - Asymmetric */}
+      <section className="relative min-h-[95vh] pt-32 pb-20 flex items-center overflow-hidden z-10">
+        <div className="container mx-auto px-4 h-full">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-8 items-center h-full">
+            {/* Left Column - 60% */}
+            <div className="w-full lg:w-[60%] flex flex-col items-start relative z-20">
+              <motion.div 
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="flex flex-col gap-2"
-                data-testid={`home-stat-${i}`}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
               >
-                <AnimatedCounter target={stat.value} suffix={stat.suffix} />
-                <div className="text-xs text-muted-foreground uppercase tracking-widest">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* WHY CHOOSE RAZR */}
-      <section className="py-32">
-        <div className="container px-4 mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Why Choose{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
-                RAZR
-              </span>
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              We provide the infrastructure that serious advertisers need to run at full capacity.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {whyFeatures.map((f, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className="group p-6 rounded-2xl border border-border bg-card/40 backdrop-blur-sm hover:border-primary/35 hover:shadow-[0_0_25px_rgba(0,102,255,0.1)] hover:bg-card/70 transition-all duration-300"
-                data-testid={`why-card-${i}`}
-              >
-                <div className="w-11 h-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-5 group-hover:bg-primary/20 group-hover:border-primary/40 transition-all duration-300">
-                  <f.icon className="text-primary" size={20} />
+                <div className="inline-flex items-center gap-2 mb-8 border-b border-primary/30 pb-2">
+                  <span className="text-[10px] md:text-xs font-black tracking-[0.2em] text-primary uppercase">
+                    May 23, 2026 // Meta Agency Accounts
+                  </span>
                 </div>
-                <h3 className="text-white font-semibold mb-2 group-hover:text-primary transition-colors duration-300">{f.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{f.desc}</p>
+                
+                <h1 className="text-6xl md:text-8xl lg:text-[7.5rem] font-black tracking-tighter leading-[0.85] text-white mb-8">
+                  SCALE <br/>
+                  <span className="font-light italic tracking-tight text-white/70">WITHOUT</span><br/>
+                  LIMITS.
+                </h1>
+                
+                <p className="text-lg md:text-xl text-muted-foreground max-w-lg mb-12 font-medium leading-relaxed">
+                  Premium Meta Agency infrastructure for high-volume advertisers. Stop fighting the platform, start scaling your campaigns.
+                </p>
+
+                <div className="flex flex-col sm:flex-row items-start gap-6 w-full max-w-md">
+                  <Link href="/plans" className="w-full sm:w-auto relative group">
+                    <div className="absolute inset-0 bg-primary rounded-none blur group-hover:blur-md transition-all duration-300 opacity-50" />
+                    <button className="relative w-full sm:w-auto px-8 py-4 bg-white text-black font-bold text-sm tracking-widest uppercase hover:bg-gray-200 transition-colors">
+                      Get Started
+                    </button>
+                  </Link>
+                  <Link href="/contact" className="w-full sm:w-auto px-8 py-4 border border-white/20 text-white font-bold text-sm tracking-widest uppercase hover:bg-white/5 transition-colors">
+                    View Account
+                  </Link>
+                </div>
               </motion.div>
-            ))}
+            </div>
+
+            {/* Right Column - 40% - Floating UI */}
+            <div className="w-full lg:w-[40%] relative h-[500px] lg:h-[700px] hidden md:block z-10">
+              <motion.div 
+                initial={{ opacity: 0, x: 50, rotateY: -10 }}
+                animate={{ opacity: 1, x: 0, rotateY: 0 }}
+                transition={{ duration: 1, delay: 0.2 }}
+                className="absolute right-0 top-1/2 -translate-y-1/2 w-[120%] z-20"
+                style={{ perspective: "1000px" }}
+              >
+                <div style={{ transform: "rotateY(-15deg) rotateX(5deg) rotateZ(-2deg)", transformStyle: "preserve-3d" }}>
+                  <CommandCenter />
+                </div>
+              </motion.div>
+
+              {/* Decorative floating elements */}
+              <motion.div 
+                animate={{ y: [-10, 10, -10] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute top-20 right-20 w-32 h-32 bg-primary/20 rounded-full blur-3xl"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* HOW IT WORKS (abbreviated) */}
-      <section className="py-32 bg-card/10">
-        <div className="container px-4 mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              How It{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
-                Works
-              </span>
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-              From first message to live campaigns — in 5 steps.
-            </p>
-          </motion.div>
+      <MarqueeLogos />
 
-          <div className="relative max-w-4xl mx-auto">
-            <div className="flex flex-col md:flex-row items-start gap-0 md:gap-0">
+      {/* WHY RAZR - BENTO GRID */}
+      <section className="py-32 relative z-10">
+        <div className="container mx-auto px-4">
+          <div className="mb-20">
+            <h2 className="text-sm font-bold tracking-[0.2em] text-primary uppercase mb-4">Infrastructure</h2>
+            <h3 className="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-none">
+              Built to <br/><span className="font-light italic text-white/50">outperform</span>
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-[minmax(180px,auto)] gap-4 md:gap-6">
+            {/* Large Feature Card - Chart */}
+            <div className="md:col-span-8 md:row-span-2 relative rounded-3xl border border-white/10 bg-white/[0.02] overflow-hidden p-8 flex flex-col justify-between group hover:border-white/20 transition-colors">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative z-10">
+                <Shield className="w-10 h-10 text-primary mb-6" />
+                <h4 className="text-3xl font-bold mb-2">Unmatched Stability</h4>
+                <p className="text-muted-foreground max-w-md">Our agency-tier accounts carry established trust signals that dramatically reduce the chance of restrictions compared to standard Business Managers.</p>
+              </div>
+              <div className="relative z-0 mt-8 h-40 w-full rounded-xl border border-white/5 bg-black/50 overflow-hidden flex items-end">
+                 {/* Fake chart visualization */}
+                 <div className="w-full h-full flex items-end justify-between px-4 gap-2 pt-8">
+                   {[40, 60, 45, 80, 65, 90, 75, 100].map((h, i) => (
+                     <div key={i} className="w-full bg-primary/40 rounded-t-sm" style={{ height: `${h}%` }} />
+                   ))}
+                 </div>
+              </div>
+            </div>
+
+            {/* Top Right Small Card */}
+            <div className="md:col-span-4 md:row-span-1 rounded-3xl border border-white/10 bg-white/[0.02] p-8 group hover:border-white/20 transition-colors flex flex-col justify-center">
+              <Target className="w-8 h-8 text-white mb-4" />
+              <h4 className="text-xl font-bold mb-2">High Capacity</h4>
+              <p className="text-sm text-muted-foreground">Scale spend daily without artificial caps.</p>
+            </div>
+
+            {/* Bottom Right Small Card */}
+            <div className="md:col-span-4 md:row-span-1 rounded-3xl border border-white/10 bg-white/[0.02] p-8 group hover:border-white/20 transition-colors flex flex-col justify-center">
+              <Zap className="w-8 h-8 text-white mb-4" />
+              <h4 className="text-xl font-bold mb-2">Instant Action</h4>
+              <p className="text-sm text-muted-foreground">Same-day activation for verified partners.</p>
+            </div>
+
+            {/* Bottom Left Medium Card */}
+            <div className="md:col-span-5 md:row-span-1 rounded-3xl border border-white/10 bg-primary/5 p-8 group hover:bg-primary/10 transition-colors">
+              <h4 className="text-2xl font-bold mb-2 text-primary">0% Downtime</h4>
+              <p className="text-sm text-white/70">Lifetime replacement guarantee on Full Access accounts.</p>
+            </div>
+
+            {/* Bottom Right Medium Card */}
+            <div className="md:col-span-7 md:row-span-1 rounded-3xl border border-white/10 bg-white/[0.02] p-8 group flex items-center justify-between">
+              <div>
+                <h4 className="text-2xl font-bold mb-2">Team Access</h4>
+                <p className="text-sm text-muted-foreground">Proper role-based permissions.</p>
+              </div>
+              <div className="flex -space-x-4">
+                {[1,2,3].map(i => (
+                  <div key={i} className="w-12 h-12 rounded-full border-2 border-background bg-white/10 flex items-center justify-center text-xs font-bold text-white/50 backdrop-blur-md">U{i}</div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* COMMAND CENTER PREVIEW */}
+      <section className="py-32 relative z-10 overflow-hidden bg-black border-y border-white/5">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-background to-background" />
+        <div className="container mx-auto px-4 relative z-10 text-center mb-16">
+          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">Your Command Center</h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">Everything you need to monitor account health, scaling metrics, and active campaigns in one view.</p>
+        </div>
+        
+        <div className="w-[120%] md:w-[150%] max-w-none -ml-[10%] md:-ml-[25%] opacity-80" style={{ transform: "rotateX(20deg) rotateZ(-5deg)", perspective: "1000px" }}>
+          <CommandCenter className="max-w-none w-full scale-125 md:scale-150 origin-top shadow-[0_0_100px_rgba(0,102,255,0.2)]" />
+        </div>
+      </section>
+
+      {/* STATS WALL - Editorial Typography */}
+      <section className="py-40 relative z-10">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between gap-24">
+            <div className="flex-1 border-l-2 border-primary pl-8">
+              <div className="text-[6rem] md:text-[8rem] lg:text-[10rem] font-black leading-none tracking-tighter mb-6">98%</div>
+              <div className="w-full max-w-xs">
+                <h4 className="text-xl font-bold uppercase tracking-widest mb-4">Client Retention</h4>
+                <p className="text-muted-foreground leading-relaxed">Once advertisers switch to our infrastructure, they rarely leave. The stability is simply unmatched by standard setups.</p>
+              </div>
+            </div>
+            
+            <div className="flex-1 border-l-2 border-white/20 pl-8">
+              <div className="text-[6rem] md:text-[8rem] lg:text-[10rem] font-light leading-none tracking-tighter mb-6 text-white/50">$15<span className="text-5xl align-top">M</span></div>
+              <div className="w-full max-w-xs">
+                <h4 className="text-xl font-bold uppercase tracking-widest mb-4 text-white/70">Monthly Spend</h4>
+                <p className="text-muted-foreground leading-relaxed">Processed safely through our agency networks without artificial scaling bottlenecks.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS - Sticky Reveal */}
+      <section className="py-32 relative z-10 bg-white/[0.02] border-y border-white/5" ref={containerRef}>
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div className="relative">
+              <div className="sticky top-40">
+                <h2 className="text-sm font-bold tracking-[0.2em] text-primary uppercase mb-4">Process</h2>
+                <h3 className="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-none mb-8">
+                  From zero <br/>to live.
+                </h3>
+                <div className="w-24 h-24 rounded-full border border-white/10 flex items-center justify-center">
+                  <ArrowRight className="w-8 h-8 text-primary" />
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex flex-col gap-24 py-20">
               {[
-                { n: "01", t: "Contact Team", d: "Reach out via Telegram or WhatsApp." },
-                { n: "02", t: "View Account First", d: "See the account before committing." },
-                { n: "03", t: "Activation", d: "We handle the full setup process." },
-                { n: "04", t: "Campaign Launch", d: "Go live with your first campaigns." },
-                { n: "05", t: "Scaling Support", d: "We scale with you, long-term." },
-              ].map((step, i) => (
-                <motion.div
+                { step: "01", title: "Consultation", desc: "We review your business model, current spending, and scaling goals to ensure fit." },
+                { step: "02", title: "Account Review", desc: "Full transparency. We show you the exact account you'll receive before commitment." },
+                { step: "03", title: "Activation", desc: "Same-day provisioning. We connect your BM, set up billing, and grant team access." },
+                { step: "04", title: "Scale", desc: "Go live. Our team monitors health and provides ongoing scaling support." }
+              ].map((item, i) => (
+                <motion.div 
                   key={i}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="flex-1 flex flex-col items-center text-center relative px-4"
-                  data-testid={`home-step-${i}`}
+                  viewport={{ margin: "-100px", once: true }}
+                  className="relative pl-12 border-l border-white/10"
                 >
-                  {i < 4 && (
-                    <div className="hidden md:block absolute top-6 left-1/2 w-full h-px bg-gradient-to-r from-primary/30 to-transparent" />
-                  )}
-                  <div className="w-12 h-12 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary font-bold text-sm mb-4 relative z-10 shadow-[0_0_15px_rgba(0,102,255,0.2)]">
-                    {step.n}
-                  </div>
-                  <h4 className="text-white font-semibold text-sm mb-1">{step.t}</h4>
-                  <p className="text-muted-foreground text-xs leading-relaxed">{step.d}</p>
+                  <div className="absolute top-0 left-0 -translate-x-1/2 w-3 h-3 rounded-full bg-primary shadow-[0_0_10px_rgba(0,102,255,0.8)]" />
+                  <div className="text-2xl font-light text-white/30 mb-4">{item.step}</div>
+                  <h4 className="text-3xl font-bold mb-4">{item.title}</h4>
+                  <p className="text-lg text-muted-foreground leading-relaxed">{item.desc}</p>
                 </motion.div>
               ))}
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="text-center mt-14">
-            <Link
-              href="/how-it-works"
-              className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors text-sm"
-              data-testid="link-how-it-works"
-            >
-              See the full process <ArrowRight size={16} />
-            </Link>
+      {/* TESTIMONIAL - Single Feature */}
+      <section className="py-40 relative z-10">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="text-center mb-16">
+             <div className="text-primary text-6xl font-serif leading-none mb-6">"</div>
+             <h3 className="text-3xl md:text-5xl font-medium leading-tight mb-12">
+               We went from hitting $500/day limits to running $12k/day budgets within the first week. RAZR changed how we approach scaling entirely.
+             </h3>
+             <div className="flex items-center justify-center gap-4">
+               <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center font-bold text-lg">MT</div>
+               <div className="text-left">
+                 <div className="font-bold uppercase tracking-widest text-sm">Marcus T.</div>
+                 <div className="text-muted-foreground text-sm">Media Buyer, 7-Figure eCom</div>
+               </div>
+             </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-24">
+            <div className="p-8 border border-white/10 bg-white/[0.02] rounded-2xl relative mt-8">
+               <p className="text-lg text-muted-foreground mb-6">"The lifetime replacement policy alone is worth it. We've had zero downtime across 8 months of aggressive campaign scaling."</p>
+               <div className="font-bold uppercase tracking-widest text-xs">Priya L. — Performance Lead</div>
+            </div>
+            <div className="p-8 border border-white/10 bg-white/[0.02] rounded-2xl relative mb-8">
+               <p className="text-lg text-muted-foreground mb-6">"Setup was done same day. Their team walked us through everything. Best infrastructure investment this year."</p>
+               <div className="font-bold uppercase tracking-widest text-xs">Jordan K. — Agency Founder</div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section className="py-32">
-        <div className="container px-4 mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              What Clients{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
-                Say
-              </span>
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-              500+ advertisers have scaled their campaigns with RAZR infrastructure.
-            </p>
-          </motion.div>
-          <TestimonialsSlider />
+      {/* WORLD MAP */}
+      <section className="py-32 relative z-10 overflow-hidden bg-black border-y border-white/5">
+        <div className="container mx-auto px-4 text-center relative z-20">
+          <h2 className="text-sm font-bold tracking-[0.2em] text-primary uppercase mb-8">Global Reach</h2>
+          <h3 className="text-5xl font-black uppercase tracking-tighter mb-16">Trusted in 40+ countries</h3>
+        </div>
+        <div className="relative -mt-20">
+          <WorldMap />
         </div>
       </section>
 
       {/* CTA BANNER */}
-      <section className="py-20">
-        <div className="container px-4 mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="relative rounded-3xl border border-primary/30 bg-card/50 backdrop-blur-sm p-12 md:p-16 text-center overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/15 via-card/30 to-transparent" />
-            <div className="relative z-10">
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                Ready to Scale Without Limits?
-              </h2>
-              <p className="text-muted-foreground text-lg max-w-xl mx-auto mb-10">
-                Join 500+ advertisers who stopped fighting their ad accounts and started scaling.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button
-                  size="lg"
-                  className="h-14 px-10 bg-primary text-white shadow-[0_0_30px_rgba(0,102,255,0.5)] hover:shadow-[0_0_50px_rgba(0,102,255,0.7)] hover:bg-primary/90 transition-all duration-200 text-base"
-                  asChild
-                  data-testid="btn-cta-get-started"
-                >
-                  <Link href="/plans">Get Started Now <ArrowRight className="ml-2" size={18} /></Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="h-14 px-10 border-border hover:border-primary/40 text-base"
-                  asChild
-                  data-testid="btn-cta-contact"
-                >
-                  <Link href="/contact">Talk to the Team</Link>
-                </Button>
-              </div>
+      <section className="py-32 relative z-10">
+        <div className="container mx-auto px-4">
+          <div className="bg-primary text-black p-12 md:p-24 rounded-[3rem] rounded-tr-none relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12">
+            <div className="absolute -right-20 -top-20 w-96 h-96 bg-white/20 blur-3xl rounded-full" />
+            
+            <div className="relative z-10 max-w-2xl">
+              <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-6">Stop settling. <br/>Start scaling.</h2>
             </div>
-          </motion.div>
-        </div>
-      </section>
 
-      {/* FAQ */}
-      <section className="py-32">
-        <div className="container px-4 mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Common{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
-                Questions
-              </span>
-            </h2>
-            <p className="text-muted-foreground text-lg">
-              Quick answers to what most people ask before getting started.
-            </p>
-          </motion.div>
-          <FaqAccordion />
-          <div className="text-center mt-10">
-            <Link
-              href="/faq"
-              className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors text-sm"
-              data-testid="link-full-faq"
-            >
-              See all questions <ArrowRight size={16} />
-            </Link>
+            <div className="relative z-10 shrink-0">
+               <Link href="/contact" className="inline-flex items-center justify-center w-32 h-32 md:w-40 md:h-40 rounded-full bg-black text-white hover:scale-105 transition-transform duration-300">
+                 <ArrowRight className="w-12 h-12" />
+               </Link>
+            </div>
           </div>
         </div>
       </section>
+
     </PageWrapper>
   );
 }
