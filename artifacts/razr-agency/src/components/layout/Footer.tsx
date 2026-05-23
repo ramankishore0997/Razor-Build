@@ -1,10 +1,12 @@
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
+import StarfieldFooter from "@/components/StarfieldFooter";
 
 export default function Footer() {
   return (
-    <footer className="bg-background border-t border-white/5 overflow-hidden">
-      <div className="container mx-auto px-4 py-24 md:py-32">
+    <footer className="relative bg-background border-t border-white/5 overflow-hidden">
+      <StarfieldFooter />
+      <div className="container mx-auto px-4 py-24 md:py-32 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 mb-24">
           <div className="lg:col-span-6 flex flex-col justify-between">
             <div>

@@ -1,0 +1,93 @@
+import { motion } from "framer-motion";
+import { ArrowRight, Sparkles } from "lucide-react";
+import { Link } from "wouter";
+
+export default function HolographicCTA() {
+  return (
+    <section className="py-32 relative z-10 overflow-hidden">
+      <div className="container mx-auto px-4">
+        <div className="relative rounded-[2.5rem] p-[1.5px] overflow-hidden group">
+          {/* animated gradient border */}
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
+            className="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0deg,#0066ff_60deg,#7c3aed_120deg,transparent_180deg,#0066ff_240deg,#06b6d4_300deg,transparent_360deg)]"
+          />
+
+          <div className="relative rounded-[2.4rem] bg-black overflow-hidden">
+            {/* moving light bars */}
+            <motion.div
+              animate={{ x: ["-100%", "100%"] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+              className="absolute top-0 left-0 w-[40%] h-px bg-gradient-to-r from-transparent via-primary to-transparent"
+            />
+            <motion.div
+              animate={{ x: ["100%", "-100%"] }}
+              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              className="absolute bottom-0 right-0 w-[40%] h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"
+            />
+
+            {/* radial glow blobs */}
+            <motion.div
+              animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.7, 0.4] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-primary/30 blur-[100px]"
+            />
+            <motion.div
+              animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.6, 0.3] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-purple-500/30 blur-[100px]"
+            />
+
+            {/* grid overlay */}
+            <div
+              className="absolute inset-0 opacity-[0.07]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
+                backgroundSize: "50px 50px",
+              }}
+            />
+
+            <div className="relative p-12 md:p-20 lg:p-28 flex flex-col md:flex-row items-center justify-between gap-12">
+              <div className="max-w-2xl">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 backdrop-blur mb-8">
+                  <Sparkles className="w-3.5 h-3.5 text-primary" />
+                  <span className="text-[10px] font-black tracking-[0.2em] text-primary uppercase">Premium Infrastructure</span>
+                </div>
+                <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.9] mb-6">
+                  Stop settling.<br />
+                  <span className="bg-gradient-to-r from-primary via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                    Start scaling.
+                  </span>
+                </h2>
+                <p className="text-lg text-white/60 max-w-md">
+                  Join 500+ advertisers running uncapped budgets on agency-tier Meta &amp; Google accounts.
+                </p>
+              </div>
+
+              <div className="shrink-0 flex flex-col gap-4">
+                <a
+                  href="https://wa.me/917065339146"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/btn relative inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest overflow-hidden hover:bg-primary hover:text-white transition-colors duration-300"
+                >
+                  <span className="absolute inset-0 bg-gradient-to-r from-primary via-purple-500 to-primary opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" />
+                  <span className="relative">Chat on WhatsApp</span>
+                  <ArrowRight className="relative w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                </a>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center gap-2 px-10 py-5 rounded-full border border-white/20 text-white font-black text-sm uppercase tracking-widest hover:bg-white/5 transition-colors"
+                >
+                  Contact Sales
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

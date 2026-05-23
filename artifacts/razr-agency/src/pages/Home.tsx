@@ -6,6 +6,9 @@ import MarqueeLogos from "@/components/MarqueeLogos";
 import CommandCenter from "@/components/CommandCenter";
 import FloatingOrbs from "@/components/FloatingOrbs";
 import WorldMap from "@/components/WorldMap";
+import TrustWall from "@/components/TrustWall";
+import AchievementBadges from "@/components/AchievementBadges";
+import HolographicCTA from "@/components/HolographicCTA";
 import { useRef } from "react";
 
 const features = [
@@ -63,6 +66,8 @@ export default function Home() {
                     Contact Us
                   </Link>
                 </div>
+
+                <AchievementBadges />
               </motion.div>
             </div>
 
@@ -91,6 +96,7 @@ export default function Home() {
         </div>
       </section>
 
+      <TrustWall />
       <MarqueeLogos />
 
       {/* WHY RAZR - BENTO GRID */}
@@ -276,24 +282,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA BANNER */}
-      <section className="py-32 relative z-10">
-        <div className="container mx-auto px-4">
-          <div className="bg-primary text-black p-12 md:p-24 rounded-[3rem] rounded-tr-none relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12">
-            <div className="absolute -right-20 -top-20 w-96 h-96 bg-white/20 blur-3xl rounded-full" />
-            
-            <div className="relative z-10 max-w-2xl">
-              <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-6">Stop settling. <br/>Start scaling.</h2>
-            </div>
-
-            <div className="relative z-10 shrink-0">
-               <Link href="/contact" className="inline-flex items-center justify-center w-32 h-32 md:w-40 md:h-40 rounded-full bg-black text-white hover:scale-105 transition-transform duration-300">
-                 <ArrowRight className="w-12 h-12" />
-               </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HolographicCTA />
 
     </PageWrapper>
   );

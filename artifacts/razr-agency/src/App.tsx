@@ -8,6 +8,7 @@ import CustomCursor from "@/components/CustomCursor";
 import MouseGlow from "@/components/MouseGlow";
 import NoiseOverlay from "@/components/NoiseOverlay";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
+import GlassDock from "@/components/GlassDock";
 
 import Home from "@/pages/Home";
 import Features from "@/pages/Features";
@@ -67,6 +68,9 @@ function App() {
           <Router />
         </WouterRouter>
         <WhatsAppFloat />
+        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+          <GlassDock />
+        </WouterRouter>
         <Toaster />
       </TooltipProvider>
     </QueryClientProvider>
