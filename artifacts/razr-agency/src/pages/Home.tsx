@@ -13,6 +13,9 @@ import LightBeams from "@/components/LightBeams";
 import VideoTestimonials from "@/components/VideoTestimonials";
 import ScrollStory from "@/components/ScrollStory";
 import HeroRobot from "@/components/HeroRobot";
+import GrowthMetrics from "@/components/GrowthMetrics";
+import CaseStudyTimeline from "@/components/CaseStudyTimeline";
+import FaqPreview from "@/components/FaqPreview";
 import { useRef } from "react";
 
 const features = [
@@ -251,8 +254,17 @@ export default function Home() {
       {/* SCROLL STORYTELLING */}
       <ScrollStory />
 
+      {/* GROWTH METRICS */}
+      <GrowthMetrics />
+
+      {/* CASE STUDY TIMELINE */}
+      <CaseStudyTimeline />
+
       {/* VIDEO TESTIMONIALS */}
       <VideoTestimonials />
+
+      {/* FAQ PREVIEW */}
+      <FaqPreview />
 
       {/* WORLD MAP */}
       <section className="py-16 relative z-10 overflow-hidden bg-black border-y border-white/5">
