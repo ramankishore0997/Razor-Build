@@ -9,6 +9,10 @@ import WorldMap from "@/components/WorldMap";
 import TrustWall from "@/components/TrustWall";
 import AchievementBadges from "@/components/AchievementBadges";
 import HolographicCTA from "@/components/HolographicCTA";
+import LightBeams from "@/components/LightBeams";
+import VideoTestimonials from "@/components/VideoTestimonials";
+import ScrollStory from "@/components/ScrollStory";
+import HeroRobot from "@/components/HeroRobot";
 import { useRef } from "react";
 
 const features = [
@@ -30,7 +34,8 @@ export default function Home() {
       
       {/* HERO SECTION - Asymmetric */}
       <section className="relative min-h-[95vh] pt-32 pb-20 flex items-center overflow-hidden z-10">
-        <div className="container mx-auto px-4 h-full">
+        <LightBeams />
+        <div className="container mx-auto px-4 h-full relative z-10">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-8 items-center h-full">
             {/* Left Column - 60% */}
             <div className="w-full lg:w-[60%] flex flex-col items-start relative z-20">
@@ -71,26 +76,28 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* Right Column - 40% - Floating UI */}
+            {/* Right Column - 40% - Robot + Floating UI */}
             <div className="w-full lg:w-[40%] relative h-[500px] lg:h-[700px] hidden md:block z-10">
-              <motion.div 
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, delay: 0.3 }}
+                className="absolute inset-0 flex items-center justify-center z-20"
+              >
+                <HeroRobot />
+              </motion.div>
+
+              <motion.div
                 initial={{ opacity: 0, x: 50, rotateY: -10 }}
                 animate={{ opacity: 1, x: 0, rotateY: 0 }}
-                transition={{ duration: 1, delay: 0.2 }}
-                className="absolute right-0 top-1/2 -translate-y-1/2 w-[120%] z-20"
+                transition={{ duration: 1, delay: 0.6 }}
+                className="absolute -right-20 bottom-0 w-[110%] z-10 hidden lg:block opacity-70"
                 style={{ perspective: "1000px" }}
               >
-                <div style={{ transform: "rotateY(-15deg) rotateX(5deg) rotateZ(-2deg)", transformStyle: "preserve-3d" }}>
+                <div style={{ transform: "rotateY(-15deg) rotateX(5deg) rotateZ(-2deg) scale(0.75)", transformStyle: "preserve-3d" }}>
                   <CommandCenter />
                 </div>
               </motion.div>
-
-              {/* Decorative floating elements */}
-              <motion.div 
-                animate={{ y: [-10, 10, -10] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-20 right-20 w-32 h-32 bg-primary/20 rounded-full blur-3xl"
-              />
             </div>
           </div>
         </div>
@@ -241,35 +248,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TESTIMONIAL - Single Feature */}
-      <section className="py-40 relative z-10">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <div className="text-center mb-16">
-             <div className="text-primary text-6xl font-serif leading-none mb-6">"</div>
-             <h3 className="text-3xl md:text-5xl font-medium leading-tight mb-12">
-               We went from hitting $500/day limits to running $12k/day budgets within the first week. RAZR changed how we approach scaling entirely.
-             </h3>
-             <div className="flex items-center justify-center gap-4">
-               <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center font-bold text-lg">MT</div>
-               <div className="text-left">
-                 <div className="font-bold uppercase tracking-widest text-sm">Marcus T.</div>
-                 <div className="text-muted-foreground text-sm">Media Buyer, 7-Figure eCom</div>
-               </div>
-             </div>
-          </div>
+      {/* SCROLL STORYTELLING */}
+      <ScrollStory />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-24">
-            <div className="p-8 border border-white/10 bg-white/[0.02] rounded-2xl relative mt-8">
-               <p className="text-lg text-muted-foreground mb-6">"The lifetime replacement policy alone is worth it. We've had zero downtime across 8 months of aggressive campaign scaling."</p>
-               <div className="font-bold uppercase tracking-widest text-xs">Priya L. — Performance Lead</div>
-            </div>
-            <div className="p-8 border border-white/10 bg-white/[0.02] rounded-2xl relative mb-8">
-               <p className="text-lg text-muted-foreground mb-6">"Setup was done same day. Their team walked us through everything. Best infrastructure investment this year."</p>
-               <div className="font-bold uppercase tracking-widest text-xs">Jordan K. — Agency Founder</div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* VIDEO TESTIMONIALS */}
+      <VideoTestimonials />
 
       {/* WORLD MAP */}
       <section className="py-32 relative z-10 overflow-hidden bg-black border-y border-white/5">

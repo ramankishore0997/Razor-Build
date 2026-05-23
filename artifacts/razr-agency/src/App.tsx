@@ -9,6 +9,7 @@ import MouseGlow from "@/components/MouseGlow";
 import NoiseOverlay from "@/components/NoiseOverlay";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import GlassDock from "@/components/GlassDock";
+import SoundToggle from "@/components/SoundToggle";
 
 import Home from "@/pages/Home";
 import Features from "@/pages/Features";
@@ -68,6 +69,7 @@ function App() {
           <Router />
         </WouterRouter>
         <WhatsAppFloat />
+        <SoundToggle />
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
           <GlassDock />
         </WouterRouter>
