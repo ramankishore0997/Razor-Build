@@ -1,104 +1,247 @@
 import PageWrapper from "@/components/layout/PageWrapper";
 import { motion } from "framer-motion";
-import CommandCenter from "@/components/CommandCenter";
+import { Link } from "wouter";
+import FloatingOrbs from "@/components/FloatingOrbs";
+import {
+  ShoppingBag,
+  Target,
+  Cpu,
+  Building2,
+  Flame,
+  Coins,
+  ArrowUpRight,
+  TrendingUp,
+  type LucideIcon,
+} from "lucide-react";
 
-const solutions = [
+type Solution = {
+  id: string;
+  Icon: LucideIcon;
+  tag: string;
+  title: string;
+  desc: string;
+  bullets: string[];
+  metric: { value: string; label: string };
+  gradient: string;
+};
+
+const SOLUTIONS: Solution[] = [
   {
     id: "01",
-    title: "E-Commerce",
-    desc: "Stop fighting daily spending limits on winning creatives. Scale your Advantage+ Shopping campaigns infinitely with premium limits and zero payment failures.",
+    Icon: ShoppingBag,
+    tag: "E-Commerce & D2C",
+    title: "Scale Winning Creatives Without Limits",
+    desc: "Push Advantage+ Shopping & Performance Max campaigns to 5-figure daily budgets without spend caps, payment failures, or warmup pain.",
+    bullets: ["Unlimited daily spend", "Verified BM + pixel access", "Catalog ads optimized"],
+    metric: { value: "$50k+/day", label: "Tested daily spend" },
+    gradient: "from-blue-500/20 via-primary/10 to-transparent",
   },
   {
     id: "02",
-    title: "Lead Generation",
-    desc: "Maintain stable CPLs across local and national campaigns. Our accounts handle high-volume form fills without triggering automated restriction flags.",
+    Icon: Target,
+    tag: "Lead Generation",
+    title: "Stable CPLs at High Volume",
+    desc: "Run high-frequency lead campaigns across geos without tripping automated restriction flags. Perfect for local services, coaches, and B2B.",
+    bullets: ["No form-fill throttling", "Multi-geo support", "Stable cost per lead"],
+    metric: { value: "10k+", label: "Leads/month per acc" },
+    gradient: "from-emerald-500/20 via-primary/10 to-transparent",
   },
   {
     id: "03",
-    title: "SaaS & Software",
-    desc: "Deploy sophisticated funnel structures and retargeting matrices. Perfect for B2B cycles that require stable, long-term pixel seasoning.",
+    Icon: Cpu,
+    tag: "SaaS & B2B",
+    title: "Long-Cycle Pixel Seasoning",
+    desc: "Deploy sophisticated funnels and retargeting matrices. Pre-seasoned pixel history means your B2B campaigns hit qualified audiences from day one.",
+    bullets: ["LinkedIn-grade targeting", "Retargeting matrices", "Long-window attribution"],
+    metric: { value: "60 days", label: "Avg pixel history" },
+    gradient: "from-purple-500/20 via-primary/10 to-transparent",
   },
   {
     id: "04",
-    title: "Agencies",
-    desc: "Provide your clients with bulletproof infrastructure. Whitelabel our accounts and eliminate the 'client account went down' emergency call.",
+    Icon: Building2,
+    tag: "Agencies",
+    title: "Whitelabel Bulletproof Infrastructure",
+    desc: "Hand your clients accounts that never go down mid-campaign. End the 3am 'account got banned' emergency calls — forever.",
+    bullets: ["Whitelabel access", "Multi-client BM setup", "Dedicated account manager"],
+    metric: { value: "0", label: "Emergency calls" },
+    gradient: "from-orange-500/20 via-primary/10 to-transparent",
   },
   {
     id: "05",
-    title: "High-Volume Performance",
-    desc: "For affiliates and aggressive marketers. We provide the stability needed to run 5-figure daily budgets across multiple geos without sweat.",
-  }
+    Icon: Flame,
+    tag: "Affiliate & Performance",
+    title: "Blackhat-Ready Infrastructure",
+    desc: "For aggressive marketers running gray-hat verticals. Crypto, nutra, sweepstakes, gambling — our blackhat accounts handle it all without flinching.",
+    bullets: ["All verticals supported", "Cloaker compatible", "Burner-friendly BMs"],
+    metric: { value: "100%", label: "Vertical coverage" },
+    gradient: "from-red-500/20 via-primary/10 to-transparent",
+  },
+  {
+    id: "06",
+    Icon: Coins,
+    tag: "Google Ads",
+    title: "Premium Google Agency Accounts",
+    desc: "Beyond Meta — we provide MCC-backed Google Ads accounts with high spend limits, instant approval, and the same lifetime replacement guarantee.",
+    bullets: ["MCC-backed accounts", "Search + PMax ready", "Instant approvals"],
+    metric: { value: "1 hr", label: "Activation time" },
+    gradient: "from-yellow-500/20 via-primary/10 to-transparent",
+  },
 ];
 
 export default function Solutions() {
   return (
     <PageWrapper>
-      <section className="pt-40 pb-20 relative overflow-hidden">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl">
-            <h1 className="text-7xl md:text-9xl font-black uppercase tracking-tighter leading-[0.85] mb-8">
-              <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/20">01-05</span><br/>
-              Solutions
+      <FloatingOrbs />
+
+      {/* HERO */}
+      <section className="pt-40 pb-24 relative z-10">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <span className="text-xs font-bold tracking-[0.2em] text-primary uppercase mb-8 block">
+              Solutions / Built For Every Vertical
+            </span>
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter leading-[0.85] mb-10">
+              Whatever you <br />
+              <span className="font-light italic text-white/60">run, we scale it.</span>
             </h1>
-            <p className="text-2xl text-muted-foreground max-w-2xl font-light">
-              Tailored infrastructure for the industries that spend the most.
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl font-medium leading-relaxed border-l-2 border-primary pl-6">
+              From e-commerce empires to aggressive affiliate funnels — RAZR provides the Meta & Google agency
+              infrastructure to scale any vertical without restrictions.
             </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* SOLUTIONS GRID */}
+      <section className="py-12 pb-32 relative z-10">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            {SOLUTIONS.map((sol, i) => (
+              <motion.div
+                key={sol.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.6, delay: (i % 2) * 0.1 }}
+                className="relative group rounded-3xl border border-white/10 bg-white/[0.02] p-8 md:p-10 overflow-hidden hover:border-primary/40 transition-all duration-500"
+              >
+                {/* Gradient blob */}
+                <div
+                  className={`absolute -top-32 -right-32 w-80 h-80 rounded-full bg-gradient-to-br ${sol.gradient} blur-3xl opacity-60 group-hover:opacity-100 transition-opacity duration-700`}
+                />
+
+                <div className="relative z-10 flex flex-col h-full">
+                  {/* Top row: icon + ID */}
+                  <div className="flex items-start justify-between mb-8">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 ring-1 ring-primary/30 group-hover:bg-primary/20 group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500">
+                      <sol.Icon className="w-8 h-8 text-primary" strokeWidth={1.75} />
+                    </div>
+                    <div className="text-6xl font-black text-white/[0.06] tracking-tighter leading-none">
+                      {sol.id}
+                    </div>
+                  </div>
+
+                  {/* Tag */}
+                  <div className="text-xs font-bold tracking-[0.2em] text-primary uppercase mb-3">
+                    {sol.tag}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-3xl md:text-4xl font-black tracking-tight leading-tight mb-5 group-hover:text-primary transition-colors">
+                    {sol.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-muted-foreground leading-relaxed mb-8 text-[15px]">
+                    {sol.desc}
+                  </p>
+
+                  {/* Bullets */}
+                  <ul className="space-y-2.5 mb-8">
+                    {sol.bullets.map((b) => (
+                      <li key={b} className="flex items-center gap-3 text-sm text-white/80">
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Bottom row: metric + CTA */}
+                  <div className="mt-auto flex items-end justify-between pt-6 border-t border-white/5">
+                    <div>
+                      <div className="text-3xl font-black text-white tracking-tight">{sol.metric.value}</div>
+                      <div className="text-[11px] uppercase tracking-widest text-muted-foreground mt-1">
+                        {sol.metric.label}
+                      </div>
+                    </div>
+                    <Link
+                      href="/contact"
+                      className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white/60 hover:text-primary transition-colors group/cta"
+                    >
+                      Get Started
+                      <ArrowUpRight className="w-4 h-4 group-hover/cta:translate-x-1 group-hover/cta:-translate-y-1 transition-transform" />
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      <div className="relative border-t border-white/10">
-        {solutions.map((sol, i) => (
-          <section key={sol.id} className="min-h-screen flex items-center border-b border-white/5 relative overflow-hidden py-20">
-            {/* Subtle background number */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[30vw] font-black text-white/[0.02] pointer-events-none select-none leading-none">
-              {sol.id}
-            </div>
-
-            <div className="container mx-auto px-4 relative z-10">
-              <div className={`flex flex-col ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-16 lg:gap-24`}>
-                
-                {/* Narrative Copy */}
-                <div className="w-full lg:w-1/2">
-                  <motion.div 
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                  >
-                    <div className="text-primary font-bold text-xl tracking-widest mb-6">/{sol.id}</div>
-                    <h2 className="text-5xl md:text-6xl font-black uppercase tracking-tighter mb-8">{sol.title}</h2>
-                    <p className="text-xl text-muted-foreground leading-relaxed">
-                      {sol.desc}
-                    </p>
-                    <div className="mt-12">
-                      <a href="/contact" className="inline-flex items-center text-sm font-bold uppercase tracking-widest border-b-2 border-white pb-1 hover:text-primary hover:border-primary transition-colors">
-                        Discuss Your Needs
-                      </a>
-                    </div>
-                  </motion.div>
-                </div>
-
-                {/* Mockup */}
-                <div className="w-full lg:w-1/2">
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9, rotateY: i % 2 === 0 ? 10 : -10 }}
-                    whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    style={{ perspective: "1000px" }}
-                  >
-                    <div className="relative">
-                      <div className={`absolute inset-0 bg-primary/20 blur-[100px] ${i % 2 === 0 ? '-left-20' : '-right-20'}`} />
-                      <CommandCenter className="relative z-10 w-full shadow-2xl" />
-                    </div>
-                  </motion.div>
-                </div>
-
+      {/* STATS STRIP */}
+      <section className="py-24 relative z-10 border-y border-white/10 bg-white/[0.01]">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {[
+              { v: "$2.4B+", l: "Ad spend processed" },
+              { v: "1,200+", l: "Active advertisers" },
+              { v: "99.2%", l: "Account uptime" },
+              { v: "<1 hr", l: "Avg activation" },
+            ].map((s) => (
+              <div key={s.l}>
+                <div className="text-4xl md:text-5xl font-black text-primary tracking-tight mb-2">{s.v}</div>
+                <div className="text-[11px] uppercase tracking-widest text-muted-foreground">{s.l}</div>
               </div>
-            </div>
-          </section>
-        ))}
-      </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-32 relative z-10 text-center">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <TrendingUp className="w-12 h-12 text-primary mx-auto mb-8" strokeWidth={1.5} />
+          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">
+            Your vertical, <br />
+            <span className="text-primary">our infrastructure.</span>
+          </h2>
+          <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto">
+            Not sure which solution fits your business? Chat with our team — we'll match you with the right setup in
+            under 10 minutes.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="https://wa.me/917065339146"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-12 py-6 bg-primary text-black font-black text-lg uppercase tracking-widest hover:bg-white transition-colors duration-300"
+            >
+              Chat on WhatsApp
+            </a>
+            <Link
+              href="/plans"
+              className="inline-block px-12 py-6 border border-white/20 text-white font-black text-lg uppercase tracking-widest hover:bg-white/5 transition-colors duration-300"
+            >
+              View Pricing
+            </Link>
+          </div>
+        </div>
+      </section>
     </PageWrapper>
   );
 }
