@@ -32,7 +32,6 @@ export default function Footer() {
               <h4 className="text-white font-bold uppercase tracking-wider text-xs">Platform</h4>
               <Link href="/features" className="text-muted-foreground hover:text-white transition-colors text-sm">Features</Link>
               <Link href="/solutions" className="text-muted-foreground hover:text-white transition-colors text-sm">Solutions</Link>
-              <Link href="/plans" className="text-muted-foreground hover:text-white transition-colors text-sm">Pricing</Link>
               <Link href="/how-it-works" className="text-muted-foreground hover:text-white transition-colors text-sm">Process</Link>
             </div>
             <div className="flex flex-col gap-6">

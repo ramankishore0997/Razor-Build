@@ -213,18 +213,18 @@ export default function Features() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="/plans"
-              className="inline-block px-12 py-6 bg-primary text-black font-black text-lg uppercase tracking-widest hover:bg-white transition-colors duration-300"
-            >
-              View Pricing
-            </a>
-            <a
               href="https://wa.me/917065339146"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-12 py-6 border border-white/20 text-white font-black text-lg uppercase tracking-widest hover:bg-white/5 transition-colors duration-300"
+              className="inline-block px-12 py-6 bg-primary text-black font-black text-lg uppercase tracking-widest hover:bg-white transition-colors duration-300"
             >
               Chat on WhatsApp
+            </a>
+            <a
+              href="/contact"
+              className="inline-block px-12 py-6 border border-white/20 text-white font-black text-lg uppercase tracking-widest hover:bg-white/5 transition-colors duration-300"
+            >
+              Contact Us
             </a>
           </div>
         </div>

@@ -234,10 +234,10 @@ export default function Solutions() {
               Chat on WhatsApp
             </a>
             <Link
-              href="/plans"
+              href="/contact"
               className="inline-block px-12 py-6 border border-white/20 text-white font-black text-lg uppercase tracking-widest hover:bg-white/5 transition-colors duration-300"
             >
-              View Pricing
+              Contact Us
             </Link>
           </div>
         </div>

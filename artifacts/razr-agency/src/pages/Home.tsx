@@ -53,14 +53,14 @@ export default function Home() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-start gap-6 w-full max-w-md">
-                  <Link href="/plans" className="w-full sm:w-auto relative group">
+                  <a href="https://wa.me/917065339146" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto relative group">
                     <div className="absolute inset-0 bg-primary rounded-none blur group-hover:blur-md transition-all duration-300 opacity-50" />
                     <button className="relative w-full sm:w-auto px-8 py-4 bg-white text-black font-bold text-sm tracking-widest uppercase hover:bg-gray-200 transition-colors">
                       Get Started
                     </button>
-                  </Link>
+                  </a>
                   <Link href="/contact" className="w-full sm:w-auto px-8 py-4 border border-white/20 text-white font-bold text-sm tracking-widest uppercase hover:bg-white/5 transition-colors">
-                    View Account
+                    Contact Us
                   </Link>
                 </div>
               </motion.div>
