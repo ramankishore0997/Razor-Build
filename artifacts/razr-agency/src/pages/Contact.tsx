@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import PageWrapper from "@/components/layout/PageWrapper";
 import { motion } from "framer-motion";
-import { Send, Sparkles, MessageCircle, Mail, ArrowUpRight, Activity, Clock, Users, Zap } from "lucide-react";
+import { Sparkles, MessageCircle, Mail, ArrowUpRight, Activity, Clock, Users, Zap } from "lucide-react";
 import { SiTelegram, SiWhatsapp } from "react-icons/si";
 
 const CONTACT_EMAIL = "scale@razr.marketing";
@@ -17,11 +17,18 @@ export default function Contact() {
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`New scaling request — ${name || "Anonymous"}`);
-    const body = encodeURIComponent(
-      `Name / Company: ${name}\nTelegram: ${telegram}\nWhatsApp: ${whatsapp}\n\nGoal:\n${goal}`
-    );
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    const lines = [
+      `Hi RAZR team — new scaling request`,
+      ``,
+      `*Name / Company:* ${name || "—"}`,
+      `*Telegram:* ${telegram || "—"}`,
+      `*WhatsApp:* ${whatsapp || "—"}`,
+      ``,
+      `*Goal:*`,
+      `${goal || "—"}`,
+    ];
+    const text = encodeURIComponent(lines.join("\n"));
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -180,11 +187,11 @@ export default function Contact() {
                   <div className="flex items-center justify-between mb-8">
                     <div>
                       <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight mb-1">New Request</h2>
-                      <p className="text-sm text-white/50">Step 1 of 1 · Auto-routed to a specialist</p>
+                      <p className="text-sm text-white/50">We'll receive your request on WhatsApp instantly</p>
                     </div>
-                    <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.03]">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span className="text-[10px] font-black uppercase tracking-wider text-white/70">Secure</span>
+                    <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10">
+                      <SiWhatsapp className="w-3 h-3 text-emerald-400" />
+                      <span className="text-[10px] font-black uppercase tracking-wider text-emerald-300">via WhatsApp</span>
                     </div>
                   </div>
 
@@ -247,11 +254,11 @@ export default function Contact() {
                         type="submit"
                         whileHover={{ scale: 1.04 }}
                         whileTap={{ scale: 0.97 }}
-                        className="relative group/btn inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest overflow-hidden"
+                        className="relative group/btn inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#25D366] text-black font-black text-sm uppercase tracking-widest overflow-hidden shadow-[0_10px_40px_rgba(37,211,102,0.4)]"
                       >
-                        <span className="absolute inset-0 bg-gradient-to-r from-primary via-purple-500 to-primary opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
-                        <span className="relative">Send Request</span>
-                        <Send className="relative w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                        <span className="absolute inset-0 bg-gradient-to-r from-emerald-400 via-[#25D366] to-emerald-500 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
+                        <SiWhatsapp className="relative w-5 h-5" />
+                        <span className="relative">Send on WhatsApp</span>
                       </motion.button>
                     </div>
                   </form>
