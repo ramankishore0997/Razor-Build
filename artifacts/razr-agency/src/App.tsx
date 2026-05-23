@@ -16,6 +16,9 @@ import HowItWorks from "@/pages/HowItWorks";
 import About from "@/pages/About";
 import Faq from "@/pages/Faq";
 import Contact from "@/pages/Contact";
+import Privacy from "@/pages/Privacy";
+import Refund from "@/pages/Refund";
+import Terms from "@/pages/Terms";
 import NotFound from "@/pages/not-found";
 
 import Navbar from "@/components/layout/Navbar";
@@ -36,6 +39,9 @@ function Router() {
           <Route path="/about" component={About} />
           <Route path="/faq" component={Faq} />
           <Route path="/contact" component={Contact} />
+          <Route path="/privacy" component={Privacy} />
+          <Route path="/refund" component={Refund} />
+          <Route path="/terms" component={Terms} />
           <Route component={NotFound} />
         </Switch>
       </main>

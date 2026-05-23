@@ -38,14 +38,13 @@ export default function Footer() {
               <h4 className="text-white font-bold uppercase tracking-wider text-xs">Company</h4>
               <Link href="/about" className="text-muted-foreground hover:text-white transition-colors text-sm">About Us</Link>
               <Link href="/contact" className="text-muted-foreground hover:text-white transition-colors text-sm">Contact</Link>
-              <a href="#" className="text-muted-foreground hover:text-white transition-colors text-sm">Careers</a>
-              <a href="#" className="text-muted-foreground hover:text-white transition-colors text-sm">Press</a>
+              <Link href="/faq" className="text-muted-foreground hover:text-white transition-colors text-sm">FAQ</Link>
             </div>
             <div className="flex flex-col gap-6 col-span-2 md:col-span-1">
               <h4 className="text-white font-bold uppercase tracking-wider text-xs">Legal</h4>
-              <a href="#" className="text-muted-foreground hover:text-white transition-colors text-sm">Privacy Policy</a>
-              <a href="#" className="text-muted-foreground hover:text-white transition-colors text-sm">Terms of Service</a>
-              <Link href="/faq" className="text-muted-foreground hover:text-white transition-colors text-sm">FAQ</Link>
+              <Link href="/privacy" className="text-muted-foreground hover:text-white transition-colors text-sm">Privacy Policy</Link>
+              <Link href="/refund" className="text-muted-foreground hover:text-white transition-colors text-sm">Refund Policy</Link>
+              <Link href="/terms" className="text-muted-foreground hover:text-white transition-colors text-sm">Terms of Service</Link>
             </div>
           </div>
         </div>
@@ -56,10 +55,10 @@ export default function Footer() {
               RAZR
             </h1>
           </div>
-          <div className="w-full flex flex-col md:flex-row justify-between items-center mt-8 text-xs font-medium tracking-widest text-muted-foreground uppercase">
+          <div className="w-full flex flex-col md:flex-row justify-between items-center mt-8 text-xs font-medium tracking-widest text-muted-foreground uppercase gap-4">
             <span>&copy; {new Date().getFullYear()} RAZR.MARKETING</span>
-            <span className="mt-4 md:mt-0 text-primary">PERFORMANCE. WITHOUT COMPROMISE.</span>
-            <span className="mt-4 md:mt-0">SAN FRANCISCO • DUBAI • LONDON</span>
+            <span className="text-primary">PERFORMANCE. WITHOUT COMPROMISE.</span>
+            <a href="https://wa.me/917065339146" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">WHATSAPP +91 70653 39146</a>
           </div>
         </div>
       </div>
