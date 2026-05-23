@@ -53,8 +53,8 @@ export default function VideoTestimonials() {
   const items = [...TESTIMONIALS, ...TESTIMONIALS];
 
   return (
-    <section className="py-32 relative z-10 overflow-hidden">
-      <div className="container mx-auto px-4 mb-20">
+    <section className="py-16 relative z-10 overflow-hidden">
+      <div className="container mx-auto px-4 mb-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div>
             <h2 className="text-sm font-bold tracking-[0.2em] text-primary uppercase mb-4">Voices</h2>

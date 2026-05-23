@@ -56,7 +56,7 @@ export default function HowItWorks() {
 
   return (
     <PageWrapper>
-      <section className="pt-40 pb-20">
+      <section className="pt-28 pb-12">
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <span className="text-xs font-bold tracking-[0.2em] text-primary uppercase mb-8 block">The Process</span>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none mb-12">
@@ -79,7 +79,7 @@ export default function HowItWorks() {
 
           <div className="flex flex-col gap-32">
             {steps.map((step, i) => (
-              <div key={i} className="relative pl-16 md:pl-32 flex flex-col md:flex-row gap-8 md:gap-16">
+              <div key={i} className="relative pl-16 md:pl-32 flex flex-col md:flex-row gap-8 md:gap-10">
                 
                 {/* Node */}
                 <div className="absolute left-2.5 md:left-[2.6rem] top-2 w-4 h-4 -translate-x-1/2 rounded-full border-[4px] border-background bg-primary z-10" />

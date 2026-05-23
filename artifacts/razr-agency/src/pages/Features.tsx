@@ -139,7 +139,7 @@ export default function Features() {
       <FloatingOrbs />
 
       {/* INTRO */}
-      <section className="pt-40 pb-20 relative z-10">
+      <section className="pt-28 pb-12 relative z-10">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="max-w-3xl">
             <span className="text-xs font-bold tracking-[0.2em] text-primary uppercase mb-8 block">Why RAZR</span>
@@ -156,7 +156,7 @@ export default function Features() {
       </section>
 
       {/* BENEFITS GRID */}
-      <section className="py-12 pb-32 relative z-10">
+      <section className="py-12 pb-16 relative z-10">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
             {BENEFITS.map(({ Icon, title, desc, highlight }, i) => (
@@ -203,7 +203,7 @@ export default function Features() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 relative z-10 text-center">
+      <section className="py-14 relative z-10 text-center">
         <div className="container mx-auto px-4 max-w-3xl">
           <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">
             Ready to scale?

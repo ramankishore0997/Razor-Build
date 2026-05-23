@@ -22,9 +22,9 @@ export default function Contact() {
 
   return (
     <PageWrapper>
-      <section className="pt-40 pb-32 min-h-screen flex items-center">
+      <section className="pt-28 pb-16 min-h-screen flex items-center">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+          <div className="flex flex-col lg:flex-row gap-10 lg:gap-8">
             
             {/* Left 60% - Editorial Form */}
             <div className="w-full lg:w-[60%]">
@@ -56,7 +56,7 @@ export default function Contact() {
             </div>
 
             {/* Right 40% - Stacked Channels */}
-            <div className="w-full lg:w-[40%] flex flex-col gap-6 pt-4 lg:pt-32">
+            <div className="w-full lg:w-[40%] flex flex-col gap-6 pt-4 lg:pt-24">
               
               {/* Status Widget */}
               <div className="p-8 border border-white/10 bg-white/[0.02] mb-8">

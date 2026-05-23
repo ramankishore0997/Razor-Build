@@ -3,7 +3,7 @@ import PageWrapper from "@/components/layout/PageWrapper";
 export default function About() {
   return (
     <PageWrapper>
-      <section className="pt-40 pb-20 relative">
+      <section className="pt-28 pb-12 relative">
         <div className="container mx-auto px-4 max-w-5xl">
           
           <div className="relative pl-8 md:pl-16 border-l-4 border-primary mb-32">
@@ -12,7 +12,7 @@ export default function About() {
             </h1>
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+          <div className="flex flex-col lg:flex-row gap-10 lg:gap-8">
             {/* Left 60% */}
             <div className="w-full lg:w-[60%]">
               <h2 className="text-3xl font-bold mb-8 uppercase tracking-tight">The Infrastructure Gap</h2>
@@ -34,7 +34,7 @@ export default function About() {
             </div>
 
             {/* Right 40% */}
-            <div className="w-full lg:w-[40%] flex flex-col gap-12 pt-4">
+            <div className="w-full lg:w-[40%] flex flex-col gap-8 pt-4">
               <div>
                 <h3 className="text-xs font-bold tracking-[0.2em] text-primary uppercase mb-4">Core Value 01</h3>
                 <h4 className="text-2xl font-bold mb-3">Radical Transparency</h4>

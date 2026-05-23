@@ -10,7 +10,7 @@ const BADGES = [
 
 export default function AchievementBadges() {
   return (
-    <div className="flex flex-wrap gap-3 mt-12">
+    <div className="flex flex-wrap gap-3 mt-8">
       {BADGES.map((b, i) => {
         const Icon = b.icon;
         return (

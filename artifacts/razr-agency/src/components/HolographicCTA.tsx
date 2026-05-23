@@ -4,7 +4,7 @@ import { Link } from "wouter";
 
 export default function HolographicCTA() {
   return (
-    <section className="py-32 relative z-10 overflow-hidden">
+    <section className="py-16 relative z-10 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="relative rounded-[2.5rem] p-[1.5px] overflow-hidden group">
           {/* animated gradient border */}
@@ -49,7 +49,7 @@ export default function HolographicCTA() {
               }}
             />
 
-            <div className="relative p-12 md:p-20 lg:p-28 flex flex-col md:flex-row items-center justify-between gap-12">
+            <div className="relative p-12 md:p-20 lg:p-28 flex flex-col md:flex-row items-center justify-between gap-8">
               <div className="max-w-2xl">
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 backdrop-blur mb-8">
                   <Sparkles className="w-3.5 h-3.5 text-primary" />

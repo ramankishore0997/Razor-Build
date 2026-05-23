@@ -24,14 +24,14 @@ export default function Faq() {
 
   return (
     <PageWrapper>
-      <section className="pt-40 pb-32">
+      <section className="pt-28 pb-16">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="mb-24">
+          <div className="mb-12">
             <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-6">Details.</h1>
             <p className="text-xl text-muted-foreground">Everything you need to know before scaling.</p>
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-16">
+          <div className="flex flex-col lg:flex-row gap-10">
             {/* Left Sidebar */}
             <div className="w-full lg:w-1/4">
               <div className="sticky top-32 flex flex-col gap-2">

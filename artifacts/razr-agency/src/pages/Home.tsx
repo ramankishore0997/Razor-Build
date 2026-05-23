@@ -33,10 +33,10 @@ export default function Home() {
       <FloatingOrbs />
       
       {/* HERO SECTION - Asymmetric */}
-      <section className="relative min-h-[95vh] pt-32 pb-20 flex items-center overflow-hidden z-10">
+      <section className="relative min-h-[78vh] pt-24 pb-10 flex items-center overflow-hidden z-10">
         <LightBeams />
         <div className="container mx-auto px-4 h-full relative z-10">
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-8 items-center h-full">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-8 items-center h-full">
             {/* Left Column - 60% */}
             <div className="w-full lg:w-[60%] flex flex-col items-start relative z-20">
               <motion.div 
@@ -44,19 +44,19 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
               >
-                <div className="inline-flex items-center gap-2 mb-8 border-b border-primary/30 pb-2">
+                <div className="inline-flex items-center gap-2 mb-6 border-b border-primary/30 pb-2">
                   <span className="text-[10px] md:text-xs font-black tracking-[0.2em] text-primary uppercase">
                     May 23, 2026 // Meta & Google Agency Accounts
                   </span>
                 </div>
                 
-                <h1 className="text-6xl md:text-8xl lg:text-[7.5rem] font-black tracking-tighter leading-[0.85] text-white mb-8">
+                <h1 className="text-6xl md:text-8xl lg:text-[7.5rem] font-black tracking-tighter leading-[0.85] text-white mb-6">
                   SCALE <br/>
                   <span className="font-light italic tracking-tight text-white/70">WITHOUT</span><br/>
                   LIMITS.
                 </h1>
                 
-                <p className="text-lg md:text-xl text-muted-foreground max-w-lg mb-12 font-medium leading-relaxed">
+                <p className="text-lg md:text-xl text-muted-foreground max-w-lg mb-8 font-medium leading-relaxed">
                   Premium Meta & Google Agency infrastructure for high-volume advertisers. Stop fighting the platform, start scaling your campaigns.
                 </p>
 
@@ -77,7 +77,7 @@ export default function Home() {
             </div>
 
             {/* Right Column - 40% - Robot + Floating UI */}
-            <div className="w-full lg:w-[40%] relative h-[500px] lg:h-[700px] hidden md:block z-10">
+            <div className="w-full lg:w-[40%] relative h-[420px] lg:h-[560px] hidden md:block z-10">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -107,9 +107,9 @@ export default function Home() {
       <MarqueeLogos />
 
       {/* WHY RAZR - BENTO GRID */}
-      <section className="py-32 relative z-10">
+      <section className="py-16 relative z-10">
         <div className="container mx-auto px-4">
-          <div className="mb-20">
+          <div className="mb-10">
             <h2 className="text-sm font-bold tracking-[0.2em] text-primary uppercase mb-4">Infrastructure</h2>
             <h3 className="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-none">
               Built to <br/><span className="font-light italic text-white/50">outperform</span>
@@ -172,9 +172,9 @@ export default function Home() {
       </section>
 
       {/* COMMAND CENTER PREVIEW */}
-      <section className="py-32 relative z-10 overflow-hidden bg-black border-y border-white/5">
+      <section className="py-16 relative z-10 overflow-hidden bg-black border-y border-white/5">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-background to-background" />
-        <div className="container mx-auto px-4 relative z-10 text-center mb-16">
+        <div className="container mx-auto px-4 relative z-10 text-center mb-10">
           <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">Your Command Center</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">Everything you need to monitor account health, scaling metrics, and active campaigns in one view.</p>
         </div>
@@ -185,9 +185,9 @@ export default function Home() {
       </section>
 
       {/* STATS WALL - Editorial Typography */}
-      <section className="py-40 relative z-10">
+      <section className="py-20 relative z-10">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between gap-24">
+          <div className="flex flex-col md:flex-row justify-between gap-8">
             <div className="flex-1 border-l-2 border-primary pl-8">
               <div className="text-[6rem] md:text-[8rem] lg:text-[10rem] font-black leading-none tracking-tighter mb-6">98%</div>
               <div className="w-full max-w-xs">
@@ -208,9 +208,9 @@ export default function Home() {
       </section>
 
       {/* HOW IT WORKS - Sticky Reveal */}
-      <section className="py-32 relative z-10 bg-white/[0.02] border-y border-white/5" ref={containerRef}>
+      <section className="py-16 relative z-10 bg-white/[0.02] border-y border-white/5" ref={containerRef}>
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div className="relative">
               <div className="sticky top-40">
                 <h2 className="text-sm font-bold tracking-[0.2em] text-primary uppercase mb-4">Process</h2>
@@ -223,7 +223,7 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="flex flex-col gap-24 py-20">
+            <div className="flex flex-col gap-8 py-20">
               {[
                 { step: "01", title: "Consultation", desc: "We review your business model, current spending, and scaling goals to ensure fit." },
                 { step: "02", title: "Account Review", desc: "Full transparency. We show you the exact account you'll receive before commitment." },
@@ -255,12 +255,12 @@ export default function Home() {
       <VideoTestimonials />
 
       {/* WORLD MAP */}
-      <section className="py-32 relative z-10 overflow-hidden bg-black border-y border-white/5">
+      <section className="py-16 relative z-10 overflow-hidden bg-black border-y border-white/5">
         <div className="container mx-auto px-4 text-center relative z-20">
           <h2 className="text-sm font-bold tracking-[0.2em] text-primary uppercase mb-8">Global Reach</h2>
-          <h3 className="text-5xl font-black uppercase tracking-tighter mb-16">Trusted in 40+ countries</h3>
+          <h3 className="text-5xl font-black uppercase tracking-tighter mb-10">Trusted in 40+ countries</h3>
         </div>
-        <div className="relative -mt-20">
+        <div className="relative -mt-10">
           <WorldMap />
         </div>
       </section>

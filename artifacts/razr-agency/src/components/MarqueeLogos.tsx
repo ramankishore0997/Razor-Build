@@ -13,7 +13,7 @@ export default function MarqueeLogos() {
       <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
       
       <motion.div
-        className="flex whitespace-nowrap gap-16 md:gap-24 items-center pl-16 md:pl-24"
+        className="flex whitespace-nowrap gap-10 md:gap-8 items-center pl-16 md:pl-24"
         animate={{ x: ["0%", "-50%"] }}
         transition={{
           repeat: Infinity,

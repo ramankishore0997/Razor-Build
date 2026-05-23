@@ -94,7 +94,7 @@ export default function Solutions() {
       <FloatingOrbs />
 
       {/* HERO */}
-      <section className="pt-40 pb-24 relative z-10">
+      <section className="pt-28 pb-14 relative z-10">
         <div className="container mx-auto px-4 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -117,7 +117,7 @@ export default function Solutions() {
       </section>
 
       {/* SOLUTIONS GRID */}
-      <section className="py-12 pb-32 relative z-10">
+      <section className="py-12 pb-16 relative z-10">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {SOLUTIONS.map((sol, i) => (
@@ -194,7 +194,7 @@ export default function Solutions() {
       </section>
 
       {/* STATS STRIP */}
-      <section className="py-24 relative z-10 border-y border-white/10 bg-white/[0.01]">
+      <section className="py-14 relative z-10 border-y border-white/10 bg-white/[0.01]">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
@@ -213,7 +213,7 @@ export default function Solutions() {
       </section>
 
       {/* CTA */}
-      <section className="py-32 relative z-10 text-center">
+      <section className="py-16 relative z-10 text-center">
         <div className="container mx-auto px-4 max-w-3xl">
           <TrendingUp className="w-12 h-12 text-primary mx-auto mb-8" strokeWidth={1.5} />
           <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">

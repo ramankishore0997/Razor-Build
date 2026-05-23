@@ -47,18 +47,18 @@ const SECTIONS = [
 export default function Refund() {
   return (
     <PageWrapper>
-      <section className="pt-40 pb-32 relative">
+      <section className="pt-28 pb-16 relative">
         <div className="container mx-auto px-4 max-w-4xl">
           <span className="text-xs font-bold tracking-[0.2em] text-primary uppercase mb-6 block">Legal</span>
           <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] mb-6">
             Refund <span className="text-primary">Policy</span>
           </h1>
-          <p className="text-muted-foreground text-lg mb-16">
+          <p className="text-muted-foreground text-lg mb-10">
             Last updated: May 23, 2026 — razr.marketing
           </p>
 
           {/* Eligible / Not Eligible Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
             <div className="rounded-3xl border border-emerald-500/20 bg-emerald-500/[0.04] p-8">
               <div className="flex items-center gap-3 mb-6">
                 <CheckCircle2 className="w-7 h-7 text-emerald-400" />
@@ -101,7 +101,7 @@ export default function Refund() {
           </div>
 
           {/* CTA */}
-          <div className="mt-20 p-8 md:p-12 rounded-3xl border border-primary/20 bg-primary/[0.04] text-center">
+          <div className="mt-10 p-8 md:p-12 rounded-3xl border border-primary/20 bg-primary/[0.04] text-center">
             <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight mb-4">
               Need help with an order?
             </h3>

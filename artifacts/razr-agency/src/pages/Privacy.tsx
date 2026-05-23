@@ -42,13 +42,13 @@ const SECTIONS = [
 export default function Privacy() {
   return (
     <PageWrapper>
-      <section className="pt-40 pb-32 relative">
+      <section className="pt-28 pb-16 relative">
         <div className="container mx-auto px-4 max-w-4xl">
           <span className="text-xs font-bold tracking-[0.2em] text-primary uppercase mb-6 block">Legal</span>
           <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] mb-6">
             Privacy <span className="text-primary">Policy</span>
           </h1>
-          <p className="text-muted-foreground text-lg mb-16">
+          <p className="text-muted-foreground text-lg mb-10">
             Last updated: May 23, 2026 — razr.marketing
           </p>
 
