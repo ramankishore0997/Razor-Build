@@ -142,10 +142,10 @@ function StepCard({ step, index }: { step: (typeof STEPS)[number]; index: number
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ margin: "-100px", once: true }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className="relative pl-20 md:pl-28"
+      className="relative pl-10 md:pl-28"
     >
       {/* Node on timeline */}
-      <div className="absolute left-3 md:left-9 top-6 z-10">
+      <div className="absolute left-0 md:left-9 top-6 z-10">
         <div className="relative">
           <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${step.accent} blur-md scale-150 opacity-80`} />
           <div className="relative w-7 h-7 rounded-full bg-black border-2 border-primary flex items-center justify-center shadow-[0_0_20px_rgba(0,102,255,0.8)]">
@@ -164,7 +164,7 @@ function StepCard({ step, index }: { step: (typeof STEPS)[number]; index: number
         <div className={`absolute inset-0 bg-gradient-to-br ${step.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
         <div className="absolute -top-20 -right-20 w-60 h-60 bg-primary/15 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-        <div className="relative p-8 md:p-10">
+        <div className="relative p-6 md:p-10">
           {/* Top row */}
           <div className="flex items-start justify-between mb-6 gap-4">
             <div className="flex items-center gap-4">
@@ -176,7 +176,7 @@ function StepCard({ step, index }: { step: (typeof STEPS)[number]; index: number
                 <div className="text-[10px] font-bold uppercase tracking-wider text-white/40">{step.duration}</div>
               </div>
             </div>
-            <div className="text-[5rem] md:text-[6rem] font-black leading-none text-white/[0.04] select-none">
+            <div className="text-[2.5rem] sm:text-[3.5rem] md:text-[6rem] font-black leading-none text-white/[0.04] select-none shrink-0">
               {step.step}
             </div>
           </div>

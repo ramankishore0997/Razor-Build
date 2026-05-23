@@ -79,7 +79,7 @@ export default function Faq() {
           </motion.div>
 
           {/* Category Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 mb-12">
+          <div className="flex md:flex-wrap md:justify-center gap-2 mb-12 overflow-x-auto -mx-4 px-4 pb-2 md:mx-0 md:px-0 md:pb-0 md:overflow-visible snap-x snap-mandatory scrollbar-none">
             {categories.map((c) => {
               const Icon = CAT_ICONS[c] || HelpCircle;
               const active = activeCat === c;
@@ -89,7 +89,7 @@ export default function Faq() {
                   onClick={() => { setActiveCat(c); setOpenIdx(null); }}
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.96 }}
-                  className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all ${
+                  className={`relative shrink-0 snap-start flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all ${
                     active
                       ? "bg-white text-black shadow-[0_10px_30px_rgba(255,255,255,0.15)]"
                       : "border border-white/10 bg-white/[0.02] text-white/60 hover:text-white hover:border-white/20"

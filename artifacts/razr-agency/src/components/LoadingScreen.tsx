@@ -5,7 +5,7 @@ export default function LoadingScreen() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(false), 1200);
+    const timer = setTimeout(() => setVisible(false), 400);
     return () => clearTimeout(timer);
   }, []);
 
@@ -14,8 +14,8 @@ export default function LoadingScreen() {
       {visible && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 1.05 }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
           className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-background"
           data-testid="loading-screen"
         >

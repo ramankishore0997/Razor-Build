@@ -113,7 +113,7 @@ export default function Solutions() {
                 <Sparkles className="w-3 h-3 text-primary" />
                 <span className="text-[10px] font-black tracking-[0.2em] text-primary uppercase">Built For Scaling</span>
               </div>
-              <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-black uppercase tracking-tighter leading-[0.9] mb-8">
+              <h1 className="text-[2.5rem] sm:text-5xl md:text-7xl lg:text-[5.5rem] font-black uppercase tracking-tighter leading-[0.95] mb-8 break-words">
                 Advertising <br />
                 <span className="bg-gradient-to-r from-primary via-purple-400 to-cyan-400 bg-clip-text text-transparent">infrastructure</span><br />
                 <span className="font-light italic text-white/60">built for scaling.</span>

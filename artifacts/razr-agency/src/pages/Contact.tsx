@@ -50,7 +50,7 @@ export default function Contact() {
               <Sparkles className="w-3 h-3 text-primary" />
               <span className="text-[10px] font-black tracking-[0.2em] text-primary uppercase">Command Center</span>
             </div>
-            <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9] mb-4">
+            <h1 className="text-[2.75rem] sm:text-6xl md:text-8xl font-black uppercase tracking-tighter leading-[0.95] mb-4">
               Let's <span className="bg-gradient-to-r from-primary via-purple-400 to-cyan-400 bg-clip-text text-transparent">connect.</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">

@@ -53,7 +53,7 @@ export default function Home() {
                   </span>
                 </div>
                 
-                <h1 className="text-6xl md:text-8xl lg:text-[7.5rem] font-black tracking-tighter leading-[0.85] text-white mb-6">
+                <h1 className="text-[3.25rem] sm:text-6xl md:text-8xl lg:text-[7.5rem] font-black tracking-tighter leading-[0.85] text-white mb-6">
                   SCALE <br/>
                   <span className="font-light italic tracking-tight text-white/70">WITHOUT</span><br/>
                   LIMITS.
@@ -192,7 +192,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between gap-8">
             <div className="flex-1 border-l-2 border-primary pl-8">
-              <div className="text-[6rem] md:text-[8rem] lg:text-[10rem] font-black leading-none tracking-tighter mb-6">98%</div>
+              <div className="text-[4.5rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] font-black leading-none tracking-tighter mb-6">98%</div>
               <div className="w-full max-w-xs">
                 <h4 className="text-xl font-bold uppercase tracking-widest mb-4">Client Retention</h4>
                 <p className="text-muted-foreground leading-relaxed">Once advertisers switch to our infrastructure, they rarely leave. The stability is simply unmatched by standard setups.</p>
@@ -200,7 +200,7 @@ export default function Home() {
             </div>
             
             <div className="flex-1 border-l-2 border-white/20 pl-8">
-              <div className="text-[6rem] md:text-[8rem] lg:text-[10rem] font-light leading-none tracking-tighter mb-6 text-white/50">$15<span className="text-5xl align-top">M</span></div>
+              <div className="text-[4.5rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] font-light leading-none tracking-tighter mb-6 text-white/50">$15<span className="text-4xl sm:text-5xl align-top">M</span></div>
               <div className="w-full max-w-xs">
                 <h4 className="text-xl font-bold uppercase tracking-widest mb-4 text-white/70">Monthly Spend</h4>
                 <p className="text-muted-foreground leading-relaxed">Processed safely through our agency networks without artificial scaling bottlenecks.</p>

@@ -66,7 +66,7 @@ export default function SoundToggle() {
       transition={{ delay: 1.5, duration: 0.6 }}
       whileHover={{ scale: 1.08 }}
       whileTap={{ scale: 0.95 }}
-      className="fixed bottom-6 left-6 z-40 w-12 h-12 rounded-full border border-white/15 bg-black/50 backdrop-blur-xl flex items-center justify-center text-white/70 hover:text-white hover:border-primary/40 transition-colors shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+      className="fixed bottom-6 left-6 z-40 w-12 h-12 rounded-full border border-white/15 bg-black/50 backdrop-blur-xl items-center justify-center text-white/70 hover:text-white hover:border-primary/40 transition-colors shadow-[0_10px_30px_rgba(0,0,0,0.5)] hidden md:flex"
       title={enabled ? "Sound on — click to mute" : "Sound off — click to enable"}
     >
       {enabled ? (
