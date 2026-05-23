@@ -1,244 +1,389 @@
 import PageWrapper from "@/components/layout/PageWrapper";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import { Link } from "wouter";
-import FloatingOrbs from "@/components/FloatingOrbs";
+import LightBeams from "@/components/LightBeams";
+import HeroRobot from "@/components/HeroRobot";
 import {
-  ShoppingBag,
-  Target,
-  Cpu,
-  Building2,
-  Flame,
-  Coins,
-  ArrowUpRight,
-  TrendingUp,
-  type LucideIcon,
+  AlertTriangle, Lock, Clock4, XCircle, Sparkles,
+  Key, Zap, TrendingUp, MessageCircle, RefreshCw, ArrowRight,
+  Rocket, BarChart3, Trophy, ArrowUpRight, type LucideIcon,
 } from "lucide-react";
 
-type Solution = {
-  id: string;
-  Icon: LucideIcon;
-  tag: string;
-  title: string;
-  desc: string;
-  bullets: string[];
-  metric: { value: string; label: string };
-  gradient: string;
-};
+// ────────────────────────────────────────────────────────────
+// Problem cards
+// ────────────────────────────────────────────────────────────
+const PROBLEMS = [
+  { Icon: AlertTriangle, title: "Random Restrictions", body: "Wake up to a banned account mid-campaign. Lose ad data, retargeting, weeks of pixel learning — overnight.", color: "from-red-500/40 to-orange-500/20" },
+  { Icon: Lock, title: "$50/day Spend Cap", body: "Your campaign is profitable but the platform won't let you scale. Trapped at low budgets for weeks of 'warmup'.", color: "from-amber-500/40 to-yellow-500/20" },
+  { Icon: Clock4, title: "Slow Setup", body: "Days lost on Business Manager verification, billing approval, pixel installation, and policy reviews.", color: "from-rose-500/40 to-pink-500/20" },
+  { Icon: XCircle, title: "Generic Support", body: "Outsourced helpdesk that copy-pastes from a script. Real issues take weeks to escalate — if ever.", color: "from-purple-500/40 to-fuchsia-500/20" },
+];
 
-const SOLUTIONS: Solution[] = [
+// ────────────────────────────────────────────────────────────
+// Solution pillars (sticky reveal)
+// ────────────────────────────────────────────────────────────
+type Pillar = { Icon: LucideIcon; step: string; title: string; body: string; bullets: string[]; accent: string };
+
+const PILLARS: Pillar[] = [
   {
-    id: "01",
-    Icon: ShoppingBag,
-    tag: "E-Commerce & D2C",
-    title: "Scale Winning Creatives Without Limits",
-    desc: "Push Advantage+ Shopping & Performance Max campaigns to 5-figure daily budgets without spend caps, payment failures, or warmup pain.",
-    bullets: ["Unlimited daily spend", "Verified BM + pixel access", "Catalog ads optimized"],
-    metric: { value: "$50k+/day", label: "Tested daily spend" },
-    gradient: "from-blue-500/20 via-primary/10 to-transparent",
+    Icon: Key, step: "Pillar 01", title: "Access",
+    body: "Pre-vetted, agency-grade Meta + Google accounts under verified Business Managers. You get admin access from day one.",
+    bullets: ["MCC-backed Google accounts", "Verified BM structure", "Admin role granted"],
+    accent: "from-primary/40 to-blue-500/20",
   },
   {
-    id: "02",
-    Icon: Target,
-    tag: "Lead Generation",
-    title: "Stable CPLs at High Volume",
-    desc: "Run high-frequency lead campaigns across geos without tripping automated restriction flags. Perfect for local services, coaches, and B2B.",
-    bullets: ["No form-fill throttling", "Multi-geo support", "Stable cost per lead"],
-    metric: { value: "10k+", label: "Leads/month per acc" },
-    gradient: "from-emerald-500/20 via-primary/10 to-transparent",
+    Icon: Zap, step: "Pillar 02", title: "Activation",
+    body: "Same-day provisioning. Pixel, domains, payment methods configured. Live campaigns within an hour of confirmation.",
+    bullets: ["<1 hour onboarding", "Pixel + domain wiring", "Pre-warmed payment methods"],
+    accent: "from-amber-500/40 to-yellow-500/20",
   },
   {
-    id: "03",
-    Icon: Cpu,
-    tag: "SaaS & B2B",
-    title: "Long-Cycle Pixel Seasoning",
-    desc: "Deploy sophisticated funnels and retargeting matrices. Pre-seasoned pixel history means your B2B campaigns hit qualified audiences from day one.",
-    bullets: ["LinkedIn-grade targeting", "Retargeting matrices", "Long-window attribution"],
-    metric: { value: "60 days", label: "Avg pixel history" },
-    gradient: "from-purple-500/20 via-primary/10 to-transparent",
+    Icon: TrendingUp, step: "Pillar 03", title: "Scaling",
+    body: "Uncapped daily spend from hour one. No warmup, no throttling. Push $50k/day or scale gradually — your call.",
+    bullets: ["No daily spend caps", "Aggressive vertical scaling", "Stable through BFCM"],
+    accent: "from-emerald-500/40 to-teal-500/20",
   },
   {
-    id: "04",
-    Icon: Building2,
-    tag: "Agencies",
-    title: "Whitelabel Bulletproof Infrastructure",
-    desc: "Hand your clients accounts that never go down mid-campaign. End the 3am 'account got banned' emergency calls — forever.",
-    bullets: ["Whitelabel access", "Multi-client BM setup", "Dedicated account manager"],
-    metric: { value: "0", label: "Emergency calls" },
-    gradient: "from-orange-500/20 via-primary/10 to-transparent",
+    Icon: MessageCircle, step: "Pillar 04", title: "Support",
+    body: "Direct Telegram + WhatsApp to our internal media buyers. 12-minute average response. Not a ticketing system.",
+    bullets: ["12-min avg response", "Direct to media buyers", "24/7 coverage"],
+    accent: "from-purple-500/40 to-fuchsia-500/20",
   },
   {
-    id: "05",
-    Icon: Flame,
-    tag: "Affiliate & Performance",
-    title: "Blackhat-Ready Infrastructure",
-    desc: "For aggressive marketers running gray-hat verticals. Crypto, nutra, sweepstakes, gambling — our blackhat accounts handle it all without flinching.",
-    bullets: ["All verticals supported", "Cloaker compatible", "Burner-friendly BMs"],
-    metric: { value: "100%", label: "Vertical coverage" },
-    gradient: "from-red-500/20 via-primary/10 to-transparent",
-  },
-  {
-    id: "06",
-    Icon: Coins,
-    tag: "Google Ads",
-    title: "Premium Google Agency Accounts",
-    desc: "Beyond Meta — we provide MCC-backed Google Ads accounts with high spend limits, instant approval, and the same lifetime replacement guarantee.",
-    bullets: ["MCC-backed accounts", "Search + PMax ready", "Instant approvals"],
-    metric: { value: "1 hr", label: "Activation time" },
-    gradient: "from-yellow-500/20 via-primary/10 to-transparent",
+    Icon: RefreshCw, step: "Pillar 05", title: "Replacement",
+    body: "Account flagged unfairly? Free lifetime replacement with balance transfer where technically possible.",
+    bullets: ["Lifetime replacement", "Balance transfer", "No questions, no fees"],
+    accent: "from-rose-500/40 to-pink-500/20",
   },
 ];
 
+// ────────────────────────────────────────────────────────────
+// Result timeline
+// ────────────────────────────────────────────────────────────
+const TIMELINE = [
+  { Icon: Rocket, when: "Day 1", title: "Launch", body: "First campaigns live. Account fully provisioned. No warmup needed.", metric: "$2,000/day" },
+  { Icon: BarChart3, when: "Week 2", title: "Growth", body: "Scaling winning creatives. Pixel learning accelerated by pre-warmed history.", metric: "$15,000/day" },
+  { Icon: Trophy, when: "Month 3", title: "Scale", body: "Aggressive vertical scaling. Same account, no restrictions, ROAS stable.", metric: "$50,000+/day" },
+];
+
+function AnimatedBar({ from, to, color, label, delay = 0 }: { from: number; to: number; color: string; label: string; delay?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
+  return (
+    <div ref={ref} className="space-y-2">
+      <div className="flex items-center justify-between text-xs">
+        <span className="text-white/60 font-bold uppercase tracking-wider">{label}</span>
+        <span className="text-white font-black tabular-nums">
+          {inView ? to : from}{label.includes("Spend") ? "$/day" : "%"}
+        </span>
+      </div>
+      <div className="h-2 rounded-full bg-white/5 overflow-hidden">
+        <motion.div
+          initial={{ width: `${(from / 100) * 30}%` }}
+          animate={inView ? { width: `${Math.min(to / 5, 100)}%` } : {}}
+          transition={{ duration: 1.4, delay, ease: [0.16, 1, 0.3, 1] }}
+          className={`h-full bg-gradient-to-r ${color} rounded-full`}
+        />
+      </div>
+    </div>
+  );
+}
+
 export default function Solutions() {
+  const pillarRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: pillarRef, offset: ["start start", "end end"] });
+  const activeIndex = useTransform(scrollYProgress, [0, 1], [0, PILLARS.length - 1]);
+  const [active, setActive] = useState(0);
+  useEffect(() => activeIndex.on("change", (v) => setActive(Math.round(v))), [activeIndex]);
+
   return (
     <PageWrapper>
-      <FloatingOrbs />
+      {/* Ambient glows */}
+      <div className="absolute top-32 left-0 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-[40%] right-0 w-[500px] h-[500px] bg-purple-500/15 rounded-full blur-[140px] pointer-events-none" />
 
-      {/* HERO */}
-      <section className="pt-28 pb-14 relative z-10">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <span className="text-xs font-bold tracking-[0.2em] text-primary uppercase mb-8 block">
-              Solutions / Built For Every Vertical
-            </span>
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter leading-[0.85] mb-10">
-              Whatever you <br />
-              <span className="font-light italic text-white/60">run, we scale it.</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl font-medium leading-relaxed border-l-2 border-primary pl-6">
-              From e-commerce empires to aggressive affiliate funnels — RAZR provides the Meta & Google agency
-              infrastructure to scale any vertical without restrictions.
-            </p>
-          </motion.div>
+      {/* ─────────────── HERO ─────────────── */}
+      <section className="relative min-h-[78vh] pt-28 pb-10 flex items-center overflow-hidden">
+        <LightBeams />
+        <div className="container mx-auto px-4 max-w-7xl relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="lg:col-span-7">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 backdrop-blur mb-8">
+                <Sparkles className="w-3 h-3 text-primary" />
+                <span className="text-[10px] font-black tracking-[0.2em] text-primary uppercase">Built For Scaling</span>
+              </div>
+              <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-black uppercase tracking-tighter leading-[0.9] mb-8">
+                Advertising <br />
+                <span className="bg-gradient-to-r from-primary via-purple-400 to-cyan-400 bg-clip-text text-transparent">infrastructure</span><br />
+                <span className="font-light italic text-white/60">built for scaling.</span>
+              </h1>
+              <p className="text-xl text-white/60 max-w-xl font-medium leading-relaxed mb-8">
+                Stop fighting the platform. Start running campaigns on infrastructure designed for advertisers — not local bakeries.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {[{v:"$2.4B+",l:"Processed"},{v:"1,200+",l:"Advertisers"},{v:"99.2%",l:"Uptime"}].map((s,i)=>(
+                  <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 + i*0.1 }} className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl px-4 py-3">
+                    <div className="text-xl font-black text-white">{s.v}</div>
+                    <div className="text-[10px] uppercase tracking-wider text-white/40 font-bold mt-0.5">{s.l}</div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            <div className="hidden lg:block lg:col-span-5 h-[480px]">
+              <HeroRobot />
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* SOLUTIONS GRID */}
-      <section className="py-12 pb-16 relative z-10">
+      {/* ─────────────── PROBLEM ─────────────── */}
+      <section className="py-16 relative">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {SOLUTIONS.map((sol, i) => (
-              <motion.div
-                key={sol.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.6, delay: (i % 2) * 0.1 }}
-                className="relative group rounded-3xl border border-white/10 bg-white/[0.02] p-8 md:p-10 overflow-hidden hover:border-primary/40 transition-all duration-500"
-              >
-                {/* Gradient blob */}
-                <div
-                  className={`absolute -top-32 -right-32 w-80 h-80 rounded-full bg-gradient-to-br ${sol.gradient} blur-3xl opacity-60 group-hover:opacity-100 transition-opacity duration-700`}
-                />
-
-                <div className="relative z-10 flex flex-col h-full">
-                  {/* Top row: icon + ID */}
-                  <div className="flex items-start justify-between mb-8">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 ring-1 ring-primary/30 group-hover:bg-primary/20 group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500">
-                      <sol.Icon className="w-8 h-8 text-primary" strokeWidth={1.75} />
+          <div className="mb-12">
+            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-red-400 mb-3 flex items-center gap-2">
+              <AlertTriangle className="w-3 h-3" /> The Problem
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">Why advertisers <span className="font-light italic text-white/50">hit walls.</span></h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {PROBLEMS.map((p, i) => {
+              const Icon = p.Icon;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  whileHover={{ y: -4 }}
+                  className="relative group rounded-3xl border border-red-500/10 bg-black/40 backdrop-blur-xl p-7 overflow-hidden"
+                >
+                  <div className={`absolute -top-16 -right-16 w-40 h-40 bg-gradient-to-br ${p.color} rounded-full blur-3xl opacity-40 group-hover:opacity-100 transition-opacity duration-500`} />
+                  <div className="relative">
+                    <div className={`w-12 h-12 rounded-2xl border border-red-500/30 bg-red-500/10 backdrop-blur flex items-center justify-center mb-5`}>
+                      <Icon className="w-5 h-5 text-red-400" />
                     </div>
-                    <div className="text-6xl font-black text-white/[0.06] tracking-tighter leading-none">
-                      {sol.id}
-                    </div>
+                    <h3 className="text-xl font-black uppercase tracking-tight mb-3 leading-tight">{p.title}</h3>
+                    <p className="text-sm text-white/60 leading-relaxed">{p.body}</p>
                   </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
-                  {/* Tag */}
-                  <div className="text-xs font-bold tracking-[0.2em] text-primary uppercase mb-3">
-                    {sol.tag}
-                  </div>
+      {/* ─────────────── SOLUTION (Sticky Reveal) ─────────────── */}
+      <section className="py-16 relative">
+        <div className="container mx-auto px-4 max-w-7xl mb-10">
+          <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-3 flex items-center gap-2">
+            <Sparkles className="w-3 h-3" /> The Solution
+          </div>
+          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">5 pillars <span className="font-light italic text-white/50">of scale.</span></h2>
+        </div>
 
-                  {/* Title */}
-                  <h3 className="text-3xl md:text-4xl font-black tracking-tight leading-tight mb-5 group-hover:text-primary transition-colors">
-                    {sol.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-muted-foreground leading-relaxed mb-8 text-[15px]">
-                    {sol.desc}
-                  </p>
-
-                  {/* Bullets */}
-                  <ul className="space-y-2.5 mb-8">
-                    {sol.bullets.map((b) => (
-                      <li key={b} className="flex items-center gap-3 text-sm text-white/80">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Bottom row: metric + CTA */}
-                  <div className="mt-auto flex items-end justify-between pt-6 border-t border-white/5">
-                    <div>
-                      <div className="text-3xl font-black text-white tracking-tight">{sol.metric.value}</div>
-                      <div className="text-[11px] uppercase tracking-widest text-muted-foreground mt-1">
-                        {sol.metric.label}
-                      </div>
-                    </div>
-                    <Link
-                      href="/contact"
-                      className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white/60 hover:text-primary transition-colors group/cta"
-                    >
-                      Get Started
-                      <ArrowUpRight className="w-4 h-4 group-hover/cta:translate-x-1 group-hover/cta:-translate-y-1 transition-transform" />
-                    </Link>
+        <div ref={pillarRef} className="relative" style={{ height: `${PILLARS.length * 90}vh` }}>
+          <div className="sticky top-0 h-screen flex items-center">
+            <div className="container mx-auto px-4 max-w-7xl">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                {/* Left: pillar nav */}
+                <div className="lg:col-span-4">
+                  <div className="flex flex-col gap-2">
+                    {PILLARS.map((p, i) => {
+                      const isActive = i === active;
+                      return (
+                        <div
+                          key={i}
+                          className={`relative flex items-center gap-4 px-5 py-4 rounded-2xl border transition-all duration-500 ${
+                            isActive ? "border-primary/40 bg-primary/10 scale-[1.02]" : "border-white/5 bg-white/[0.02] opacity-50"
+                          }`}
+                        >
+                          <div className={`w-2 h-2 rounded-full transition-all ${isActive ? "bg-primary shadow-[0_0_10px_rgba(0,102,255,1)] scale-150" : "bg-white/30"}`} />
+                          <div className="text-[10px] font-black uppercase tracking-wider text-white/40">{p.step}</div>
+                          <div className="ml-auto text-sm font-black uppercase tracking-tight text-white">{p.title}</div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* STATS STRIP */}
-      <section className="py-14 relative z-10 border-y border-white/10 bg-white/[0.01]">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { v: "$2.4B+", l: "Ad spend processed" },
-              { v: "1,200+", l: "Active advertisers" },
-              { v: "99.2%", l: "Account uptime" },
-              { v: "<1 hr", l: "Avg activation" },
-            ].map((s) => (
-              <div key={s.l}>
-                <div className="text-4xl md:text-5xl font-black text-primary tracking-tight mb-2">{s.v}</div>
-                <div className="text-[11px] uppercase tracking-widest text-muted-foreground">{s.l}</div>
+                {/* Right: active pillar card */}
+                <div className="lg:col-span-8">
+                  <motion.div
+                    key={active}
+                    initial={{ opacity: 0, y: 30, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    className="relative"
+                  >
+                    <div className={`absolute -inset-1 bg-gradient-to-br ${PILLARS[active].accent} rounded-3xl blur-2xl opacity-50`} />
+                    <div className="relative rounded-3xl border border-white/10 bg-black/70 backdrop-blur-xl p-10 md:p-12 overflow-hidden">
+                      <motion.div animate={{ x: ["-100%", "200%"] }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }} className="absolute top-0 left-0 w-1/3 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+                      <div className={`absolute -top-20 -right-20 w-60 h-60 bg-gradient-to-br ${PILLARS[active].accent} rounded-full blur-3xl opacity-50`} />
+
+                      <div className="relative">
+                        <div className="flex items-start justify-between mb-6">
+                          <div className="w-16 h-16 rounded-2xl border border-primary/30 bg-primary/10 backdrop-blur flex items-center justify-center">
+                            {(() => { const I = PILLARS[active].Icon; return <I className="w-7 h-7 text-primary" />; })()}
+                          </div>
+                          <div className="text-[8rem] font-black leading-none text-white/[0.04] select-none">{String(active + 1).padStart(2, "0")}</div>
+                        </div>
+                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-3">{PILLARS[active].step}</div>
+                        <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-5 leading-[0.95]">{PILLARS[active].title}</h3>
+                        <p className="text-lg text-white/70 leading-relaxed mb-8">{PILLARS[active].body}</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                          {PILLARS[active].bullets.map((b, idx) => (
+                            <div key={idx} className="flex items-center gap-2.5 px-4 py-3 rounded-xl border border-white/5 bg-white/[0.02] text-sm text-white/80">
+                              <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,102,255,1)] shrink-0" />
+                              {b}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16 relative z-10 text-center">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <TrendingUp className="w-12 h-12 text-primary mx-auto mb-8" strokeWidth={1.5} />
-          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">
-            Your vertical, <br />
-            <span className="text-primary">our infrastructure.</span>
-          </h2>
-          <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto">
-            Not sure which solution fits your business? Chat with our team — we'll match you with the right setup in
-            under 10 minutes.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="https://wa.me/917065339146"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-12 py-6 bg-primary text-black font-black text-lg uppercase tracking-widest hover:bg-white transition-colors duration-300"
-            >
-              Chat on WhatsApp
-            </a>
-            <Link
-              href="/contact"
-              className="inline-block px-12 py-6 border border-white/20 text-white font-black text-lg uppercase tracking-widest hover:bg-white/5 transition-colors duration-300"
-            >
-              Contact Us
-            </Link>
+      {/* ─────────────── BEFORE / AFTER ─────────────── */}
+      <section className="py-16 relative">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="text-center mb-12">
+            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-3">The Difference</div>
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">Before vs <span className="bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent">RAZR.</span></h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* BEFORE */}
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative rounded-3xl border border-red-500/20 bg-black/40 backdrop-blur-xl p-8 overflow-hidden">
+              <div className="absolute -top-16 -right-16 w-40 h-40 bg-red-500/20 rounded-full blur-3xl" />
+              <div className="relative">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="text-[10px] font-black uppercase tracking-[0.2em] text-red-400">Before</div>
+                  <div className="text-xs text-white/40">Self-serve BM</div>
+                </div>
+                <h3 className="text-2xl font-black uppercase tracking-tight mb-6">Stuck advertiser</h3>
+                <div className="space-y-5">
+                  <AnimatedBar from={50} to={500} color="from-red-500 to-orange-500" label="Daily Spend" delay={0.1} />
+                  <AnimatedBar from={20} to={45} color="from-red-500 to-orange-500" label="ROAS Stability %" delay={0.2} />
+                  <AnimatedBar from={10} to={30} color="from-red-500 to-orange-500" label="Account Uptime %" delay={0.3} />
+                </div>
+                <div className="mt-8 pt-6 border-t border-white/5 grid grid-cols-2 gap-4 text-center">
+                  <div>
+                    <div className="text-3xl font-black text-red-400">14</div>
+                    <div className="text-[10px] uppercase tracking-wider text-white/40 font-bold mt-1">Bans/yr</div>
+                  </div>
+                  <div>
+                    <div className="text-3xl font-black text-red-400">72h</div>
+                    <div className="text-[10px] uppercase tracking-wider text-white/40 font-bold mt-1">Avg downtime</div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* AFTER */}
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative group rounded-3xl overflow-hidden">
+              <div className="absolute -inset-0.5 bg-gradient-to-br from-primary via-cyan-400 to-emerald-500 rounded-3xl blur opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative rounded-3xl border border-primary/30 bg-black/70 backdrop-blur-xl p-8 overflow-hidden">
+                <div className="absolute -top-16 -right-16 w-40 h-40 bg-primary/30 rounded-full blur-3xl" />
+                <motion.div animate={{ x: ["-100%", "200%"] }} transition={{ duration: 7, repeat: Infinity, ease: "linear" }} className="absolute top-0 left-0 w-1/3 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+                <div className="relative">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">With RAZR</div>
+                    <div className="flex items-center gap-2 text-xs text-white/60"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> Live</div>
+                  </div>
+                  <h3 className="text-2xl font-black uppercase tracking-tight mb-6">Scaling operator</h3>
+                  <div className="space-y-5">
+                    <AnimatedBar from={100} to={50000} color="from-primary to-cyan-400" label="Daily Spend" delay={0.1} />
+                    <AnimatedBar from={50} to={98} color="from-primary to-cyan-400" label="ROAS Stability %" delay={0.2} />
+                    <AnimatedBar from={30} to={99} color="from-primary to-cyan-400" label="Account Uptime %" delay={0.3} />
+                  </div>
+                  <div className="mt-8 pt-6 border-t border-white/5 grid grid-cols-2 gap-4 text-center">
+                    <div>
+                      <div className="text-3xl font-black text-primary">0</div>
+                      <div className="text-[10px] uppercase tracking-wider text-white/40 font-bold mt-1">Bans/yr</div>
+                    </div>
+                    <div>
+                      <div className="text-3xl font-black text-primary">12m</div>
+                      <div className="text-[10px] uppercase tracking-wider text-white/40 font-bold mt-1">Avg response</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── RESULT TIMELINE ─────────────── */}
+      <section className="py-16 relative">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="text-center mb-12">
+            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-3">The Result</div>
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">From launch <span className="font-light italic text-white/50">to scale.</span></h2>
+          </div>
+
+          <div className="relative grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* connector line */}
+            <div className="hidden md:block absolute top-20 left-[16%] right-[16%] h-px bg-gradient-to-r from-primary via-purple-500 to-cyan-400 opacity-30" />
+
+            {TIMELINE.map((t, i) => {
+              const Icon = t.Icon;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, delay: i * 0.15 }}
+                  className="relative group"
+                >
+                  <div className="absolute -inset-0.5 bg-gradient-to-br from-primary/30 to-cyan-500/20 rounded-3xl blur opacity-0 group-hover:opacity-80 transition-opacity duration-500" />
+                  <div className="relative rounded-3xl border border-white/10 bg-black/60 backdrop-blur-xl p-8 h-full">
+                    <div className="relative w-16 h-16 mx-auto mb-6 rounded-full border-2 border-primary bg-background flex items-center justify-center shadow-[0_0_20px_rgba(0,102,255,0.6)]">
+                      <Icon className="w-7 h-7 text-primary" />
+                    </div>
+                    <div className="text-center">
+                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-2">{t.when}</div>
+                      <h3 className="text-2xl font-black uppercase tracking-tight mb-3">{t.title}</h3>
+                      <p className="text-sm text-white/60 leading-relaxed mb-5">{t.body}</p>
+                      <div className="inline-block px-4 py-2 rounded-full border border-primary/30 bg-primary/10 text-sm font-black text-primary tabular-nums">{t.metric}</div>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── CTA ─────────────── */}
+      <section className="py-20 relative">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="relative group">
+            <motion.div animate={{ rotate: 360 }} transition={{ duration: 14, repeat: Infinity, ease: "linear" }} className="absolute inset-[-200%] bg-[conic-gradient(from_0deg,transparent_0deg,#0066ff_60deg,transparent_120deg,#7c3aed_240deg,transparent_300deg)] opacity-40" />
+            <div className="relative rounded-3xl border border-white/15 bg-black/80 backdrop-blur-2xl p-12 md:p-16 text-center overflow-hidden">
+              <motion.div animate={{ x: ["-100%", "200%"] }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }} className="absolute top-0 left-0 w-1/3 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">
+                Your vertical, <br />
+                <span className="bg-gradient-to-r from-primary via-purple-400 to-cyan-400 bg-clip-text text-transparent">our infrastructure.</span>
+              </h2>
+              <p className="text-lg text-white/60 mb-10 max-w-2xl mx-auto">We'll match you with the right setup in under 10 minutes. No commitment, no sales pitch.</p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://wa.me/917065339146" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest hover:bg-primary hover:text-white transition-colors duration-300">
+                  Chat on WhatsApp <ArrowRight className="w-4 h-4" />
+                </a>
+                <Link href="/contact" className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full border border-white/20 text-white font-black text-sm uppercase tracking-widest hover:bg-white/5 transition-colors duration-300">
+                  Get Custom Plan <ArrowUpRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
