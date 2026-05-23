@@ -1,136 +1,274 @@
 import { Link, useLocation } from "wouter";
-import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { motion, AnimatePresence, useScroll, useSpring, useMotionValue, useTransform } from "framer-motion";
+import { useState, useEffect, useRef, type MouseEvent } from "react";
+import { Menu, X, ArrowRight, Home, Sparkles, Layers, Workflow, Building2, HelpCircle, MessageCircle } from "lucide-react";
+import RazrLogo from "@/components/RazrLogo";
 
 const navLinks = [
-  { name: "Features", href: "/features" },
-  { name: "Solutions", href: "/solutions" },
-  { name: "Process", href: "/how-it-works" },
-  { name: "About", href: "/about" },
-  { name: "FAQ", href: "/faq" },
+  { name: "Home", href: "/", icon: Home },
+  { name: "Features", href: "/features", icon: Sparkles },
+  { name: "Solutions", href: "/solutions", icon: Layers },
+  { name: "Process", href: "/how-it-works", icon: Workflow },
+  { name: "About", href: "/about", icon: Building2 },
+  { name: "FAQ", href: "/faq", icon: HelpCircle },
+  { name: "Contact", href: "/contact", icon: MessageCircle },
 ];
+
+// ─────────── Magnetic CTA Button ───────────
+function MagneticCTA() {
+  const [, setLocation] = useLocation();
+  const ref = useRef<HTMLAnchorElement>(null);
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const x = useSpring(mx, { stiffness: 220, damping: 18 });
+  const y = useSpring(my, { stiffness: 220, damping: 18 });
+
+  const onMove = (e: MouseEvent<HTMLAnchorElement>) => {
+    if (!ref.current) return;
+    const r = ref.current.getBoundingClientRect();
+    mx.set((e.clientX - (r.left + r.width / 2)) * 0.25);
+    my.set((e.clientY - (r.top + r.height / 2)) * 0.25);
+  };
+  const onLeave = () => { mx.set(0); my.set(0); };
+
+  return (
+    <motion.a
+      ref={ref}
+      href="/contact"
+      onClick={(e) => { e.preventDefault(); setLocation("/contact"); }}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      style={{ x, y }}
+      className="relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black text-xs font-black uppercase tracking-widest overflow-hidden group cursor-pointer"
+    >
+      <motion.span
+        aria-hidden
+        className="absolute inset-y-0 -left-full w-1/2 bg-gradient-to-r from-transparent via-white/60 to-transparent skew-x-12"
+        animate={{ x: ["0%", "300%"] }}
+        transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut", repeatDelay: 1.5 }}
+      />
+      <span className="absolute inset-0 bg-gradient-to-r from-primary via-purple-500 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <span className="relative">Get Access</span>
+      <ArrowRight className="relative w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+    </motion.a>
+  );
+}
 
 export default function Navbar() {
   const [location] = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [hovered, setHovered] = useState<string | null>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const spotX = useMotionValue(0);
+  const spotY = useMotionValue(0);
+  const spotXs = useSpring(spotX, { stiffness: 120, damping: 20 });
+  const spotYs = useSpring(spotY, { stiffness: 120, damping: 20 });
+  const spotMask = useTransform(
+    [spotXs, spotYs],
+    ([x, y]) => `radial-gradient(220px circle at ${x}px ${y}px, rgba(0,102,255,0.35), transparent 70%)`
+  );
+
   const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setIsScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => { setOpen(false); }, [location]);
+
+  const onNavMove = (e: MouseEvent<HTMLElement>) => {
+    if (!navRef.current) return;
+    const r = navRef.current.getBoundingClientRect();
+    spotX.set(e.clientX - r.left);
+    spotY.set(e.clientY - r.top);
+  };
 
   return (
     <>
+      {/* Scroll progress bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-[2px] bg-primary z-[60] origin-left"
+        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-primary via-purple-500 to-cyan-400 z-[60] origin-left shadow-[0_0_8px_rgba(0,102,255,0.8)]"
         style={{ scaleX }}
       />
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b border-white/5 ${
-          isScrolled
-            ? "bg-background/80 backdrop-blur-xl h-14 shadow-lg shadow-black/50"
-            : "bg-transparent h-16 md:h-20 border-transparent"
-        }`}
-      >
-        <div className="container mx-auto px-4 h-full flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 group relative">
-            <span className="text-xl md:text-2xl font-black tracking-tighter text-white">
-              RAZR<span className="text-primary group-hover:animate-pulse">.</span>
-            </span>
-          </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1 xl:gap-2">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={`relative px-4 py-2 text-xs xl:text-sm font-medium tracking-wide uppercase transition-colors hover:text-white ${
-                  location === link.href ? "text-white" : "text-muted-foreground"
-                }`}
-              >
-                {link.name}
-                {location === link.href && (
-                  <motion.div
-                    layoutId="navbar-indicator"
-                    className="absolute bottom-0 left-1/4 right-1/4 h-[2px] bg-primary shadow-[0_0_10px_rgba(0,102,255,0.8)]"
-                  />
-                )}
-              </Link>
-            ))}
-          </nav>
+      {/* Floating Glass Navbar */}
+      <div className={`fixed left-0 right-0 z-50 flex justify-center pointer-events-none transition-all duration-500 ${isScrolled ? "top-3" : "top-5"}`}>
+        <motion.header
+          ref={navRef}
+          onMouseMove={onNavMove}
+          initial={{ y: -30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className={`pointer-events-auto relative rounded-full border border-white/10 backdrop-blur-2xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] transition-all duration-500 ${
+            isScrolled
+              ? "bg-black/80 px-3 py-2 scale-[0.97]"
+              : "bg-black/50 px-4 py-2.5"
+          }`}
+        >
+          {/* Mouse spotlight overlay */}
+          <motion.div
+            aria-hidden
+            className="absolute inset-0 rounded-full pointer-events-none opacity-60"
+            style={{ background: spotMask }}
+          />
+          {/* Soft inner ring */}
+          <div className="absolute inset-0 rounded-full ring-1 ring-inset ring-white/5 pointer-events-none" />
 
-          <div className="hidden md:flex items-center gap-6">
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary shadow-[0_0_8px_rgba(0,102,255,0.8)]"></span>
-              </span>
-              <span className="text-muted-foreground">Team Online</span>
-            </div>
-            <Link
-              href="/contact"
-              className="text-sm font-bold bg-white text-black px-5 py-2.5 hover:bg-gray-200 transition-colors"
-            >
-              Get Started
+          <div className="relative flex items-center gap-2">
+            {/* Logo */}
+            <Link href="/" className="flex items-center pl-2 pr-3 group">
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <RazrLogo size={28} />
+              </motion.div>
             </Link>
-          </div>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            className="md:hidden text-white p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+            {/* Divider */}
+            <div className="hidden md:block w-px h-6 bg-white/10" />
 
-        {/* Mobile Nav */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-white/10 overflow-hidden"
-            >
-              <div className="flex flex-col p-6 gap-2">
-                {navLinks.map((link) => (
+            {/* Desktop Nav */}
+            <nav className="hidden md:flex items-center gap-0.5">
+              {navLinks.map((link) => {
+                const isActive = location === link.href;
+                const isHovered = hovered === link.name;
+                return (
                   <Link
                     key={link.name}
                     href={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={`text-2xl font-black uppercase tracking-tight py-4 border-b border-white/5 transition-colors ${
-                      location === link.href ? "text-primary" : "text-white"
-                    }`}
+                    onMouseEnter={() => setHovered(link.name)}
+                    onMouseLeave={() => setHovered(null)}
+                    className="relative px-3.5 lg:px-4 py-2 text-[11px] lg:text-xs font-bold tracking-[0.12em] uppercase rounded-full transition-colors"
                   >
-                    {link.name}
+                    {/* Hover background */}
+                    {isHovered && !isActive && (
+                      <motion.span
+                        layoutId="nav-hover"
+                        className="absolute inset-0 rounded-full bg-white/[0.06]"
+                        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                      />
+                    )}
+                    {/* Active pill */}
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-active"
+                        className="absolute inset-0 rounded-full bg-gradient-to-b from-primary/25 to-primary/5 border border-primary/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_0_20px_rgba(0,102,255,0.3)]"
+                        transition={{ type: "spring", stiffness: 300, damping: 28 }}
+                      />
+                    )}
+                    <span className={`relative transition-colors ${isActive ? "text-white" : "text-white/55 hover:text-white"}`}>
+                      {link.name}
+                    </span>
                   </Link>
-                ))}
+                );
+              })}
+            </nav>
+
+            {/* Divider */}
+            <div className="hidden md:block w-px h-6 bg-white/10 ml-1" />
+
+            {/* Status + CTA */}
+            <div className="hidden md:flex items-center gap-3 pl-2 pr-1">
+              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
+                </span>
+                <span className="text-[9px] font-black tracking-wider text-emerald-300 uppercase">Online</span>
+              </div>
+              <MagneticCTA />
+            </div>
+
+            {/* Mobile toggle */}
+            <button
+              onClick={() => setOpen(!open)}
+              aria-label="Toggle menu"
+              className="md:hidden relative w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
+            >
+              {open ? <X size={16} /> : <Menu size={16} />}
+            </button>
+          </div>
+        </motion.header>
+      </div>
+
+      {/* Mobile Full-Screen Menu */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden fixed inset-0 z-40 bg-black/85 backdrop-blur-2xl pt-24 px-6 pb-8 overflow-y-auto"
+          >
+            {/* Ambient glows */}
+            <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-primary/30 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-purple-500/30 rounded-full blur-[120px] pointer-events-none" />
+
+            <div className="relative max-w-md mx-auto">
+              <div className="text-[10px] font-black tracking-[0.25em] text-white/30 uppercase mb-6">Navigate</div>
+              <nav className="flex flex-col gap-2 mb-8">
+                {navLinks.map((link, i) => {
+                  const Icon = link.icon;
+                  const isActive = location === link.href;
+                  return (
+                    <motion.div
+                      key={link.name}
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: 0.05 + i * 0.05 }}
+                    >
+                      <Link
+                        href={link.href}
+                        onClick={() => setOpen(false)}
+                        className={`relative group flex items-center justify-between px-5 py-4 rounded-2xl border transition-all overflow-hidden ${
+                          isActive
+                            ? "border-primary/40 bg-primary/10"
+                            : "border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.05]"
+                        }`}
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all ${isActive ? "bg-primary/20 text-primary shadow-[0_0_18px_rgba(0,102,255,0.5)]" : "bg-white/5 text-white/60 group-hover:text-white"}`}>
+                            <Icon className="w-4 h-4" />
+                          </div>
+                          <span className={`text-base font-black uppercase tracking-tight ${isActive ? "text-white" : "text-white/80"}`}>
+                            {link.name}
+                          </span>
+                        </div>
+                        <ArrowRight className={`w-4 h-4 transition-all ${isActive ? "text-primary" : "text-white/30 group-hover:translate-x-1 group-hover:text-white"}`} />
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </nav>
+
+              {/* Mobile CTA */}
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }}>
                 <Link
                   href="/contact"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="mt-8 text-center text-lg font-bold bg-white text-black py-4 hover:bg-gray-200 transition-colors"
+                  onClick={() => setOpen(false)}
+                  className="relative block group rounded-2xl overflow-hidden"
                 >
-                  Get Started
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-purple-500 to-cyan-400 rounded-2xl blur opacity-60" />
+                  <div className="relative bg-white text-black py-5 text-center text-sm font-black uppercase tracking-[0.2em] rounded-2xl flex items-center justify-center gap-3">
+                    Get Access <ArrowRight className="w-4 h-4" />
+                  </div>
                 </Link>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </header>
+                <div className="mt-5 flex items-center justify-center gap-2 text-xs text-white/40">
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
+                  </span>
+                  Team online · Avg response 12 min
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
