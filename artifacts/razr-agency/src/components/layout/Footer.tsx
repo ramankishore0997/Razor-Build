@@ -12,7 +12,7 @@ export default function Footer() {
                 Stay Ahead of<br/>the Curve.
               </h2>
               <p className="text-muted-foreground text-lg max-w-md mb-8">
-                Join our newsletter for weekly insights on Meta policy changes, scaling strategies, and agency infrastructure.
+                Join our newsletter for weekly insights on Meta & Google policy changes, scaling strategies, and agency infrastructure.
               </p>
               <div className="flex items-center gap-2 max-w-md border-b border-white/20 pb-2">
                 <input 

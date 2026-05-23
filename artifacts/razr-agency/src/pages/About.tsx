@@ -67,7 +67,7 @@ export default function About() {
               <div>
                 <h4 className="font-bold text-lg uppercase tracking-wider">Alex L.</h4>
                 <div className="text-primary text-sm font-medium mb-2">Head of Infrastructure</div>
-                <p className="text-sm text-muted-foreground">Former agency director. Manages relationship with Meta reps and BM architecture.</p>
+                <p className="text-sm text-muted-foreground">Former agency director. Manages relationship with Meta & Google reps and BM architecture.</p>
               </div>
             </div>
 

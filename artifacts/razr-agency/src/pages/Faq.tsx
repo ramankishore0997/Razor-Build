@@ -8,7 +8,8 @@ const faqs = [
   { cat: "Support", q: "What happens if I get restricted?", a: "We have a lifetime replacement guarantee for Full Access. If restricted without policy violation, we replace it free." },
   { cat: "Support", q: "How fast do you respond?", a: "Our Telegram support typically responds in under 30 minutes during business hours, and within a few hours off-hours." },
   { cat: "Scaling", q: "What are the daily spending limits?", a: "Full Access accounts typically start with no daily limit or a very high tier ($5k+), depending on availability and your specific needs." },
-  { cat: "Scaling", q: "Can I run crypto/nutra?", a: "We only support businesses that comply with Meta's advertising policies. Grey/Black hat niches are strictly prohibited to protect our infrastructure." },
+  { cat: "Scaling", q: "Can I run crypto/nutra?", a: "Yes — we provide both Blackhat and Whitehat accounts on Meta and Google. Gray-hat verticals like crypto, nutra, and aggressive D2C offers are fully supported on our blackhat infrastructure." },
+  { cat: "Platforms", q: "Do you only provide Meta accounts?", a: "No — we provide both Meta (Facebook & Instagram) and Google Ads agency accounts. Same premium quality, same lifetime replacement guarantee, same unlimited spend from day 1." },
   { cat: "Replacements", q: "How does balance transfer work?", a: "If an account goes down, we assist in transferring unspent funds to your replacement account." },
   { cat: "Activation", q: "Can I use my existing cards?", a: "Yes, you can attach your own payment methods. We also offer pre-warmed agency cards for an additional layer of stability." }
 ];

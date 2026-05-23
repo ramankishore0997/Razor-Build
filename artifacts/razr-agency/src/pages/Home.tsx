@@ -38,7 +38,7 @@ export default function Home() {
               >
                 <div className="inline-flex items-center gap-2 mb-8 border-b border-primary/30 pb-2">
                   <span className="text-[10px] md:text-xs font-black tracking-[0.2em] text-primary uppercase">
-                    May 23, 2026 // Meta Agency Accounts
+                    May 23, 2026 // Meta & Google Agency Accounts
                   </span>
                 </div>
                 
@@ -49,7 +49,7 @@ export default function Home() {
                 </h1>
                 
                 <p className="text-lg md:text-xl text-muted-foreground max-w-lg mb-12 font-medium leading-relaxed">
-                  Premium Meta Agency infrastructure for high-volume advertisers. Stop fighting the platform, start scaling your campaigns.
+                  Premium Meta & Google Agency infrastructure for high-volume advertisers. Stop fighting the platform, start scaling your campaigns.
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-start gap-6 w-full max-w-md">

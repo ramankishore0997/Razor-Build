@@ -124,7 +124,7 @@ const BENEFITS: Benefit[] = [
   {
     Icon: Award,
     title: "Agency-Level Support",
-    desc: "Direct access to our internal media buyers and Meta reps — not generic outsourced helpdesk.",
+    desc: "Direct access to our internal media buyers and Meta & Google reps — not generic outsourced helpdesk.",
   },
   {
     Icon: Users,
@@ -148,8 +148,8 @@ export default function Features() {
               <span className="font-light italic text-white/70">scale aggressively.</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground font-medium leading-relaxed border-l-2 border-primary pl-6">
-              Blackhat & Whitehat — both accounts available. Everything you need to run high-spend Meta campaigns
-              without restrictions, bans, or babysitting.
+              Blackhat & Whitehat — both accounts available. Everything you need to run high-spend Meta & Google Ads
+              campaigns without restrictions, bans, or babysitting.
             </p>
           </div>
         </div>
