@@ -3,7 +3,7 @@ import PageWrapper from "@/components/layout/PageWrapper";
 
 const CONTACT_EMAIL = "scale@razr.agency";
 const TELEGRAM_HANDLE = "razragency";
-const WHATSAPP_NUMBER = "15550192831";
+const WHATSAPP_NUMBER = "917065339146";
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -82,7 +82,7 @@ export default function Contact() {
               <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" className="p-8 border border-white/10 bg-white/[0.02] hover:bg-white/5 transition-colors group flex justify-between items-center">
                 <div>
                   <h3 className="text-2xl font-black uppercase tracking-tight mb-1 group-hover:text-primary transition-colors">WhatsApp</h3>
-                  <p className="text-muted-foreground">+1 (555) 019-2831</p>
+                  <p className="text-muted-foreground">+91 70653 39146</p>
                 </div>
                 <div className="text-4xl text-white/10 group-hover:text-primary group-hover:translate-x-2 transition-all">→</div>
               </a>
