@@ -108,10 +108,10 @@ export default function Navbar() {
           initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className={`pointer-events-auto relative rounded-full border border-white/10 backdrop-blur-2xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] transition-all duration-500 ${
+          className={`pointer-events-auto relative rounded-full border backdrop-blur-2xl transition-all duration-700 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] ${
             isScrolled
-              ? "bg-black/80 px-3 py-2 scale-[0.97]"
-              : "bg-black/50 px-4 py-2.5"
+              ? "bg-black/85 border-white/15 px-3 py-2 scale-[0.96] shadow-[0_25px_70px_-15px_rgba(0,102,255,0.35),0_0_0_1px_rgba(0,102,255,0.15)_inset]"
+              : "bg-black/55 border-white/10 px-4 py-2.5 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)]"
           }`}
         >
           {/* Mouse spotlight overlay */}

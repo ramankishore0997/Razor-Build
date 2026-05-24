@@ -20,8 +20,18 @@ export default function HeroRobot() {
         <div className="absolute top-1/2 -right-1 -translate-y-1/2 w-2 h-2 rounded-full bg-purple-400 shadow-[0_0_12px_rgba(168,85,247,1)]" />
       </motion.div>
 
-      {/* robot */}
-      <div className="relative pointer-events-auto">
+      {/* soft halo behind robot */}
+      <div
+        aria-hidden
+        className="absolute w-[260px] h-[260px] md:w-[320px] md:h-[320px] rounded-full motion-reduce:hidden"
+        style={{
+          background: "radial-gradient(closest-side, rgba(0,102,255,0.35), transparent 70%)",
+          filter: "blur(40px)",
+        }}
+      />
+
+      {/* robot — gentle float */}
+      <div className="relative pointer-events-auto float-soft">
         <RobotMascot />
       </div>
     </div>

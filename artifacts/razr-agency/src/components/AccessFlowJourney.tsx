@@ -85,7 +85,7 @@ export default function AccessFlowJourney() {
                   className="relative group"
                 >
                   {/* Card */}
-                  <div className="relative h-full p-5 md:p-6 rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] via-black to-black backdrop-blur-xl overflow-hidden transition-all duration-300 group-hover:border-primary/40 group-hover:shadow-[0_20px_60px_-15px_rgba(0,102,255,0.4)]">
+                  <div className="card-premium tap-spring relative h-full p-5 md:p-6 rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] via-black to-black backdrop-blur-xl overflow-hidden group-hover:border-primary/40 group-hover:shadow-[0_20px_60px_-15px_rgba(0,102,255,0.4)]">
                     {/* Hover glow */}
                     <div className={`absolute -inset-1 bg-gradient-to-br ${step.color} opacity-0 group-hover:opacity-20 blur-2xl transition-opacity duration-500 pointer-events-none`} />
 

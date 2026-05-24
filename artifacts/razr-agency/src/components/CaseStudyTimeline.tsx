@@ -63,7 +63,7 @@ export default function CaseStudyTimeline() {
                 className="relative group"
               >
                 <div className={`absolute -inset-0.5 bg-gradient-to-br ${s.accent} rounded-3xl blur opacity-0 group-hover:opacity-80 transition-opacity duration-500`} />
-                <div className="relative rounded-3xl border border-white/10 bg-black/60 backdrop-blur-xl p-7 h-full">
+                <div className="card-premium tap-spring relative rounded-3xl border border-white/10 bg-black/60 backdrop-blur-xl p-7 h-full">
                   {/* timeline dot */}
                   <div className="relative w-14 h-14 mx-auto mb-6 rounded-full border-2 border-primary bg-background flex items-center justify-center shadow-[0_0_20px_rgba(0,102,255,0.6)]">
                     <Icon className="w-6 h-6 text-primary" />

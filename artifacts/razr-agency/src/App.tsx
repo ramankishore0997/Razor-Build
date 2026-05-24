@@ -9,6 +9,9 @@ import GlassDock from "@/components/GlassDock";
 import LiveActivityFeed from "@/components/LiveActivityFeed";
 import StickyUrgencyBar from "@/components/StickyUrgencyBar";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
+import CursorGlow from "@/components/effects/CursorGlow";
+import NoiseTexture from "@/components/effects/NoiseTexture";
+import AmbientLights from "@/components/effects/AmbientLights";
 
 import Home from "@/pages/Home";
 import Features from "@/pages/Features";
@@ -62,6 +65,9 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
+        <AmbientLights />
+        <NoiseTexture />
+        <CursorGlow />
         <LoadingScreen />
         <StickyUrgencyBar />
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>

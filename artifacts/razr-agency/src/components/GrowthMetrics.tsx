@@ -58,7 +58,7 @@ export default function GrowthMetrics() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="relative group rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl p-7 overflow-hidden"
+                className="card-premium tap-spring relative group rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl p-7 overflow-hidden"
               >
                 <div className={`absolute -top-16 -right-16 w-44 h-44 bg-gradient-to-br ${m.color} rounded-full blur-3xl opacity-20 group-hover:opacity-50 transition-opacity duration-500`} />
                 <div className="relative">

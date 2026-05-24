@@ -15,6 +15,7 @@ import CaseStudyTimeline from "@/components/CaseStudyTimeline";
 import FaqPreview from "@/components/FaqPreview";
 import BookCallSection from "@/components/BookCallSection";
 import { buildWaLink } from "@/lib/whatsapp";
+import RevealHeading from "@/components/ui/RevealHeading";
 
 export default function Home() {
 
@@ -40,11 +41,16 @@ export default function Home() {
                   </span>
                 </div>
                 
-                <h1 className="text-[3.25rem] sm:text-6xl md:text-8xl lg:text-[7.5rem] font-black tracking-tighter leading-[0.85] text-white mb-6">
+                <RevealHeading
+                  as="h1"
+                  className="text-[3.25rem] sm:text-6xl md:text-8xl lg:text-[7.5rem] font-black tracking-tighter leading-[0.85] text-white mb-6"
+                  stagger={0.09}
+                  delay={0.1}
+                >
                   SCALE <br/>
                   <span className="font-light italic tracking-tight text-white/70">WITHOUT</span><br/>
                   LIMITS.
-                </h1>
+                </RevealHeading>
                 
                 <p className="text-lg md:text-xl text-muted-foreground max-w-lg mb-8 font-medium leading-relaxed">
                   Premium Meta & Google Agency infrastructure for high-volume advertisers. Stop fighting the platform, start scaling your campaigns.
@@ -52,12 +58,12 @@ export default function Home() {
 
                 <div className="flex flex-col sm:flex-row items-start gap-6 w-full max-w-md">
                   <a href={buildWaLink("general", { source: "home-hero" })} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto relative group">
-                    <div className="absolute inset-0 bg-primary rounded-none blur group-hover:blur-md transition-all duration-300 opacity-50" />
-                    <button className="relative w-full sm:w-auto px-8 py-4 bg-white text-black font-bold text-sm tracking-widest uppercase hover:bg-gray-200 transition-colors">
+                    <div className="absolute inset-0 bg-primary rounded-none blur-md opacity-50 group-hover:opacity-90 group-hover:blur-lg transition-all duration-500" />
+                    <button className="btn-premium tap-spring relative w-full sm:w-auto px-8 py-4 bg-white text-black font-bold text-sm tracking-widest uppercase">
                       Get Started
                     </button>
                   </a>
-                  <Link href="/contact" className="w-full sm:w-auto px-8 py-4 border border-white/20 text-white font-bold text-sm tracking-widest uppercase hover:bg-white/5 transition-colors">
+                  <Link href="/contact" className="btn-premium tap-spring w-full sm:w-auto px-8 py-4 border border-white/20 text-white font-bold text-sm tracking-widest uppercase hover:bg-white/5 hover:border-white/40">
                     Contact Us
                   </Link>
                 </div>
