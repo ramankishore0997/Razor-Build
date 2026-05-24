@@ -49,29 +49,29 @@ export default function HolographicCTA() {
               }}
             />
 
-            <div className="relative p-12 md:p-20 lg:p-28 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="relative p-7 sm:p-10 md:p-20 lg:p-28 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
               <div className="max-w-2xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 backdrop-blur mb-8">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 backdrop-blur mb-5 md:mb-8">
                   <Sparkles className="w-3.5 h-3.5 text-primary" />
                   <span className="text-[10px] font-black tracking-[0.2em] text-primary uppercase">Premium Infrastructure</span>
                 </div>
-                <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.9] mb-6">
+                <h2 className="text-[2.25rem] sm:text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.9] mb-5 md:mb-6">
                   Stop settling.<br />
                   <span className="bg-gradient-to-r from-primary via-purple-400 to-cyan-400 bg-clip-text text-transparent">
                     Start scaling.
                   </span>
                 </h2>
-                <p className="text-lg text-white/60 max-w-md">
+                <p className="text-base md:text-lg text-white/60 max-w-md leading-relaxed">
                   Join 500+ advertisers running uncapped budgets on agency-tier Meta &amp; Google accounts.
                 </p>
               </div>
 
-              <div className="shrink-0 flex flex-col gap-4">
+              <div className="shrink-0 flex flex-col gap-3 md:gap-4 w-full md:w-auto">
                 <a
                   href="https://wa.me/917065339146"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group/btn relative inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest overflow-hidden hover:bg-primary hover:text-white transition-colors duration-300"
+                  className="group/btn relative inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 md:py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest overflow-hidden hover:bg-primary hover:text-white transition-colors duration-300"
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-primary via-purple-500 to-primary opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" />
                   <span className="relative">Chat on WhatsApp</span>
@@ -79,7 +79,7 @@ export default function HolographicCTA() {
                 </a>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-10 py-5 rounded-full border border-white/20 text-white font-black text-sm uppercase tracking-widest hover:bg-white/5 transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-8 md:px-10 py-4 md:py-5 rounded-full border border-white/20 text-white font-black text-sm uppercase tracking-widest hover:bg-white/5 transition-colors"
                 >
                   Contact Sales
                 </Link>

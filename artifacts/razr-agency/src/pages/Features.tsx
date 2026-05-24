@@ -378,7 +378,7 @@ export default function Features() {
       {/* ─────────────── LUXURY CTA ─────────────── */}
       <section className="py-12 md:py-20 relative">
         <div className="container mx-auto px-4 max-w-5xl">
-          <div className="relative group">
+          <div className="relative group rounded-3xl overflow-hidden">
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 14, repeat: Infinity, ease: "linear" }}

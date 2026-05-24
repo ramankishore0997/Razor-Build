@@ -165,7 +165,7 @@ export default function Contact() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="lg:col-span-7"
             >
-              <div className="relative group">
+              <div className="relative group rounded-3xl overflow-hidden">
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 14, repeat: Infinity, ease: "linear" }}

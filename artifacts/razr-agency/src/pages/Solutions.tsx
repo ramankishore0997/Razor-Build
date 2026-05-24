@@ -408,7 +408,7 @@ export default function Solutions() {
       {/* ─────────────── CTA ─────────────── */}
       <section className="py-12 md:py-20 relative">
         <div className="container mx-auto px-4 max-w-5xl">
-          <div className="relative group">
+          <div className="relative group rounded-3xl overflow-hidden">
             <motion.div animate={{ rotate: 360 }} transition={{ duration: 14, repeat: Infinity, ease: "linear" }} className="absolute inset-[-200%] bg-[conic-gradient(from_0deg,transparent_0deg,#0066ff_60deg,transparent_120deg,#7c3aed_240deg,transparent_300deg)] opacity-40" />
             <div className="relative rounded-3xl border border-white/15 bg-black/80 backdrop-blur-2xl p-7 sm:p-10 md:p-16 text-center overflow-hidden">
               <motion.div animate={{ x: ["-100%", "200%"] }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }} className="absolute top-0 left-0 w-1/3 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />

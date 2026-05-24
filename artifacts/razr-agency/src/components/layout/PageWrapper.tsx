@@ -12,7 +12,7 @@ export default function PageWrapper({ children }: PageWrapperProps) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="pt-20" // Offset for fixed navbar
+      className="pt-20 relative overflow-x-hidden w-full max-w-[100vw]" // Offset for fixed navbar + mobile overflow guard
     >
       {children}
     </motion.div>
