@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
 import { captureAttribution } from "@/lib/utm";
-import { trackViewContent, trackLead } from "@/lib/pixel";
+import { trackViewContent, trackLead, trackSubscribe } from "@/lib/pixel";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -75,14 +75,46 @@ function App() {
     document.documentElement.classList.add("dark");
     captureAttribution();
 
-    // Delegated click listener: fires Pixel Lead event on any WhatsApp link click
-    // (avoids needing onClick on every CTA across the site)
+    // Delegated click listener — fires Pixel events on any button / link click
+    //  • Lead       → WhatsApp link clicks
+    //  • Subscribe  → ANY <button> or <a> click (with 1s dedupe to prevent spam)
+    // Add `data-no-track` attribute on an element to opt-out of Subscribe tracking.
+    let lastSubscribeAt = 0;
     const onClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
-      const anchor = target?.closest?.('a[href*="wa.me/"]') as HTMLAnchorElement | null;
-      if (!anchor) return;
+      if (!target) return;
+
+      // WhatsApp link → Lead event
+      const waAnchor = target.closest?.('a[href*="wa.me/"]') as HTMLAnchorElement | null;
+      if (waAnchor) {
+        try {
+          trackLead({ source: "wa-click", href: waAnchor.href.slice(0, 120) });
+        } catch {}
+      }
+
+      // Any button or link → Subscribe event (with 1s dedupe + opt-out support)
+      const clickable = target.closest?.('button, a[href]') as HTMLElement | null;
+      if (!clickable) return;
+      if (clickable.closest('[data-no-track]')) return;
+
+      const now = Date.now();
+      if (now - lastSubscribeAt < 1000) return; // dedupe rapid double-clicks
+      lastSubscribeAt = now;
+
+      const label =
+        clickable.getAttribute('data-cta') ||
+        clickable.getAttribute('aria-label') ||
+        clickable.textContent?.trim().slice(0, 60) ||
+        clickable.tagName.toLowerCase();
+      const href = (clickable as HTMLAnchorElement).href?.slice(0, 120);
+
       try {
-        trackLead({ source: "wa-click", href: anchor.href.slice(0, 120) });
+        trackSubscribe({
+          source: "button-click",
+          label,
+          ...(href ? { href } : {}),
+          path: window.location.pathname,
+        });
       } catch {}
     };
     document.addEventListener("click", onClick, { capture: true });

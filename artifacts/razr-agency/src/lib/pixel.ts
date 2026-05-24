@@ -35,4 +35,15 @@ export function trackPageView() {
   fire("PageView");
 }
 
+export function trackSubscribe(params?: Record<string, unknown>) {
+  fire("Subscribe", { currency: "INR", ...params });
+}
+
+export function trackCustom(name: string, params?: Record<string, unknown>) {
+  if (typeof window === "undefined") return;
+  try {
+    window.fbq?.("trackCustom", name, params);
+  } catch {}
+}
+
 export {};
