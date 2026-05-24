@@ -79,7 +79,7 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* Right Column - 40% - Robot + Floating UI */}
+            {/* Right Column - 40% - Hero Robot */}
             <div className="w-full lg:w-[40%] relative h-[420px] lg:h-[560px] hidden md:block z-10">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -88,18 +88,6 @@ export default function Home() {
                 className="absolute inset-0 flex items-center justify-center z-20"
               >
                 <HeroRobot />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 50, rotateY: -10 }}
-                animate={{ opacity: 1, x: 0, rotateY: 0 }}
-                transition={{ duration: 1, delay: 0.6 }}
-                className="absolute -right-20 bottom-0 w-[110%] z-10 hidden lg:block opacity-70"
-                style={{ perspective: "1000px" }}
-              >
-                <div style={{ transform: "rotateY(-15deg) rotateX(5deg) rotateZ(-2deg) scale(0.75)", transformStyle: "preserve-3d" }}>
-                  <CommandCenter />
-                </div>
               </motion.div>
             </div>
           </div>
@@ -175,15 +163,30 @@ export default function Home() {
       </section>
 
       {/* COMMAND CENTER PREVIEW */}
-      <section className="py-16 relative z-10 overflow-hidden bg-black border-y border-white/5">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-background to-background" />
-        <div className="container mx-auto px-4 relative z-10 text-center mb-10">
-          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">Your Command Center</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">Everything you need to monitor account health, scaling metrics, and active campaigns in one view.</p>
-        </div>
-        
-        <div className="w-[120%] md:w-[150%] max-w-none -ml-[10%] md:-ml-[25%] opacity-80" style={{ transform: "rotateX(20deg) rotateZ(-5deg)", perspective: "1000px" }}>
-          <CommandCenter className="max-w-none w-full scale-125 md:scale-150 origin-top shadow-[0_0_100px_rgba(0,102,255,0.2)]" />
+      <section className="py-16 md:py-24 relative z-10 overflow-hidden bg-black border-y border-white/5">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/15 via-background to-background pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-primary/10 rounded-full blur-[140px] pointer-events-none" />
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-10 md:mb-14 max-w-3xl mx-auto">
+            <div className="text-[10px] font-black uppercase tracking-[0.25em] text-primary mb-3">Live Dashboard</div>
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.95] mb-4 md:mb-6">
+              Your <span className="bg-gradient-to-r from-primary via-purple-400 to-cyan-400 bg-clip-text text-transparent">Command Center.</span>
+            </h2>
+            <p className="text-base md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">Monitor account health, scaling metrics, and active campaigns — all in one premium view.</p>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="relative max-w-4xl mx-auto"
+          >
+            {/* Glow halo */}
+            <div className="absolute -inset-6 bg-gradient-to-br from-primary/30 via-purple-500/20 to-cyan-400/20 rounded-3xl blur-2xl opacity-60 pointer-events-none" />
+            <CommandCenter className="relative mx-auto max-w-none w-full shadow-[0_30px_100px_-20px_rgba(0,102,255,0.4)]" />
+          </motion.div>
         </div>
       </section>
 
