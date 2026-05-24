@@ -86,19 +86,39 @@ function Scene({ scene, index, total, scrollYProgress }: SceneProps) {
   const start = index * slot;
   const end = (index + 1) * slot;
 
-  // Strictly monotonically increasing keyframes (no duplicates).
-  // For first/last, push the outer keyframes outside [0, 1] so the scene
-  // stays fully visible at the scroll boundary instead of fading to 0.
-  const k1 = isFirst ? -cross * 2 : start - cross;
-  const k2 = isFirst ? -cross : start + cross;
-  const k3 = isLast ? 1 + cross : end - cross;
-  const k4 = isLast ? 1 + cross * 2 : end + cross;
+  // All keyframes strictly monotonic AND clamped to [0, 1]
+  // (Framer Motion's WAAPI path rejects offsets outside that range).
+  // For first/last we collapse the outer fade to 0/1 with matching
+  // output values so the scene stays fully visible at the boundary.
+  const k1 = isFirst ? 0 : Math.max(0, start - cross);
+  const k2 = isFirst ? 0.0001 : start + cross;
+  const k3 = isLast ? 0.9999 : end - cross;
+  const k4 = isLast ? 1 : Math.min(1, end + cross);
 
   const keyframes = [k1, k2, k3, k4];
 
-  const opacity = useTransform(scrollYProgress, keyframes, [0, 1, 1, 0]);
-  const y = useTransform(scrollYProgress, keyframes, [30, 0, 0, -30]);
-  const scale = useTransform(scrollYProgress, keyframes, [0.96, 1, 1, 0.96]);
+  const opacityValues: [number, number, number, number] = [
+    isFirst ? 1 : 0,
+    1,
+    1,
+    isLast ? 1 : 0,
+  ];
+  const yValues: [number, number, number, number] = [
+    isFirst ? 0 : 30,
+    0,
+    0,
+    isLast ? 0 : -30,
+  ];
+  const scaleValues: [number, number, number, number] = [
+    isFirst ? 1 : 0.96,
+    1,
+    1,
+    isLast ? 1 : 0.96,
+  ];
+
+  const opacity = useTransform(scrollYProgress, keyframes, opacityValues);
+  const y = useTransform(scrollYProgress, keyframes, yValues);
+  const scale = useTransform(scrollYProgress, keyframes, scaleValues);
 
   const Icon = scene.icon;
 
