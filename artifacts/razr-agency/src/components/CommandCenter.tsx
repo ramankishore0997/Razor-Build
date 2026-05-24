@@ -69,41 +69,41 @@ export default function CommandCenter({ className = "" }: { className?: string }
       </div>
 
       {/* Body */}
-      <div className="p-6 space-y-5">
+      <div className="p-4 sm:p-6 space-y-4 sm:space-y-5">
         {/* Metrics Grid */}
-        <div className="grid grid-cols-3 gap-3">
-          <motion.div key={spend} initial={{ opacity: 0.7 }} animate={{ opacity: 1 }} className="p-4 rounded-lg bg-white/[0.03] border border-white/5 relative overflow-hidden">
-            <div className="flex items-center gap-1.5 mb-1">
-              <DollarSign className="w-3 h-3 text-white/40" />
-              <div className="text-[10px] text-muted-foreground uppercase tracking-wider">Daily Spend</div>
+        <div className="grid grid-cols-3 gap-2 sm:gap-3">
+          <motion.div key={spend} initial={{ opacity: 0.7 }} animate={{ opacity: 1 }} className="p-2.5 sm:p-4 rounded-lg bg-white/[0.03] border border-white/5 relative overflow-hidden">
+            <div className="flex items-center gap-1 sm:gap-1.5 mb-1">
+              <DollarSign className="w-3 h-3 text-white/40 shrink-0" />
+              <div className="text-[9px] sm:text-[10px] text-muted-foreground uppercase tracking-wider truncate">Spend</div>
             </div>
-            <div className="text-2xl font-bold text-white tabular-nums">${spend.toLocaleString()}</div>
-            <div className="text-[10px] text-green-400 flex items-center gap-0.5 mt-1">
-              <ArrowUpRight className="w-3 h-3" /> +12.4%
+            <div className="text-base sm:text-2xl font-bold text-white tabular-nums truncate">${spend.toLocaleString()}</div>
+            <div className="text-[9px] sm:text-[10px] text-green-400 flex items-center gap-0.5 mt-1">
+              <ArrowUpRight className="w-3 h-3 shrink-0" /> +12.4%
             </div>
           </motion.div>
-          <div className="p-4 rounded-lg bg-white/[0.03] border border-white/5">
-            <div className="flex items-center gap-1.5 mb-1">
-              <Target className="w-3 h-3 text-white/40" />
-              <div className="text-[10px] text-muted-foreground uppercase tracking-wider">ROAS</div>
+          <div className="p-2.5 sm:p-4 rounded-lg bg-white/[0.03] border border-white/5">
+            <div className="flex items-center gap-1 sm:gap-1.5 mb-1">
+              <Target className="w-3 h-3 text-white/40 shrink-0" />
+              <div className="text-[9px] sm:text-[10px] text-muted-foreground uppercase tracking-wider">ROAS</div>
             </div>
-            <div className="text-2xl font-bold text-primary tabular-nums">{roas.toFixed(2)}x</div>
-            <div className="text-[10px] text-green-400 flex items-center gap-0.5 mt-1">
-              <ArrowUpRight className="w-3 h-3" /> Live
+            <div className="text-base sm:text-2xl font-bold text-primary tabular-nums">{roas.toFixed(2)}x</div>
+            <div className="text-[9px] sm:text-[10px] text-green-400 flex items-center gap-0.5 mt-1">
+              <ArrowUpRight className="w-3 h-3 shrink-0" /> Live
             </div>
           </div>
-          <div className="p-4 rounded-lg bg-white/[0.03] border border-white/5">
-            <div className="flex items-center gap-1.5 mb-1">
-              <TrendingUp className="w-3 h-3 text-white/40" />
-              <div className="text-[10px] text-muted-foreground uppercase tracking-wider">Conversions</div>
+          <div className="p-2.5 sm:p-4 rounded-lg bg-white/[0.03] border border-white/5">
+            <div className="flex items-center gap-1 sm:gap-1.5 mb-1">
+              <TrendingUp className="w-3 h-3 text-white/40 shrink-0" />
+              <div className="text-[9px] sm:text-[10px] text-muted-foreground uppercase tracking-wider truncate">Conv.</div>
             </div>
-            <div className="text-2xl font-bold text-white tabular-nums">{convs.toLocaleString()}</div>
-            <div className="text-[10px] text-white/50 mt-1">No limit tier</div>
+            <div className="text-base sm:text-2xl font-bold text-white tabular-nums truncate">{convs.toLocaleString()}</div>
+            <div className="text-[9px] sm:text-[10px] text-white/50 mt-1">No limit</div>
           </div>
         </div>
 
         {/* Chart */}
-        <div className="h-44 w-full p-4 rounded-lg bg-white/[0.02] border border-white/5 relative">
+        <div className="h-36 sm:h-44 w-full p-3 sm:p-4 rounded-lg bg-white/[0.02] border border-white/5 relative">
           <div className="absolute top-4 left-4 z-10 text-[10px] font-semibold text-white/40 uppercase tracking-widest">Velocity · Live</div>
           <div className="absolute top-4 right-4 z-10 flex items-center gap-1.5">
             <span className="relative flex h-1.5 w-1.5">
