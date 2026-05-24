@@ -81,7 +81,7 @@ export default function Home() {
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.9)] animate-pulse" />
                     <span className="text-xs font-black text-white">₹1,999</span>
-                    <span className="text-[10px] font-bold text-white/60 uppercase tracking-wider">Startup</span>
+                    <span className="text-[10px] font-bold text-white/60 uppercase tracking-wider">Startup · 1 Acc · 5% Dep</span>
                   </a>
                   <a
                     href={buildWaLink("full-access", { source: "hero-price-pill-full" })}
@@ -91,7 +91,7 @@ export default function Home() {
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,102,255,0.9)] animate-pulse" />
                     <span className="text-xs font-black text-white">₹2,999</span>
-                    <span className="text-[10px] font-bold text-white/70 uppercase tracking-wider">Full Setup</span>
+                    <span className="text-[10px] font-bold text-white/70 uppercase tracking-wider">Full · 2 Acc · 0% Dep</span>
                     <span className="text-[9px] font-black uppercase tracking-widest text-primary ml-0.5">★ Popular</span>
                   </a>
                   <a
