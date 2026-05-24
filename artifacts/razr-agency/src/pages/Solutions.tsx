@@ -104,28 +104,28 @@ export default function Solutions() {
       <div className="absolute top-[40%] right-0 w-[500px] h-[500px] bg-purple-500/15 rounded-full blur-[140px] pointer-events-none" />
 
       {/* ─────────────── HERO ─────────────── */}
-      <section className="relative min-h-[78vh] pt-28 pb-10 flex items-center overflow-hidden">
+      <section className="relative min-h-[68vh] md:min-h-[78vh] pt-24 md:pt-28 pb-10 flex items-center overflow-hidden">
         <LightBeams />
         <div className="container mx-auto px-4 max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 backdrop-blur mb-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 backdrop-blur mb-6 md:mb-8">
                 <Sparkles className="w-3 h-3 text-primary" />
                 <span className="text-[10px] font-black tracking-[0.2em] text-primary uppercase">Built For Scaling</span>
               </div>
-              <h1 className="text-[2.5rem] sm:text-5xl md:text-7xl lg:text-[5.5rem] font-black uppercase tracking-tighter leading-[0.95] mb-8 break-words">
+              <h1 className="text-[2.5rem] sm:text-5xl md:text-7xl lg:text-[5.5rem] font-black uppercase tracking-tighter leading-[0.95] mb-6 md:mb-8 break-words">
                 Advertising <br />
                 <span className="bg-gradient-to-r from-primary via-purple-400 to-cyan-400 bg-clip-text text-transparent">infrastructure</span><br />
                 <span className="font-light italic text-white/60">built for scaling.</span>
               </h1>
-              <p className="text-xl text-white/60 max-w-xl font-medium leading-relaxed mb-8">
+              <p className="text-base sm:text-lg md:text-xl text-white/60 max-w-xl font-medium leading-relaxed mb-6 md:mb-8">
                 Stop fighting the platform. Start running campaigns on infrastructure designed for advertisers — not local bakeries.
               </p>
-              <div className="flex flex-wrap gap-3">
+              <div className="grid grid-cols-3 gap-2.5 sm:flex sm:flex-wrap sm:gap-3">
                 {[{v:"$2.4B+",l:"Processed"},{v:"1,200+",l:"Advertisers"},{v:"99.2%",l:"Uptime"}].map((s,i)=>(
-                  <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 + i*0.1 }} className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl px-4 py-3">
-                    <div className="text-xl font-black text-white">{s.v}</div>
-                    <div className="text-[10px] uppercase tracking-wider text-white/40 font-bold mt-0.5">{s.l}</div>
+                  <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 + i*0.1 }} className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl px-3 sm:px-4 py-3">
+                    <div className="text-base sm:text-xl font-black text-white truncate">{s.v}</div>
+                    <div className="text-[9px] sm:text-[10px] uppercase tracking-wider text-white/40 font-bold mt-0.5 truncate">{s.l}</div>
                   </motion.div>
                 ))}
               </div>
@@ -139,15 +139,15 @@ export default function Solutions() {
       </section>
 
       {/* ─────────────── PROBLEM ─────────────── */}
-      <section className="py-16 relative">
+      <section className="py-12 md:py-16 relative">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="mb-12">
+          <div className="mb-8 md:mb-12">
             <div className="text-[10px] font-black uppercase tracking-[0.2em] text-red-400 mb-3 flex items-center gap-2">
               <AlertTriangle className="w-3 h-3" /> The Problem
             </div>
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">Why advertisers <span className="font-light italic text-white/50">hit walls.</span></h2>
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.95]">Why advertisers <span className="font-light italic text-white/50">hit walls.</span></h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
             {PROBLEMS.map((p, i) => {
               const Icon = p.Icon;
               return (
@@ -158,14 +158,14 @@ export default function Solutions() {
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.6, delay: i * 0.1 }}
                   whileHover={{ y: -4 }}
-                  className="relative group rounded-3xl border border-red-500/10 bg-black/40 backdrop-blur-xl p-7 overflow-hidden"
+                  className="relative group rounded-2xl md:rounded-3xl border border-red-500/10 bg-black/40 backdrop-blur-xl p-5 md:p-7 overflow-hidden"
                 >
                   <div className={`absolute -top-16 -right-16 w-40 h-40 bg-gradient-to-br ${p.color} rounded-full blur-3xl opacity-40 group-hover:opacity-100 transition-opacity duration-500`} />
                   <div className="relative">
-                    <div className={`w-12 h-12 rounded-2xl border border-red-500/30 bg-red-500/10 backdrop-blur flex items-center justify-center mb-5`}>
+                    <div className={`w-11 h-11 md:w-12 md:h-12 rounded-2xl border border-red-500/30 bg-red-500/10 backdrop-blur flex items-center justify-center mb-4 md:mb-5`}>
                       <Icon className="w-5 h-5 text-red-400" />
                     </div>
-                    <h3 className="text-xl font-black uppercase tracking-tight mb-3 leading-tight">{p.title}</h3>
+                    <h3 className="text-lg md:text-xl font-black uppercase tracking-tight mb-2 md:mb-3 leading-tight">{p.title}</h3>
                     <p className="text-sm text-white/60 leading-relaxed">{p.body}</p>
                   </div>
                 </motion.div>
@@ -175,16 +175,58 @@ export default function Solutions() {
         </div>
       </section>
 
-      {/* ─────────────── SOLUTION (Sticky Reveal) ─────────────── */}
-      <section className="py-16 relative">
-        <div className="container mx-auto px-4 max-w-7xl mb-10">
+      {/* ─────────────── SOLUTION (Sticky Reveal — DESKTOP) ─────────────── */}
+      <section className="py-12 md:py-16 relative">
+        <div className="container mx-auto px-4 max-w-7xl mb-8 md:mb-10">
           <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-3 flex items-center gap-2">
             <Sparkles className="w-3 h-3" /> The Solution
           </div>
-          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">5 pillars <span className="font-light italic text-white/50">of scale.</span></h2>
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.95]">5 pillars <span className="font-light italic text-white/50">of scale.</span></h2>
         </div>
 
-        <div ref={pillarRef} className="relative" style={{ height: `${PILLARS.length * 90}vh` }}>
+        {/* Mobile: simple stacked cards, no scroll-jacking */}
+        <div className="md:hidden container mx-auto px-4 space-y-4">
+          {PILLARS.map((p, i) => {
+            const Icon = p.Icon;
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: 0.05 }}
+                className="relative"
+              >
+                <div className={`absolute -inset-0.5 bg-gradient-to-br ${p.accent} rounded-3xl blur opacity-30`} />
+                <div className="relative rounded-3xl border border-white/10 bg-black/70 backdrop-blur-xl p-6 overflow-hidden">
+                  <div className={`absolute -top-12 -right-12 w-32 h-32 bg-gradient-to-br ${p.accent} rounded-full blur-3xl opacity-40`} />
+                  <div className="relative">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="w-12 h-12 rounded-2xl border border-primary/30 bg-primary/10 backdrop-blur flex items-center justify-center">
+                        <Icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <div className="text-5xl font-black leading-none text-white/[0.06] select-none">{String(i + 1).padStart(2, "0")}</div>
+                    </div>
+                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-2">{p.step}</div>
+                    <h3 className="text-2xl font-black uppercase tracking-tighter mb-3 leading-[0.95]">{p.title}</h3>
+                    <p className="text-sm text-white/70 leading-relaxed mb-4">{p.body}</p>
+                    <div className="space-y-2">
+                      {p.bullets.map((b, idx) => (
+                        <div key={idx} className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl border border-white/5 bg-white/[0.02] text-xs text-white/80">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,102,255,1)] shrink-0" />
+                          {b}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Desktop: sticky scroll-jacked reveal */}
+        <div ref={pillarRef} className="relative hidden md:block" style={{ height: `${PILLARS.length * 90}vh` }}>
           <div className="sticky top-0 h-screen flex items-center">
             <div className="container mx-auto px-4 max-w-7xl">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -252,16 +294,16 @@ export default function Solutions() {
       </section>
 
       {/* ─────────────── BEFORE / AFTER ─────────────── */}
-      <section className="py-16 relative">
+      <section className="py-12 md:py-16 relative">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 md:mb-12">
             <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-3">The Difference</div>
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">Before vs <span className="bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent">RAZR.</span></h2>
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tighter">Before vs <span className="bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent">RAZR.</span></h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             {/* BEFORE */}
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative rounded-3xl border border-red-500/20 bg-black/40 backdrop-blur-xl p-8 overflow-hidden">
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative rounded-2xl md:rounded-3xl border border-red-500/20 bg-black/40 backdrop-blur-xl p-6 md:p-8 overflow-hidden">
               <div className="absolute -top-16 -right-16 w-40 h-40 bg-red-500/20 rounded-full blur-3xl" />
               <div className="relative">
                 <div className="flex items-center justify-between mb-6">
@@ -288,9 +330,9 @@ export default function Solutions() {
             </motion.div>
 
             {/* AFTER */}
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative group rounded-3xl overflow-hidden">
-              <div className="absolute -inset-0.5 bg-gradient-to-br from-primary via-cyan-400 to-emerald-500 rounded-3xl blur opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative rounded-3xl border border-primary/30 bg-black/70 backdrop-blur-xl p-8 overflow-hidden">
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative group rounded-2xl md:rounded-3xl overflow-hidden">
+              <div className="absolute -inset-0.5 bg-gradient-to-br from-primary via-cyan-400 to-emerald-500 rounded-2xl md:rounded-3xl blur opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative rounded-2xl md:rounded-3xl border border-primary/30 bg-black/70 backdrop-blur-xl p-6 md:p-8 overflow-hidden">
                 <div className="absolute -top-16 -right-16 w-40 h-40 bg-primary/30 rounded-full blur-3xl" />
                 <motion.div animate={{ x: ["-100%", "200%"] }} transition={{ duration: 7, repeat: Infinity, ease: "linear" }} className="absolute top-0 left-0 w-1/3 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
                 <div className="relative">
@@ -322,14 +364,14 @@ export default function Solutions() {
       </section>
 
       {/* ─────────────── RESULT TIMELINE ─────────────── */}
-      <section className="py-16 relative">
+      <section className="py-12 md:py-16 relative">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 md:mb-12">
             <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-3">The Result</div>
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">From launch <span className="font-light italic text-white/50">to scale.</span></h2>
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.95]">From launch <span className="font-light italic text-white/50">to scale.</span></h2>
           </div>
 
-          <div className="relative grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="relative grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {/* connector line */}
             <div className="hidden md:block absolute top-20 left-[16%] right-[16%] h-px bg-gradient-to-r from-primary via-purple-500 to-cyan-400 opacity-30" />
 
@@ -344,15 +386,15 @@ export default function Solutions() {
                   transition={{ duration: 0.6, delay: i * 0.15 }}
                   className="relative group"
                 >
-                  <div className="absolute -inset-0.5 bg-gradient-to-br from-primary/30 to-cyan-500/20 rounded-3xl blur opacity-0 group-hover:opacity-80 transition-opacity duration-500" />
-                  <div className="relative rounded-3xl border border-white/10 bg-black/60 backdrop-blur-xl p-8 h-full">
-                    <div className="relative w-16 h-16 mx-auto mb-6 rounded-full border-2 border-primary bg-background flex items-center justify-center shadow-[0_0_20px_rgba(0,102,255,0.6)]">
-                      <Icon className="w-7 h-7 text-primary" />
+                  <div className="absolute -inset-0.5 bg-gradient-to-br from-primary/30 to-cyan-500/20 rounded-2xl md:rounded-3xl blur opacity-0 group-hover:opacity-80 transition-opacity duration-500" />
+                  <div className="relative rounded-2xl md:rounded-3xl border border-white/10 bg-black/60 backdrop-blur-xl p-6 md:p-8 h-full">
+                    <div className="relative w-14 h-14 md:w-16 md:h-16 mx-auto mb-5 md:mb-6 rounded-full border-2 border-primary bg-background flex items-center justify-center shadow-[0_0_20px_rgba(0,102,255,0.6)]">
+                      <Icon className="w-6 h-6 md:w-7 md:h-7 text-primary" />
                     </div>
                     <div className="text-center">
                       <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-2">{t.when}</div>
-                      <h3 className="text-2xl font-black uppercase tracking-tight mb-3">{t.title}</h3>
-                      <p className="text-sm text-white/60 leading-relaxed mb-5">{t.body}</p>
+                      <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight mb-3">{t.title}</h3>
+                      <p className="text-sm text-white/60 leading-relaxed mb-4 md:mb-5">{t.body}</p>
                       <div className="inline-block px-4 py-2 rounded-full border border-primary/30 bg-primary/10 text-sm font-black text-primary tabular-nums">{t.metric}</div>
                     </div>
                   </div>
@@ -364,22 +406,22 @@ export default function Solutions() {
       </section>
 
       {/* ─────────────── CTA ─────────────── */}
-      <section className="py-20 relative">
+      <section className="py-12 md:py-20 relative">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="relative group">
             <motion.div animate={{ rotate: 360 }} transition={{ duration: 14, repeat: Infinity, ease: "linear" }} className="absolute inset-[-200%] bg-[conic-gradient(from_0deg,transparent_0deg,#0066ff_60deg,transparent_120deg,#7c3aed_240deg,transparent_300deg)] opacity-40" />
-            <div className="relative rounded-3xl border border-white/15 bg-black/80 backdrop-blur-2xl p-12 md:p-16 text-center overflow-hidden">
+            <div className="relative rounded-3xl border border-white/15 bg-black/80 backdrop-blur-2xl p-7 sm:p-10 md:p-16 text-center overflow-hidden">
               <motion.div animate={{ x: ["-100%", "200%"] }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }} className="absolute top-0 left-0 w-1/3 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
-              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[1.05] mb-5 md:mb-6">
                 Your vertical, <br />
                 <span className="bg-gradient-to-r from-primary via-purple-400 to-cyan-400 bg-clip-text text-transparent">our infrastructure.</span>
               </h2>
-              <p className="text-lg text-white/60 mb-10 max-w-2xl mx-auto">We'll match you with the right setup in under 10 minutes. No commitment, no sales pitch.</p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="https://wa.me/917065339146" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest hover:bg-primary hover:text-white transition-colors duration-300">
+              <p className="text-base md:text-lg text-white/60 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">We'll match you with the right setup in under 10 minutes. No commitment, no sales pitch.</p>
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                <a href="https://wa.me/917065339146" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 md:py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest hover:bg-primary hover:text-white transition-colors duration-300">
                   Chat on WhatsApp <ArrowRight className="w-4 h-4" />
                 </a>
-                <Link href="/contact" className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full border border-white/20 text-white font-black text-sm uppercase tracking-widest hover:bg-white/5 transition-colors duration-300">
+                <Link href="/contact" className="inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 md:py-5 rounded-full border border-white/20 text-white font-black text-sm uppercase tracking-widest hover:bg-white/5 transition-colors duration-300">
                   Get Custom Plan <ArrowUpRight className="w-4 h-4" />
                 </Link>
               </div>
