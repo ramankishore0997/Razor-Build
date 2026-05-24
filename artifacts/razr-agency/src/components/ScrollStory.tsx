@@ -40,7 +40,7 @@ export default function ScrollStory() {
 
   return (
     <section ref={ref} className="relative" style={{ height: `${SCENES.length * 80}vh` }}>
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center">
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center bg-background">
         {/* progress bar */}
         <div className="absolute top-1/2 left-6 md:left-12 -translate-y-1/2 w-1 h-[60vh] bg-white/5 rounded-full z-30">
           <motion.div
@@ -49,25 +49,21 @@ export default function ScrollStory() {
           />
         </div>
 
-        <div className="container mx-auto px-4 relative">
-          {SCENES.map((scene, i) => {
-            const start = i / SCENES.length;
-            const end = (i + 1) / SCENES.length;
-            const isFirst = i === 0;
-            const isLast = i === SCENES.length - 1;
-            return (
-              <Scene
-                key={i}
-                scene={scene}
-                index={i}
-                scrollYProgress={scrollYProgress}
-                start={start}
-                end={end}
-                isFirst={isFirst}
-                isLast={isLast}
-              />
-            );
-          })}
+        {/* Chapter counter top-right */}
+        <div className="absolute top-8 right-8 md:top-12 md:right-12 text-[10px] font-black tracking-[0.3em] text-white/40 uppercase z-30">
+          Scroll Story
+        </div>
+
+        <div className="container mx-auto px-4 relative h-full flex items-center">
+          {SCENES.map((scene, i) => (
+            <Scene
+              key={i}
+              scene={scene}
+              index={i}
+              total={SCENES.length}
+              scrollYProgress={scrollYProgress}
+            />
+          ))}
         </div>
       </div>
     </section>
@@ -77,60 +73,57 @@ export default function ScrollStory() {
 type SceneProps = {
   scene: (typeof SCENES)[number];
   index: number;
+  total: number;
   scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"];
-  start: number;
-  end: number;
-  isFirst: boolean;
-  isLast: boolean;
 };
 
-function Scene({ scene, index, scrollYProgress, start, end, isFirst, isLast }: SceneProps) {
-  // Overlap adjacent scenes so the section is never blank between them.
-  // First scene is visible from progress 0; last scene stays visible till progress 1.
-  const fadeIn = isFirst ? 0 : Math.max(0, start - 0.06);
-  const fullStart = isFirst ? 0 : start + 0.04;
-  const fullEnd = isLast ? 1 : end - 0.04;
-  const fadeOut = isLast ? 1 : Math.min(1, end + 0.06);
+function Scene({ scene, index, total, scrollYProgress }: SceneProps) {
+  const slot = 1 / total;
+  const cross = slot * 0.15; // crossfade region = 15% of a slot
+  const isFirst = index === 0;
+  const isLast = index === total - 1;
 
-  const opacity = useTransform(
-    scrollYProgress,
-    [fadeIn, fullStart, fullEnd, fadeOut],
-    [0, 1, 1, 0]
-  );
-  const y = useTransform(
-    scrollYProgress,
-    [fadeIn, fullStart, fullEnd, fadeOut],
-    [40, 0, 0, -40]
-  );
-  const scale = useTransform(
-    scrollYProgress,
-    [fadeIn, fullStart, fullEnd, fadeOut],
-    [0.95, 1, 1, 0.95]
-  );
+  const start = index * slot;
+  const end = (index + 1) * slot;
+
+  // Strictly monotonically increasing keyframes (no duplicates).
+  // For first/last, push the outer keyframes outside [0, 1] so the scene
+  // stays fully visible at the scroll boundary instead of fading to 0.
+  const k1 = isFirst ? -cross * 2 : start - cross;
+  const k2 = isFirst ? -cross : start + cross;
+  const k3 = isLast ? 1 + cross : end - cross;
+  const k4 = isLast ? 1 + cross * 2 : end + cross;
+
+  const keyframes = [k1, k2, k3, k4];
+
+  const opacity = useTransform(scrollYProgress, keyframes, [0, 1, 1, 0]);
+  const y = useTransform(scrollYProgress, keyframes, [30, 0, 0, -30]);
+  const scale = useTransform(scrollYProgress, keyframes, [0.96, 1, 1, 0.96]);
+
   const Icon = scene.icon;
 
   return (
     <motion.div
       style={{ opacity, y, scale }}
-      className="absolute inset-0 flex items-center justify-center"
+      className="absolute inset-0 flex items-center justify-center pointer-events-none"
     >
       <div className={`absolute inset-0 bg-gradient-to-br ${scene.accent} opacity-30 blur-3xl pointer-events-none`} />
       <div className="relative max-w-4xl mx-auto text-center px-6">
-        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur mb-10">
+        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur mb-8 md:mb-10">
           <span className="text-[10px] font-black tracking-[0.2em] text-primary uppercase">Chapter {scene.chapter}</span>
         </div>
 
-        <div className="inline-flex w-20 h-20 md:w-24 md:h-24 rounded-3xl border border-primary/30 bg-primary/10 backdrop-blur items-center justify-center mb-8">
+        <div className="inline-flex w-20 h-20 md:w-24 md:h-24 rounded-3xl border border-primary/30 bg-primary/10 backdrop-blur items-center justify-center mb-6 md:mb-8">
           <Icon className="w-10 h-10 md:w-12 md:h-12 text-primary" />
         </div>
 
-        <h2 className="text-5xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter leading-[0.9] mb-8">
+        <h2 className="text-4xl sm:text-5xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter leading-[0.9] mb-6 md:mb-8">
           {scene.title}
         </h2>
-        <p className="text-lg md:text-2xl text-white/60 max-w-2xl mx-auto leading-relaxed">{scene.body}</p>
+        <p className="text-base sm:text-lg md:text-2xl text-white/60 max-w-2xl mx-auto leading-relaxed">{scene.body}</p>
 
-        <div className="mt-12 text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">
-          {String(index + 1).padStart(2, "0")} / {String(SCENES.length).padStart(2, "0")}
+        <div className="mt-10 md:mt-12 text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">
+          {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
         </div>
       </div>
     </motion.div>
