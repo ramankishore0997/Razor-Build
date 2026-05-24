@@ -14,6 +14,7 @@ import SoundToggle from "@/components/SoundToggle";
 import Home from "@/pages/Home";
 import Features from "@/pages/Features";
 import Solutions from "@/pages/Solutions";
+import AgencyAccounts from "@/pages/AgencyAccounts";
 import HowItWorks from "@/pages/HowItWorks";
 import About from "@/pages/About";
 import Faq from "@/pages/Faq";
@@ -37,6 +38,7 @@ function Router() {
           <Route path="/" component={Home} />
           <Route path="/features" component={Features} />
           <Route path="/solutions" component={Solutions} />
+          <Route path="/agency-accounts" component={AgencyAccounts} />
           <Route path="/how-it-works" component={HowItWorks} />
           <Route path="/about" component={About} />
           <Route path="/faq" component={Faq} />
