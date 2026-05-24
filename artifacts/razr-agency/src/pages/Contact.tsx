@@ -1,5 +1,7 @@
 import { useState, type FormEvent } from "react";
 import PageWrapper from "@/components/layout/PageWrapper";
+import { trackContact, trackLead } from "@/lib/pixel";
+import { getAttributionLabel } from "@/lib/utm";
 import { motion } from "framer-motion";
 import { Sparkles, MessageCircle, Mail, ArrowUpRight, Activity, Clock, Users, Zap } from "lucide-react";
 import { SiTelegram, SiWhatsapp } from "react-icons/si";
@@ -17,6 +19,11 @@ export default function Contact() {
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
+    // Fire Pixel events for ad campaign optimization
+    trackContact({ source: "contact_form" });
+    trackLead({ intent: "contact-form", source: "contact-page" });
+
+    const attribution = getAttributionLabel();
     const lines = [
       `Hi RAZR team — new scaling request`,
       ``,
@@ -27,6 +34,9 @@ export default function Contact() {
       `*Goal:*`,
       `${goal || "—"}`,
     ];
+    if (attribution) {
+      lines.push(``, `[ad source: ${attribution}]`);
+    }
     const text = encodeURIComponent(lines.join("\n"));
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank", "noopener,noreferrer");
   };

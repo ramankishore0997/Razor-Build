@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import FloatingOrbs from "@/components/FloatingOrbs";
 import TrustWall from "@/components/TrustWall";
+import IndianTrustStrip from "@/components/IndianTrustStrip";
+import PricingSection from "@/components/PricingSection";
 import HolographicCTA from "@/components/HolographicCTA";
 import LightBeams from "@/components/LightBeams";
 import ProblemSolution from "@/components/ProblemSolution";
@@ -88,6 +90,9 @@ export default function Home() {
 
       <TrustWall />
 
+      {/* INDIAN AUDIENCE TRUST STRIP — flag + INR + payment methods */}
+      <IndianTrustStrip />
+
       {/* PROBLEM / SOLUTION COMPARISON */}
       <ProblemSolution />
 
@@ -102,6 +107,9 @@ export default function Home() {
 
       {/* CASE STUDY TIMELINE */}
       <CaseStudyTimeline />
+
+      {/* PRICING — INR plans for Indian audience */}
+      <PricingSection />
 
       {/* BOOK A STRATEGY CALL */}
       <BookCallSection />

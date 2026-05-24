@@ -1,5 +1,7 @@
-import { useEffect } from "react";
-import { Switch, Route, Router as WouterRouter } from "wouter";
+import { useEffect, useRef } from "react";
+import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
+import { captureAttribution } from "@/lib/utm";
+import { trackViewContent, trackLead } from "@/lib/pixel";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -32,6 +34,17 @@ import Footer from "@/components/layout/Footer";
 const queryClient = new QueryClient();
 
 function Router() {
+  const [location] = useLocation();
+  const firstRoute = useRef(true);
+  useEffect(() => {
+    // Skip initial route — index.html pixel already fires PageView on load
+    if (firstRoute.current) {
+      firstRoute.current = false;
+      return;
+    }
+    trackViewContent({ path: location });
+  }, [location]);
+
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground selection:bg-primary/30 selection:text-white">
       <Navbar />
@@ -57,9 +70,23 @@ function Router() {
 }
 
 function App() {
-  // Force dark mode
+  // Force dark mode + capture UTM attribution + global WhatsApp click tracking
   useEffect(() => {
     document.documentElement.classList.add("dark");
+    captureAttribution();
+
+    // Delegated click listener: fires Pixel Lead event on any WhatsApp link click
+    // (avoids needing onClick on every CTA across the site)
+    const onClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      const anchor = target?.closest?.('a[href*="wa.me/"]') as HTMLAnchorElement | null;
+      if (!anchor) return;
+      try {
+        trackLead({ source: "wa-click", href: anchor.href.slice(0, 120) });
+      } catch {}
+    };
+    document.addEventListener("click", onClick, { capture: true });
+    return () => document.removeEventListener("click", onClick, { capture: true });
   }, []);
 
   return (

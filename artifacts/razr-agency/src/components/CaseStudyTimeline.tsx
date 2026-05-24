@@ -37,13 +37,13 @@ export default function CaseStudyTimeline() {
 
       <div className="container mx-auto px-4 max-w-7xl relative">
         <div className="text-center mb-16">
-          <div className="text-[10px] font-black uppercase tracking-[0.25em] text-primary mb-3">Case Study · Anonymous DTC Brand</div>
+          <div className="text-[10px] font-black uppercase tracking-[0.25em] text-primary mb-3">Case Study · Mumbai D2C Skincare Brand</div>
           <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.95] mb-5">
             $2k to $52k/day in <br />
             <span className="bg-gradient-to-r from-primary via-purple-400 to-cyan-400 bg-clip-text text-transparent">6 months.</span>
           </h2>
           <p className="text-lg text-white/50 max-w-2xl mx-auto">
-            Same offer. Same creative. Different infrastructure. Here's how the curve looked.
+            Same offer. Same creative. Different infrastructure. Here's how the curve looked for one of our Mumbai clients.
           </p>
         </div>
 
@@ -100,17 +100,17 @@ export default function CaseStudyTimeline() {
             <motion.div animate={{ x: ["-100%", "200%"] }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }} className="absolute top-0 left-0 w-1/3 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
             <Quote className="w-10 h-10 text-primary mb-5 opacity-60" />
             <blockquote className="text-xl md:text-2xl font-light text-white/90 leading-relaxed mb-6 italic">
-              "We were stuck at $2k/day for 6 months on our self-serve BM. Switched to RAZR, hit $50k/day in under 6 months. Same product, same ad accounts team. The infrastructure was the entire problem."
+              "We were stuck at $2k/day for 6 months on our self-serve BM. Switched to RAZR, hit $50k/day in under 6 months. Same product, same ad team. The infrastructure was the entire problem."
             </blockquote>
             <div className="flex items-center justify-between gap-4 flex-wrap">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-purple-500 flex items-center justify-center text-black font-black">D</div>
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-purple-500 flex items-center justify-center text-black font-black">R</div>
                 <div>
-                  <div className="text-sm font-bold text-white">Daniel R.</div>
-                  <div className="text-xs text-white/40">Founder · DTC Skincare ($8M ARR)</div>
+                  <div className="text-sm font-bold text-white">Rohan M.</div>
+                  <div className="text-xs text-white/40">Founder · Mumbai D2C Skincare (₹65 Cr ARR)</div>
                 </div>
               </div>
-              <a href={buildWaLink("case-study", { caseName: "DTC Skincare ($8M ARR)", source: "case-study-timeline" })} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-primary hover:text-white transition-colors">
+              <a href={buildWaLink("case-study", { caseName: "Mumbai D2C Skincare (₹65 Cr ARR)", source: "case-study-timeline" })} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-primary hover:text-white transition-colors">
                 Get the same setup <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>
