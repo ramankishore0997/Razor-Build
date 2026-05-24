@@ -11,7 +11,7 @@ import AchievementBadges from "@/components/AchievementBadges";
 import HolographicCTA from "@/components/HolographicCTA";
 import LightBeams from "@/components/LightBeams";
 import VideoTestimonials from "@/components/VideoTestimonials";
-import ScrollStory from "@/components/ScrollStory";
+import ProblemSolution from "@/components/ProblemSolution";
 import HeroRobot from "@/components/HeroRobot";
 import GrowthMetrics from "@/components/GrowthMetrics";
 import CaseStudyTimeline from "@/components/CaseStudyTimeline";
@@ -254,8 +254,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SCROLL STORYTELLING */}
-      <ScrollStory />
+      {/* PROBLEM / SOLUTION COMPARISON */}
+      <ProblemSolution />
 
       {/* GROWTH METRICS */}
       <GrowthMetrics />
