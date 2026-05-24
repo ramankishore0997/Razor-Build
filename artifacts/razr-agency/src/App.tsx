@@ -4,12 +4,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import LoadingScreen from "@/components/LoadingScreen";
-import CustomCursor from "@/components/CustomCursor";
-import MouseGlow from "@/components/MouseGlow";
-import NoiseOverlay from "@/components/NoiseOverlay";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import GlassDock from "@/components/GlassDock";
-import SoundToggle from "@/components/SoundToggle";
 import LiveActivityFeed from "@/components/LiveActivityFeed";
 
 import Home from "@/pages/Home";
@@ -65,14 +61,10 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <LoadingScreen />
-        <MouseGlow />
-        <NoiseOverlay />
-        <CustomCursor />
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
           <Router />
         </WouterRouter>
         <WhatsAppFloat />
-        <SoundToggle />
         <LiveActivityFeed />
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
           <GlassDock />
