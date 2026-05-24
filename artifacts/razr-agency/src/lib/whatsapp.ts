@@ -28,7 +28,7 @@ const TEMPLATES: Record<WaIntent, (e: IntentExtras) => string> = {
   "setup-access": () =>
     "Hi RAZR — I'm interested in the STARTUP plan (₹1,999 setup, 1 Meta account, 5% deposit fee — you handle deposits). Please share next steps.",
   "full-access": () =>
-    "Hi RAZR — I'm interested in the FULL SETUP plan (₹2,999 setup, 2 Meta accounts, 0% deposit fee — I self-deposit). Please share onboarding details.",
+    "Hi RAZR — I'm interested in the FULL SETUP plan (₹2,999 setup, 1 Meta account, 0% deposit fee — I self-deposit). Please share onboarding details.",
   "book-call": (e) =>
     `Hi RAZR — I'd like to BOOK A 15-MIN STRATEGY CALL${e.slot ? ` on ${e.slot}` : ""}. Please confirm.`,
   "roi-tier": (e) =>

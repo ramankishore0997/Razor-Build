@@ -38,7 +38,7 @@ const PLANS = [
     glow: "shadow-[0_30px_80px_-20px_rgba(0,102,255,0.5)]",
     waIntent: "full-access" as const,
     features: [
-      "2 Meta Agency Ad Accounts (redundancy)",
+      "1 Meta Agency Ad Account",
       "0% deposit fee — keep 100% of your spend",
       "Self-deposit directly from your card / bank",
       "Unlimited daily spend capacity",
