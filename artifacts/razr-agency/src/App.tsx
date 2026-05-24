@@ -10,6 +10,7 @@ import NoiseOverlay from "@/components/NoiseOverlay";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import GlassDock from "@/components/GlassDock";
 import SoundToggle from "@/components/SoundToggle";
+import LiveActivityFeed from "@/components/LiveActivityFeed";
 
 import Home from "@/pages/Home";
 import Features from "@/pages/Features";
@@ -72,6 +73,7 @@ function App() {
         </WouterRouter>
         <WhatsAppFloat />
         <SoundToggle />
+        <LiveActivityFeed />
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
           <GlassDock />
         </WouterRouter>

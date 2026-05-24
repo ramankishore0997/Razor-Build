@@ -1,5 +1,5 @@
 import PageWrapper from "@/components/layout/PageWrapper";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Zap, Shield, Globe, Clock, Target, CreditCard, Lock, Infinity as InfinityIcon } from "lucide-react";
 import { Link } from "wouter";
 import MarqueeLogos from "@/components/MarqueeLogos";
@@ -12,11 +12,13 @@ import HolographicCTA from "@/components/HolographicCTA";
 import LightBeams from "@/components/LightBeams";
 import VideoTestimonials from "@/components/VideoTestimonials";
 import ProblemSolution from "@/components/ProblemSolution";
+import ROISimulator from "@/components/ROISimulator";
+import AccessFlowJourney from "@/components/AccessFlowJourney";
+import UrgencyBadge from "@/components/UrgencyBadge";
 import HeroRobot from "@/components/HeroRobot";
 import GrowthMetrics from "@/components/GrowthMetrics";
 import CaseStudyTimeline from "@/components/CaseStudyTimeline";
 import FaqPreview from "@/components/FaqPreview";
-import { useRef } from "react";
 
 const features = [
   { icon: Shield, title: "Lower Restriction Risk", desc: "Established trust signals that minimize account bans." },
@@ -26,10 +28,6 @@ const features = [
 ];
 
 export default function Home() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start end", "end start"] });
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, 200]);
 
   return (
     <PageWrapper>
@@ -213,52 +211,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* HOW IT WORKS - Sticky Reveal */}
-      <section className="py-16 relative z-10 bg-white/[0.02] border-y border-white/5" ref={containerRef}>
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div className="relative">
-              <div className="sticky top-40">
-                <h2 className="text-sm font-bold tracking-[0.2em] text-primary uppercase mb-4">Process</h2>
-                <h3 className="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-none mb-8">
-                  From zero <br/>to live.
-                </h3>
-                <div className="w-24 h-24 rounded-full border border-white/10 flex items-center justify-center">
-                  <ArrowRight className="w-8 h-8 text-primary" />
-                </div>
-              </div>
-            </div>
-            
-            <div className="flex flex-col gap-8 py-20">
-              {[
-                { step: "01", title: "Consultation", desc: "We review your business model, current spending, and scaling goals to ensure fit." },
-                { step: "02", title: "Account Review", desc: "Full transparency. We show you the exact account you'll receive before commitment." },
-                { step: "03", title: "Activation", desc: "Same-day provisioning. We connect your BM, set up billing, and grant team access." },
-                { step: "04", title: "Scale", desc: "Go live. Our team monitors health and provides ongoing scaling support." }
-              ].map((item, i) => (
-                <motion.div 
-                  key={i}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ margin: "-100px", once: true }}
-                  className="relative pl-12 border-l border-white/10"
-                >
-                  <div className="absolute top-0 left-0 -translate-x-1/2 w-3 h-3 rounded-full bg-primary shadow-[0_0_10px_rgba(0,102,255,0.8)]" />
-                  <div className="text-2xl font-light text-white/30 mb-4">{item.step}</div>
-                  <h4 className="text-3xl font-bold mb-4">{item.title}</h4>
-                  <p className="text-lg text-muted-foreground leading-relaxed">{item.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* PROBLEM / SOLUTION COMPARISON */}
       <ProblemSolution />
 
+      {/* ACCESS FLOW JOURNEY — Request → Review → Activation → Scale */}
+      <AccessFlowJourney />
+
       {/* GROWTH METRICS */}
       <GrowthMetrics />
+
+      {/* ROI SIMULATOR — interactive budget calculator */}
+      <ROISimulator />
 
       {/* CASE STUDY TIMELINE */}
       <CaseStudyTimeline />
@@ -278,6 +241,11 @@ export default function Home() {
         <div className="relative -mt-10">
           <WorldMap />
         </div>
+      </section>
+
+      {/* URGENCY BADGE — scarcity push above final CTA */}
+      <section className="relative z-10 pt-16 pb-4 flex justify-center px-4">
+        <UrgencyBadge />
       </section>
 
       <HolographicCTA />
