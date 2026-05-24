@@ -75,46 +75,31 @@ function App() {
     document.documentElement.classList.add("dark");
     captureAttribution();
 
-    // Delegated click listener — fires Pixel events on any button / link click
-    //  • Lead       → WhatsApp link clicks
-    //  • Subscribe  → ANY <button> or <a> click (with 1s dedupe to prevent spam)
-    // Add `data-no-track` attribute on an element to opt-out of Subscribe tracking.
-    let lastSubscribeAt = 0;
+    // Delegated click listener — fires Pixel events on every WhatsApp button click:
+    //  • Lead       → Meta's standard high-intent conversion event
+    //  • Subscribe  → fires alongside Lead on the same WhatsApp click
+    // 1-second dedupe protects against rapid double-clicks.
+    let lastWaClickAt = 0;
     const onClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
-      if (!target) return;
-
-      // WhatsApp link → Lead event
-      const waAnchor = target.closest?.('a[href*="wa.me/"]') as HTMLAnchorElement | null;
-      if (waAnchor) {
-        try {
-          trackLead({ source: "wa-click", href: waAnchor.href.slice(0, 120) });
-        } catch {}
-      }
-
-      // Any button or link → Subscribe event (with 1s dedupe + opt-out support)
-      const clickable = target.closest?.('button, a[href]') as HTMLElement | null;
-      if (!clickable) return;
-      if (clickable.closest('[data-no-track]')) return;
+      const waAnchor = target?.closest?.('a[href*="wa.me/"]') as HTMLAnchorElement | null;
+      if (!waAnchor) return;
 
       const now = Date.now();
-      if (now - lastSubscribeAt < 1000) return; // dedupe rapid double-clicks
-      lastSubscribeAt = now;
+      if (now - lastWaClickAt < 1000) return;
+      lastWaClickAt = now;
 
       const label =
-        clickable.getAttribute('data-cta') ||
-        clickable.getAttribute('aria-label') ||
-        clickable.textContent?.trim().slice(0, 60) ||
-        clickable.tagName.toLowerCase();
-      const href = (clickable as HTMLAnchorElement).href?.slice(0, 120);
+        waAnchor.getAttribute('data-cta') ||
+        waAnchor.getAttribute('aria-label') ||
+        waAnchor.textContent?.trim().slice(0, 60) ||
+        'whatsapp-cta';
+      const href = waAnchor.href.slice(0, 120);
+      const path = window.location.pathname;
 
       try {
-        trackSubscribe({
-          source: "button-click",
-          label,
-          ...(href ? { href } : {}),
-          path: window.location.pathname,
-        });
+        trackLead({ source: "wa-click", label, href, path });
+        trackSubscribe({ source: "wa-click", label, href, path });
       } catch {}
     };
     document.addEventListener("click", onClick, { capture: true });
