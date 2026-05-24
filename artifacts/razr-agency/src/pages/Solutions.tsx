@@ -1,5 +1,5 @@
 import PageWrapper from "@/components/layout/PageWrapper";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "wouter";
 import LightBeams from "@/components/LightBeams";
@@ -91,12 +91,6 @@ function AnimatedBar({ from, to, color, label, delay = 0 }: { from: number; to: 
 }
 
 export default function Solutions() {
-  const pillarRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: pillarRef, offset: ["start start", "end end"] });
-  const activeIndex = useTransform(scrollYProgress, [0, 1], [0, PILLARS.length - 1]);
-  const [active, setActive] = useState(0);
-  useEffect(() => activeIndex.on("change", (v) => setActive(Math.round(v))), [activeIndex]);
-
   return (
     <PageWrapper>
       {/* Ambient glows */}
@@ -184,8 +178,8 @@ export default function Solutions() {
           <h2 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.95]">5 pillars <span className="font-light italic text-white/50">of scale.</span></h2>
         </div>
 
-        {/* Mobile: simple stacked cards, no scroll-jacking */}
-        <div className="md:hidden container mx-auto px-4 space-y-4">
+        {/* Responsive stacked grid — no scroll-jacking on any viewport */}
+        <div className="container mx-auto px-4 max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
           {PILLARS.map((p, i) => {
             const Icon = p.Icon;
             return (
@@ -194,25 +188,26 @@ export default function Solutions() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: 0.05 }}
-                className="relative"
+                transition={{ duration: 0.6, delay: (i % 2) * 0.1 }}
+                whileHover={{ y: -4 }}
+                className="relative group"
               >
-                <div className={`absolute -inset-0.5 bg-gradient-to-br ${p.accent} rounded-3xl blur opacity-30`} />
-                <div className="relative rounded-3xl border border-white/10 bg-black/70 backdrop-blur-xl p-6 overflow-hidden">
-                  <div className={`absolute -top-12 -right-12 w-32 h-32 bg-gradient-to-br ${p.accent} rounded-full blur-3xl opacity-40`} />
+                <div className={`absolute -inset-0.5 bg-gradient-to-br ${p.accent} rounded-3xl blur opacity-30 group-hover:opacity-60 transition-opacity duration-500`} />
+                <div className="relative h-full rounded-3xl border border-white/10 bg-black/70 backdrop-blur-xl p-6 md:p-8 overflow-hidden">
+                  <div className={`absolute -top-16 -right-16 w-44 h-44 bg-gradient-to-br ${p.accent} rounded-full blur-3xl opacity-40 group-hover:opacity-70 transition-opacity duration-500`} />
                   <div className="relative">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="w-12 h-12 rounded-2xl border border-primary/30 bg-primary/10 backdrop-blur flex items-center justify-center">
-                        <Icon className="w-5 h-5 text-primary" />
+                    <div className="flex items-start justify-between mb-5">
+                      <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl border border-primary/30 bg-primary/10 backdrop-blur flex items-center justify-center group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500">
+                        <Icon className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                       </div>
-                      <div className="text-5xl font-black leading-none text-white/[0.06] select-none">{String(i + 1).padStart(2, "0")}</div>
+                      <div className="text-6xl md:text-7xl font-black leading-none text-white/[0.06] select-none">{String(i + 1).padStart(2, "0")}</div>
                     </div>
                     <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-2">{p.step}</div>
-                    <h3 className="text-2xl font-black uppercase tracking-tighter mb-3 leading-[0.95]">{p.title}</h3>
-                    <p className="text-sm text-white/70 leading-relaxed mb-4">{p.body}</p>
-                    <div className="space-y-2">
+                    <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-3 leading-[0.95]">{p.title}</h3>
+                    <p className="text-sm md:text-base text-white/70 leading-relaxed mb-5">{p.body}</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {p.bullets.map((b, idx) => (
-                        <div key={idx} className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl border border-white/5 bg-white/[0.02] text-xs text-white/80">
+                        <div key={idx} className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl border border-white/5 bg-white/[0.02] text-xs md:text-sm text-white/80">
                           <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,102,255,1)] shrink-0" />
                           {b}
                         </div>
@@ -223,73 +218,6 @@ export default function Solutions() {
               </motion.div>
             );
           })}
-        </div>
-
-        {/* Desktop: sticky scroll-jacked reveal */}
-        <div ref={pillarRef} className="relative hidden md:block" style={{ height: `${PILLARS.length * 90}vh` }}>
-          <div className="sticky top-0 h-screen flex items-center">
-            <div className="container mx-auto px-4 max-w-7xl">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                {/* Left: pillar nav */}
-                <div className="lg:col-span-4">
-                  <div className="flex flex-col gap-2">
-                    {PILLARS.map((p, i) => {
-                      const isActive = i === active;
-                      return (
-                        <div
-                          key={i}
-                          className={`relative flex items-center gap-4 px-5 py-4 rounded-2xl border transition-all duration-500 ${
-                            isActive ? "border-primary/40 bg-primary/10 scale-[1.02]" : "border-white/5 bg-white/[0.02] opacity-50"
-                          }`}
-                        >
-                          <div className={`w-2 h-2 rounded-full transition-all ${isActive ? "bg-primary shadow-[0_0_10px_rgba(0,102,255,1)] scale-150" : "bg-white/30"}`} />
-                          <div className="text-[10px] font-black uppercase tracking-wider text-white/40">{p.step}</div>
-                          <div className="ml-auto text-sm font-black uppercase tracking-tight text-white">{p.title}</div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Right: active pillar card */}
-                <div className="lg:col-span-8">
-                  <motion.div
-                    key={active}
-                    initial={{ opacity: 0, y: 30, scale: 0.96 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="relative"
-                  >
-                    <div className={`absolute -inset-1 bg-gradient-to-br ${PILLARS[active].accent} rounded-3xl blur-2xl opacity-50`} />
-                    <div className="relative rounded-3xl border border-white/10 bg-black/70 backdrop-blur-xl p-10 md:p-12 overflow-hidden">
-                      <motion.div animate={{ x: ["-100%", "200%"] }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }} className="absolute top-0 left-0 w-1/3 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
-                      <div className={`absolute -top-20 -right-20 w-60 h-60 bg-gradient-to-br ${PILLARS[active].accent} rounded-full blur-3xl opacity-50`} />
-
-                      <div className="relative">
-                        <div className="flex items-start justify-between mb-6">
-                          <div className="w-16 h-16 rounded-2xl border border-primary/30 bg-primary/10 backdrop-blur flex items-center justify-center">
-                            {(() => { const I = PILLARS[active].Icon; return <I className="w-7 h-7 text-primary" />; })()}
-                          </div>
-                          <div className="text-[8rem] font-black leading-none text-white/[0.04] select-none">{String(active + 1).padStart(2, "0")}</div>
-                        </div>
-                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-3">{PILLARS[active].step}</div>
-                        <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-5 leading-[0.95]">{PILLARS[active].title}</h3>
-                        <p className="text-lg text-white/70 leading-relaxed mb-8">{PILLARS[active].body}</p>
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                          {PILLARS[active].bullets.map((b, idx) => (
-                            <div key={idx} className="flex items-center gap-2.5 px-4 py-3 rounded-xl border border-white/5 bg-white/[0.02] text-sm text-white/80">
-                              <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,102,255,1)] shrink-0" />
-                              {b}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 

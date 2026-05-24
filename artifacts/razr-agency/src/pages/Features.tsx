@@ -1,5 +1,5 @@
 import PageWrapper from "@/components/layout/PageWrapper";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "wouter";
 import LightBeams from "@/components/LightBeams";
@@ -117,11 +117,6 @@ function AnimatedNum({ value, suffix, prefix = "" }: { value: number; suffix: st
 }
 
 export default function Features() {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-66%"]);
-
   return (
     <PageWrapper>
       {/* Ambient glows */}
@@ -256,79 +251,49 @@ export default function Features() {
         </div>
       </section>
 
-      {/* ─────────────── EVERY FEATURE — DESKTOP SCROLL-JACK / MOBILE SWIPE ─────────────── */}
-
-      {/* Mobile-only: native horizontal swipe */}
-      <section className="py-12 relative md:hidden">
-        <div className="container mx-auto px-4 max-w-7xl mb-6">
-          <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-3">03 · Swipe to explore</div>
-          <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tighter leading-[0.95]">Every feature, <span className="font-light italic text-white/50">in motion.</span></h2>
+      {/* ─────────────── EVERY FEATURE — RESPONSIVE GRID (no scroll-jacking) ─────────────── */}
+      <section className="py-12 md:py-20 relative">
+        <div className="container mx-auto px-4 max-w-7xl mb-8 md:mb-12">
+          <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-3">03 · Every feature</div>
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.95]">
+            Every feature, <span className="font-light italic text-white/50">in motion.</span>
+          </h2>
         </div>
-        <div className="overflow-x-auto snap-x snap-mandatory scrollbar-none -mx-1 px-4 pb-4">
-          <div className="flex gap-4 w-max">
+
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {HSCROLL.map((c, i) => {
               const Icon = c.Icon;
               return (
-                <div key={i} className="relative snap-start shrink-0 w-[78vw] max-w-[340px]">
-                  <div className={`absolute -inset-0.5 bg-gradient-to-br ${c.color} rounded-3xl blur opacity-40`} />
-                  <div className="relative rounded-3xl border border-white/10 bg-black/70 backdrop-blur-xl p-6 min-h-[380px] flex flex-col overflow-hidden">
-                    <div className={`absolute -top-16 -right-16 w-44 h-44 bg-gradient-to-br ${c.color} rounded-full blur-3xl opacity-30`} />
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, delay: (i % 3) * 0.08 }}
+                  whileHover={{ y: -6 }}
+                  className="relative group"
+                >
+                  <div className={`absolute -inset-0.5 bg-gradient-to-br ${c.color} rounded-3xl blur opacity-30 group-hover:opacity-70 transition-opacity duration-500`} />
+                  <div className="relative rounded-3xl border border-white/10 bg-black/70 backdrop-blur-xl p-6 md:p-8 h-full min-h-[360px] md:min-h-[400px] flex flex-col overflow-hidden">
+                    <div className={`absolute -top-16 -right-16 w-48 h-48 bg-gradient-to-br ${c.color} rounded-full blur-3xl opacity-30 group-hover:opacity-60 transition-opacity duration-500`} />
                     <div className="relative">
                       <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/30 mb-5">{String(i + 1).padStart(2, "0")} / {HSCROLL.length}</div>
-                      <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${c.color} flex items-center justify-center mb-6 shadow-2xl`}>
-                        <Icon className="w-6 h-6 text-black" />
+                      <div className={`w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br ${c.color} flex items-center justify-center mb-6 shadow-2xl group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500`}>
+                        <Icon className="w-6 h-6 md:w-7 md:h-7 text-black" />
                       </div>
-                      <h3 className="text-2xl font-black uppercase tracking-tight mb-3 leading-[1.05]">{c.title}</h3>
-                      <p className="text-sm text-white/70 leading-relaxed">{c.body}</p>
+                      <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight mb-3 leading-[1.05]">{c.title}</h3>
+                      <p className="text-sm md:text-base text-white/70 leading-relaxed">{c.body}</p>
                     </div>
-                    <div className="mt-auto pt-5 flex items-center gap-2 text-[10px] uppercase tracking-widest text-white/40 font-bold">
+                    <div className="relative mt-auto pt-5 flex items-center gap-2 text-[10px] uppercase tracking-widest text-white/40 font-bold">
                       <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                       Live in production
                     </div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
-        </div>
-        {/* swipe hint */}
-        <div className="container mx-auto px-4 mt-2 flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-white/30 font-bold">
-          <span>← Swipe →</span>
-        </div>
-      </section>
-
-      {/* Desktop-only: scroll-jacked horizontal track */}
-      <section ref={sectionRef} className="relative hidden md:block" style={{ height: "300vh" }}>
-        <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
-          <div className="container mx-auto px-4 max-w-7xl mb-10">
-            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-3">03 · Scroll to explore</div>
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">Every feature, <span className="font-light italic text-white/50">in motion.</span></h2>
-          </div>
-          <motion.div ref={trackRef} style={{ x }} className="flex gap-6 pl-[8vw]">
-            {HSCROLL.map((c, i) => {
-              const Icon = c.Icon;
-              return (
-                <div key={i} className="relative group shrink-0 w-[44vw] lg:w-[34vw]">
-                  <div className={`absolute -inset-0.5 bg-gradient-to-br ${c.color} rounded-3xl blur opacity-40 group-hover:opacity-80 transition-opacity duration-500`} />
-                  <div className="relative rounded-3xl border border-white/10 bg-black/70 backdrop-blur-xl p-8 md:p-10 h-[420px] flex flex-col overflow-hidden">
-                    <div className={`absolute -top-20 -right-20 w-60 h-60 bg-gradient-to-br ${c.color} rounded-full blur-3xl opacity-30`} />
-                    <div className="relative">
-                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/30 mb-6">{String(i + 1).padStart(2, "0")} / {HSCROLL.length}</div>
-                      <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${c.color} flex items-center justify-center mb-8 shadow-2xl`}>
-                        <Icon className="w-7 h-7 text-black" />
-                      </div>
-                      <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight mb-4 leading-[1.05]">{c.title}</h3>
-                      <p className="text-base text-white/70 leading-relaxed">{c.body}</p>
-                    </div>
-                    <div className="mt-auto pt-6 flex items-center gap-2 text-xs uppercase tracking-widest text-white/40 font-bold">
-                      <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                      Live in production
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </motion.div>
         </div>
       </section>
 
