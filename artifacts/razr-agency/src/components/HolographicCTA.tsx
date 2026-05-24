@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "wouter";
+import { buildWaLink } from "@/lib/whatsapp";
 
 export default function HolographicCTA() {
   return (
@@ -68,7 +69,7 @@ export default function HolographicCTA() {
 
               <div className="shrink-0 flex flex-col gap-3 md:gap-4 w-full md:w-auto">
                 <a
-                  href="https://wa.me/917065339146"
+                  href={buildWaLink("general", { source: "final-cta" })}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group/btn relative inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 md:py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest overflow-hidden hover:bg-primary hover:text-white transition-colors duration-300"

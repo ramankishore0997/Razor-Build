@@ -1,10 +1,8 @@
 import { SiWhatsapp } from "react-icons/si";
-
-const WHATSAPP_NUMBER = "917065339146";
-const PREFILL = "Hi RAZR, I'd like to know more about your Meta & Google Ad Accounts.";
+import { buildWaLink } from "@/lib/whatsapp";
 
 export default function WhatsAppFloat() {
-  const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(PREFILL)}`;
+  const href = buildWaLink("general", { source: "floating-button" });
   return (
     <a
       href={href}

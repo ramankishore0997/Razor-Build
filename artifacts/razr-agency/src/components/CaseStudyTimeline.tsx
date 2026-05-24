@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Quote, Rocket, BarChart3, Trophy, ArrowUpRight } from "lucide-react";
+import { buildWaLink } from "@/lib/whatsapp";
 
 const STAGES = [
   {
@@ -109,7 +110,7 @@ export default function CaseStudyTimeline() {
                   <div className="text-xs text-white/40">Founder · DTC Skincare ($8M ARR)</div>
                 </div>
               </div>
-              <a href="https://wa.me/917065339146" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-primary hover:text-white transition-colors">
+              <a href={buildWaLink("case-study", { caseName: "DTC Skincare ($8M ARR)", source: "case-study-timeline" })} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-primary hover:text-white transition-colors">
                 Get the same setup <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>

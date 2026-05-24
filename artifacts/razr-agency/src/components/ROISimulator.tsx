@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Calculator, TrendingUp, Zap, ArrowUpRight } from "lucide-react";
+import { buildWaLink } from "@/lib/whatsapp";
 
 const BUDGETS = [1000, 5000, 10000, 25000, 50000, 100000];
 
@@ -187,7 +188,7 @@ export default function ROISimulator() {
                 Most clients exceed these numbers after optimization.
               </div>
               <a
-                href="https://wa.me/917065339146"
+                href={buildWaLink("roi-tier", { source: "roi-simulator" })}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-black text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-all"

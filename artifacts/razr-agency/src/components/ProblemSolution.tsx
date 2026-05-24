@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { X, Check, AlertTriangle, ShieldCheck } from "lucide-react";
+import { buildWaLink } from "@/lib/whatsapp";
 
 const PAINS = [
   {
@@ -151,7 +152,7 @@ export default function ProblemSolution() {
           className="text-center mt-12 md:mt-16"
         >
           <a
-            href="https://wa.me/917065339146"
+            href={buildWaLink("setup-access", { source: "problem-solution" })}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-7 py-4 rounded-full bg-white text-black font-bold uppercase tracking-wider text-sm hover:bg-primary hover:text-white transition-all shadow-[0_20px_60px_-15px_rgba(255,255,255,0.4)]"

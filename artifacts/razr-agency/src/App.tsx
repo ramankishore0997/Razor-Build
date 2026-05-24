@@ -7,6 +7,8 @@ import LoadingScreen from "@/components/LoadingScreen";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import GlassDock from "@/components/GlassDock";
 import LiveActivityFeed from "@/components/LiveActivityFeed";
+import StickyUrgencyBar from "@/components/StickyUrgencyBar";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
 
 import Home from "@/pages/Home";
 import Features from "@/pages/Features";
@@ -61,11 +63,13 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <LoadingScreen />
+        <StickyUrgencyBar />
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
           <Router />
         </WouterRouter>
         <WhatsAppFloat />
         <LiveActivityFeed />
+        <ExitIntentPopup />
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
           <GlassDock />
         </WouterRouter>

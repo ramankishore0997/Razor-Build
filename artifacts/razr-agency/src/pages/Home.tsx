@@ -13,6 +13,8 @@ import HeroRobot from "@/components/HeroRobot";
 import GrowthMetrics from "@/components/GrowthMetrics";
 import CaseStudyTimeline from "@/components/CaseStudyTimeline";
 import FaqPreview from "@/components/FaqPreview";
+import BookCallSection from "@/components/BookCallSection";
+import { buildWaLink } from "@/lib/whatsapp";
 
 export default function Home() {
 
@@ -49,7 +51,7 @@ export default function Home() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-start gap-6 w-full max-w-md">
-                  <a href="https://wa.me/917065339146" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto relative group">
+                  <a href={buildWaLink("general", { source: "home-hero" })} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto relative group">
                     <div className="absolute inset-0 bg-primary rounded-none blur group-hover:blur-md transition-all duration-300 opacity-50" />
                     <button className="relative w-full sm:w-auto px-8 py-4 bg-white text-black font-bold text-sm tracking-widest uppercase hover:bg-gray-200 transition-colors">
                       Get Started
@@ -94,6 +96,9 @@ export default function Home() {
 
       {/* CASE STUDY TIMELINE */}
       <CaseStudyTimeline />
+
+      {/* BOOK A STRATEGY CALL */}
+      <BookCallSection />
 
       {/* FAQ PREVIEW */}
       <FaqPreview />
