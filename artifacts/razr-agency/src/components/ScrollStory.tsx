@@ -39,7 +39,7 @@ export default function ScrollStory() {
   const progress = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section ref={ref} className="relative" style={{ height: `${SCENES.length * 100}vh` }}>
+    <section ref={ref} className="relative" style={{ height: `${SCENES.length * 80}vh` }}>
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center">
         {/* progress bar */}
         <div className="absolute top-1/2 left-6 md:left-12 -translate-y-1/2 w-1 h-[60vh] bg-white/5 rounded-full z-30">
@@ -53,7 +53,20 @@ export default function ScrollStory() {
           {SCENES.map((scene, i) => {
             const start = i / SCENES.length;
             const end = (i + 1) / SCENES.length;
-            return <Scene key={i} scene={scene} index={i} scrollYProgress={scrollYProgress} start={start} end={end} />;
+            const isFirst = i === 0;
+            const isLast = i === SCENES.length - 1;
+            return (
+              <Scene
+                key={i}
+                scene={scene}
+                index={i}
+                scrollYProgress={scrollYProgress}
+                start={start}
+                end={end}
+                isFirst={isFirst}
+                isLast={isLast}
+              />
+            );
           })}
         </div>
       </div>
@@ -67,13 +80,33 @@ type SceneProps = {
   scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"];
   start: number;
   end: number;
+  isFirst: boolean;
+  isLast: boolean;
 };
 
-function Scene({ scene, index, scrollYProgress, start, end }: SceneProps) {
-  const mid = (start + end) / 2;
-  const opacity = useTransform(scrollYProgress, [start, mid, end], [0, 1, 0]);
-  const y = useTransform(scrollYProgress, [start, mid, end], [60, 0, -60]);
-  const scale = useTransform(scrollYProgress, [start, mid, end], [0.9, 1, 0.9]);
+function Scene({ scene, index, scrollYProgress, start, end, isFirst, isLast }: SceneProps) {
+  // Overlap adjacent scenes so the section is never blank between them.
+  // First scene is visible from progress 0; last scene stays visible till progress 1.
+  const fadeIn = isFirst ? 0 : Math.max(0, start - 0.06);
+  const fullStart = isFirst ? 0 : start + 0.04;
+  const fullEnd = isLast ? 1 : end - 0.04;
+  const fadeOut = isLast ? 1 : Math.min(1, end + 0.06);
+
+  const opacity = useTransform(
+    scrollYProgress,
+    [fadeIn, fullStart, fullEnd, fadeOut],
+    [0, 1, 1, 0]
+  );
+  const y = useTransform(
+    scrollYProgress,
+    [fadeIn, fullStart, fullEnd, fadeOut],
+    [40, 0, 0, -40]
+  );
+  const scale = useTransform(
+    scrollYProgress,
+    [fadeIn, fullStart, fullEnd, fadeOut],
+    [0.95, 1, 1, 0.95]
+  );
   const Icon = scene.icon;
 
   return (
