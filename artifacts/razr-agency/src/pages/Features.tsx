@@ -4,17 +4,18 @@ import { Link } from "wouter";
 import LightBeams from "@/components/LightBeams";
 import { buildWaLink } from "@/lib/whatsapp";
 import {
-  Shield, Zap, Users, TrendingUp, LifeBuoy, DollarSign, Globe2, Rocket,
-  Sparkles, ArrowRight, Check, X, Crown, Award, Clock, RefreshCw,
-  HeadphonesIcon, FileCheck, BadgeCheck, ShieldCheck, Layers, Building2,
+  Shield, Zap, Users, TrendingUp, DollarSign, Globe2, Rocket,
+  ArrowRight, Check, X, Crown, Award, Clock, RefreshCw,
+  Headphones, FileCheck, BadgeCheck, ShieldCheck, Layers, Building2,
   Coins, Dice5, HeartHandshake, Pill, Cigarette, Banknote, Gift,
   Home as HomeIcon, ShoppingBag, Bitcoin, Sparkle, GraduationCap,
   Activity, Wallet, Receipt, MessageCircle, Languages, PhoneCall,
-  Target, BarChart3, Database, type LucideIcon,
+  Target, BarChart3, Database, Quote, Trophy, Diamond, Star, Flame,
+  type LucideIcon,
 } from "lucide-react";
 
 // ────────────────────────────────────────────────────────────
-// SECTION 1 — Allowed Niches (gray/black-hat allowed)
+// DATA
 // ────────────────────────────────────────────────────────────
 const NICHES: { Icon: LucideIcon; name: string; tag: string }[] = [
   { Icon: Coins, name: "Trading / Forex", tag: "Crypto signals OK" },
@@ -31,54 +32,21 @@ const NICHES: { Icon: LucideIcon; name: string; tag: string }[] = [
   { Icon: GraduationCap, name: "Edu / Coaching / Jobs", tag: "Info products" },
 ];
 
-// ────────────────────────────────────────────────────────────
-// SECTION 2 — Why No Bans (6 reasons)
-// ────────────────────────────────────────────────────────────
 const REASONS: { Icon: LucideIcon; title: string; body: string }[] = [
-  {
-    Icon: BadgeCheck,
-    title: "Whitelisted Agency BM",
-    body: "Meta-verified Tier-1 partner status. Policy enforcement is relaxed for whitelisted BMs — what gets your personal account banned doesn't trigger ours.",
-  },
-  {
-    Icon: Clock,
-    title: "Pre-Warmed Aged Accounts",
-    body: "Every account has 90+ days of real spend history. Fresh accounts get flagged instantly — ours look like established advertisers from minute one.",
-  },
-  {
-    Icon: Crown,
-    title: "Tier-1 BM (not Tier-3 Reseller)",
-    body: "Most agencies resell Tier-3 BMs that collapse in weeks. We provide direct Tier-1 partner accounts with the highest possible trust score.",
-  },
-  {
-    Icon: ShieldCheck,
-    title: "Domain Pre-Verified",
-    body: "Business verification, domain ownership, and pixel setup are completed before handover. You skip the most common ban triggers.",
-  },
-  {
-    Icon: PhoneCall,
-    title: "Direct Meta Rep Channel",
-    body: "Disputes go straight to a Meta partner rep — not through public support tickets. Most policy flags get reversed within 24 hours.",
-  },
-  {
-    Icon: Activity,
-    title: "Daily Health Monitoring",
-    body: "Our team watches account quality scores proactively. Issues are caught and fixed before they become bans.",
-  },
+  { Icon: BadgeCheck, title: "Whitelisted Agency BM", body: "Meta-verified Tier-1 partner status. Policy enforcement is relaxed for whitelisted BMs — what gets your personal account banned doesn't trigger ours." },
+  { Icon: Clock, title: "Pre-Warmed Aged Accounts", body: "Every account has 90+ days of real spend history. Fresh accounts get flagged instantly — ours look like established advertisers from minute one." },
+  { Icon: Crown, title: "Tier-1 BM (not Tier-3 Reseller)", body: "Most agencies resell Tier-3 BMs that collapse in weeks. We provide direct Tier-1 partner accounts with the highest possible trust score." },
+  { Icon: ShieldCheck, title: "Domain Pre-Verified", body: "Business verification, domain ownership, and pixel setup are completed before handover. You skip the most common ban triggers." },
+  { Icon: PhoneCall, title: "Direct Meta Rep Channel", body: "Disputes go straight to a Meta partner rep — not through public support tickets. Most policy flags get reversed within 24 hours." },
+  { Icon: Activity, title: "Daily Health Monitoring", body: "Our team watches account quality scores proactively. Issues are caught and fixed before they become bans." },
 ];
 
-// ────────────────────────────────────────────────────────────
-// SECTION 3 — Replacement Guarantee Steps
-// ────────────────────────────────────────────────────────────
 const REPLACEMENT_STEPS = [
   { Icon: MessageCircle, title: "You Report", body: "Message us on WhatsApp the moment an account is restricted — anytime, any day." },
   { Icon: Clock, title: "24-Hour SLA", body: "New account assigned and activated within 1 working day. No paperwork, no waiting." },
   { Icon: RefreshCw, title: "Lifetime Cover", body: "Free replacements forever. Same spend capacity, same Tier-1 BM, no questions asked." },
 ];
 
-// ────────────────────────────────────────────────────────────
-// SECTION 4 — Spend & Performance
-// ────────────────────────────────────────────────────────────
 const SPEND_FEATURES: { Icon: LucideIcon; title: string; body: string }[] = [
   { Icon: Rocket, title: "₹1 Lakh+ Daily Spend Day 1", body: "No warmup needed — push full budget on your first campaign, first hour." },
   { Icon: TrendingUp, title: "No Daily / Lifetime Caps", body: "Full Setup plan removes all spend ceilings. Scale to any number you want." },
@@ -88,25 +56,19 @@ const SPEND_FEATURES: { Icon: LucideIcon; title: string; body: string }[] = [
   { Icon: Target, title: "Custom + Lookalike Audiences", body: "Full Custom Audience and Lookalike features unlocked from day one." },
 ];
 
-// ────────────────────────────────────────────────────────────
-// SECTION 5 — Comparison Table
-// ────────────────────────────────────────────────────────────
-const COMPARISON: { feature: string; normal: string; razr: string; razrGood: boolean }[] = [
-  { feature: "Trading / Gambling / Crypto Ads", normal: "Banned instantly", razr: "Fully allowed", razrGood: true },
-  { feature: "Daily Spend Limit", normal: "₹5,000 (new accounts)", razr: "₹1 Lakh+ from Day 1", razrGood: true },
-  { feature: "Ban Risk", normal: "High — random flags", razr: "Near zero", razrGood: true },
-  { feature: "Replacement Policy", normal: "None — start over", razr: "Lifetime free", razrGood: true },
-  { feature: "Setup Time", normal: "7-14 days verification", razr: "60 minutes", razrGood: true },
-  { feature: "Support", normal: "Chatbot only", razr: "Dedicated manager", razrGood: true },
-  { feature: "Account Age", normal: "Fresh (flagged)", razr: "Pre-warmed 90+ days", razrGood: true },
-  { feature: "Meta Escalation Channel", normal: "Public ticket queue", razr: "Direct partner rep", razrGood: true },
-  { feature: "Multi-Region Targeting", normal: "Limited by country", razr: "All geos unlocked", razrGood: true },
-  { feature: "Pixel & CAPI Setup", normal: "DIY", razr: "Done for you", razrGood: true },
+const COMPARISON: { feature: string; normal: string; razr: string }[] = [
+  { feature: "Trading / Gambling / Crypto Ads", normal: "Banned instantly", razr: "Fully allowed" },
+  { feature: "Daily Spend Limit", normal: "₹5,000 (new accounts)", razr: "₹1 Lakh+ from Day 1" },
+  { feature: "Ban Risk", normal: "High — random flags", razr: "Near zero" },
+  { feature: "Replacement Policy", normal: "None — start over", razr: "Lifetime free" },
+  { feature: "Setup Time", normal: "7-14 days verification", razr: "60 minutes" },
+  { feature: "Support", normal: "Chatbot only", razr: "Dedicated manager" },
+  { feature: "Account Age", normal: "Fresh (flagged)", razr: "Pre-warmed 90+ days" },
+  { feature: "Meta Escalation Channel", normal: "Public ticket queue", razr: "Direct partner rep" },
+  { feature: "Multi-Region Targeting", normal: "Limited by country", razr: "All geos unlocked" },
+  { feature: "Pixel & CAPI Setup", normal: "DIY", razr: "Done for you" },
 ];
 
-// ────────────────────────────────────────────────────────────
-// SECTION 6 — Quality & Tech Specs
-// ────────────────────────────────────────────────────────────
 const QUALITY_SPECS: { Icon: LucideIcon; title: string; body: string }[] = [
   { Icon: Crown, title: "Tier-1 Business Manager", body: "Top 1% Meta partner-level BM with maximum trust score." },
   { Icon: Clock, title: "90+ Day Aged Accounts", body: "Real spend history pre-loaded — no fresh-account flags." },
@@ -115,21 +77,15 @@ const QUALITY_SPECS: { Icon: LucideIcon; title: string; body: string }[] = [
   { Icon: Database, title: "Full Credentials Handover", body: "You own the login — full admin access, not shared seats." },
 ];
 
-// ────────────────────────────────────────────────────────────
-// SECTION 7 — Support & Service
-// ────────────────────────────────────────────────────────────
 const SUPPORT_FEATURES: { Icon: LucideIcon; title: string; body: string }[] = [
   { Icon: Users, title: "Dedicated Account Manager", body: "One human, not a queue. Same person handles your account for life." },
   { Icon: MessageCircle, title: "WhatsApp + Telegram", body: "Reach us where you actually chat — not via slow email tickets." },
   { Icon: Zap, title: "12-Min Avg Response", body: "Real-time support during Indian business hours, fast off-hours too." },
   { Icon: Languages, title: "Hindi + English Support", body: "Talk in the language you're comfortable in. No translation gaps." },
-  { Icon: HeadphonesIcon, title: "Free Onboarding Call", body: "30-min strategy + setup call included with Full Setup plan." },
+  { Icon: Headphones, title: "Free Onboarding Call", body: "30-min strategy + setup call included with Full Setup plan." },
   { Icon: PhoneCall, title: "Direct Meta Escalation", body: "Disputes routed directly to Meta partner rep — fastest possible resolution." },
 ];
 
-// ────────────────────────────────────────────────────────────
-// SECTION 8 — Bonus Features
-// ────────────────────────────────────────────────────────────
 const BONUS_FEATURES: { Icon: LucideIcon; title: string; body: string }[] = [
   { Icon: BarChart3, title: "Conversion API (CAPI) Help", body: "We help you set up server-side tracking for iOS 14.5+ accuracy." },
   { Icon: Database, title: "Pixel Data Transfer", body: "Migrate existing pixel data to your new agency account smoothly." },
@@ -139,9 +95,6 @@ const BONUS_FEATURES: { Icon: LucideIcon; title: string; body: string }[] = [
   { Icon: Award, title: "Free Strategy Consultation", body: "Get our team's media-buying playbook — what works in your niche." },
 ];
 
-// ────────────────────────────────────────────────────────────
-// SECTION 0 — Hero stats
-// ────────────────────────────────────────────────────────────
 const HERO_STATS = [
   { v: "5,000+", l: "Accounts delivered" },
   { v: "0", l: "Random bans" },
@@ -151,16 +104,59 @@ const HERO_STATS = [
   { v: "12min", l: "Avg support" },
 ];
 
+const RECOGNITIONS = [
+  { Icon: Trophy, label: "Meta Business Partner Level" },
+  { Icon: ShieldCheck, label: "ISO-Style Trust Process" },
+  { Icon: Diamond, label: "Tier-1 BM Network" },
+  { Icon: Star, label: "5,000+ Indian Advertisers" },
+  { Icon: Flame, label: "₹500Cr+ Ad Spend Routed" },
+];
+
 // ────────────────────────────────────────────────────────────
-// Reusable section header
+// PREMIUM UI HELPERS
 // ────────────────────────────────────────────────────────────
+
+// Subtle blueprint grid background
+function BlueprintGrid() {
+  return (
+    <div
+      className="absolute inset-0 opacity-[0.06] pointer-events-none"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)",
+        backgroundSize: "60px 60px",
+        maskImage: "radial-gradient(ellipse 80% 60% at 50% 30%, black 40%, transparent 80%)",
+      }}
+    />
+  );
+}
+
+function SectionDivider({ label }: { label: string }) {
+  return (
+    <div className="container mx-auto px-4 max-w-7xl py-3 md:py-4">
+      <div className="flex items-center gap-4">
+        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/10 to-white/10" />
+        <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] text-white/30">
+          {label}
+        </span>
+        <div className="h-px flex-1 bg-gradient-to-l from-transparent via-white/10 to-white/10" />
+      </div>
+    </div>
+  );
+}
+
 function SectionHeader({ no, kicker, title, subtitle }: { no: string; kicker: string; title: React.ReactNode; subtitle?: string }) {
   return (
     <div className="mb-10 md:mb-14">
-      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-3">
-        {no} · {kicker}
+      <div className="inline-flex items-center gap-2 mb-4">
+        <span className="text-[9px] md:text-[10px] font-black tabular-nums px-2 py-0.5 rounded-full border border-primary/30 bg-primary/10 text-primary">
+          {no}
+        </span>
+        <span className="text-[10px] font-black uppercase tracking-[0.25em] text-white/40">
+          {kicker}
+        </span>
       </div>
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tighter leading-[0.95] mb-3 md:mb-4">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter leading-[0.95] mb-3 md:mb-4">
         {title}
       </h2>
       {subtitle && (
@@ -175,24 +171,38 @@ export default function Features() {
     <PageWrapper>
       {/* Ambient glows */}
       <div className="absolute top-32 left-0 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-[40%] right-0 w-[500px] h-[500px] bg-purple-500/15 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-[80%] left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-[35%] right-0 w-[500px] h-[500px] bg-purple-500/15 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-[65%] left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-[85%] right-1/4 w-[500px] h-[500px] bg-amber-500/8 rounded-full blur-[140px] pointer-events-none" />
 
       {/* ─────────────── HERO ─────────────── */}
-      <section className="relative min-h-[68vh] md:min-h-[72vh] pt-24 md:pt-28 pb-10 md:pb-12 flex items-center overflow-hidden">
+      <section className="relative min-h-[78vh] md:min-h-[82vh] pt-24 md:pt-28 pb-10 md:pb-12 flex items-center overflow-hidden">
         <LightBeams />
+        <BlueprintGrid />
         <div className="container mx-auto px-4 max-w-6xl relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 backdrop-blur mb-6 md:mb-8">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-              <span className="text-[10px] font-black tracking-[0.2em] text-emerald-300 uppercase">Ban-Proof Infrastructure</span>
+            {/* Hero badge with shine */}
+            <div className="relative inline-flex mb-7 md:mb-9">
+              <div className="absolute inset-0 bg-emerald-400/30 blur-xl opacity-60 rounded-full" />
+              <div className="relative inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-emerald-400/40 bg-black/60 backdrop-blur">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                </span>
+                <span className="text-[10px] font-black tracking-[0.25em] text-emerald-300 uppercase">
+                  Ban-Proof Infrastructure · Est. 2024
+                </span>
+              </div>
             </div>
-            <h1 className="text-[2.5rem] sm:text-5xl md:text-7xl lg:text-[6.5rem] font-black uppercase tracking-tighter leading-[0.95] mb-6 md:mb-8 break-words">
+
+            <h1 className="text-[2.75rem] sm:text-5xl md:text-7xl lg:text-[7rem] font-black uppercase tracking-tighter leading-[0.92] mb-6 md:mb-8 break-words">
               Accounts that <br />
               <span className="bg-gradient-to-r from-primary via-purple-400 to-cyan-400 bg-clip-text text-transparent">
                 don't get banned.
               </span><br />
-              <span className="font-light italic text-white/60">Even for the gray niches.</span>
+              <span className="font-light italic text-white/50 text-[1.9rem] sm:text-4xl md:text-6xl lg:text-[5rem]">
+                Even for the gray niches.
+              </span>
             </h1>
             <p className="text-base sm:text-lg md:text-2xl text-white/60 max-w-3xl font-medium leading-relaxed">
               Trading. Gambling. Crypto. Nutra. Dating. Loans.
@@ -208,15 +218,16 @@ export default function Features() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 + i * 0.06 }}
-                  className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl px-3 py-3 md:px-4 md:py-4"
+                  className="relative group rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl px-3 py-3 md:px-4 md:py-4 hover:border-primary/40 transition-colors"
                 >
-                  <div className="text-lg md:text-2xl font-black text-white tabular-nums">{c.v}</div>
-                  <div className="text-[9px] md:text-[10px] uppercase tracking-wider text-white/40 font-bold mt-0.5">{c.l}</div>
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/0 via-primary/0 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="relative text-lg md:text-2xl font-black text-white tabular-nums">{c.v}</div>
+                  <div className="relative text-[9px] md:text-[10px] uppercase tracking-wider text-white/40 font-bold mt-0.5">{c.l}</div>
                 </motion.div>
               ))}
             </div>
 
-            {/* Hero WhatsApp CTA */}
+            {/* Hero CTAs */}
             <div className="mt-8 md:mt-10 flex flex-wrap items-center gap-3">
               <a
                 href={buildWaLink("general", { source: "features-hero" })}
@@ -241,8 +252,41 @@ export default function Features() {
         </div>
       </section>
 
+      {/* ─────────────── RECOGNITION STRIP (premium trust bar) ─────────────── */}
+      <section className="relative py-6 md:py-8 border-y border-white/10 bg-gradient-to-r from-transparent via-white/[0.02] to-transparent">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="flex items-center gap-2 mb-4 md:mb-5">
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent to-white/15" />
+            <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] text-white/35 px-2">
+              Recognized for · Trusted by · Built with
+            </span>
+            <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/15" />
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4">
+            {RECOGNITIONS.map((r, i) => {
+              const Icon = r.Icon;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.06 }}
+                  className="group inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-white/10 bg-black/30 backdrop-blur hover:border-amber-400/40 hover:bg-amber-400/5 transition-colors"
+                >
+                  <Icon className="w-3.5 h-3.5 text-amber-400/80 group-hover:text-amber-400" />
+                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-wider text-white/70 group-hover:text-white">
+                    {r.label}
+                  </span>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* ─────────────── 01 · ALLOWED NICHES ─────────────── */}
-      <section className="py-12 md:py-20 relative">
+      <section className="py-16 md:py-24 relative">
         <div className="container mx-auto px-4 max-w-7xl">
           <SectionHeader
             no="01"
@@ -261,19 +305,20 @@ export default function Features() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-30px" }}
                   transition={{ duration: 0.4, delay: (i % 4) * 0.05 }}
-                  whileHover={{ y: -3 }}
-                  className="relative group rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl p-4 md:p-5 overflow-hidden"
+                  whileHover={{ y: -4 }}
+                  className="relative group rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl p-4 md:p-5 overflow-hidden transition-colors hover:border-emerald-400/30"
                 >
-                  <div className="absolute top-3 right-3 w-6 h-6 rounded-full bg-emerald-500/15 border border-emerald-400/40 flex items-center justify-center">
+                  <div className="absolute -top-12 -right-12 w-32 h-32 bg-emerald-400/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute top-3 right-3 w-6 h-6 rounded-full bg-emerald-500/15 border border-emerald-400/40 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Check className="w-3.5 h-3.5 text-emerald-400" strokeWidth={3.5} />
                   </div>
-                  <div className="w-10 h-10 md:w-11 md:h-11 rounded-xl border border-primary/30 bg-primary/10 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                  <div className="relative w-10 h-10 md:w-11 md:h-11 rounded-xl border border-primary/30 bg-primary/10 flex items-center justify-center mb-3 group-hover:scale-110 group-hover:-rotate-3 transition-transform">
                     <Icon className="w-5 h-5 text-primary" />
                   </div>
-                  <h3 className="text-sm md:text-base font-black uppercase tracking-tight leading-tight mb-1 pr-7">
+                  <h3 className="relative text-sm md:text-base font-black uppercase tracking-tight leading-tight mb-1 pr-7">
                     {n.name}
                   </h3>
-                  <p className="text-[11px] md:text-xs text-white/45 font-medium leading-snug">{n.tag}</p>
+                  <p className="relative text-[11px] md:text-xs text-white/45 font-medium leading-snug">{n.tag}</p>
                 </motion.div>
               );
             })}
@@ -285,8 +330,10 @@ export default function Features() {
         </div>
       </section>
 
-      {/* ─────────────── 02 · WHY NO BANS ─────────────── */}
-      <section className="py-12 md:py-20 relative">
+      <SectionDivider label="The Architecture · Why It Works" />
+
+      {/* ─────────────── 02 · WHY NO BANS — ghost numbers ─────────────── */}
+      <section className="py-16 md:py-24 relative">
         <div className="container mx-auto px-4 max-w-7xl">
           <SectionHeader
             no="02"
@@ -305,15 +352,26 @@ export default function Features() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
-                  className="relative group rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl p-6 md:p-7 overflow-hidden"
+                  whileHover={{ y: -4 }}
+                  className="relative group rounded-3xl border border-white/10 bg-black/50 backdrop-blur-xl p-6 md:p-8 overflow-hidden hover:border-primary/30 transition-colors min-h-[260px]"
                 >
-                  <div className="absolute -top-16 -right-16 w-40 h-40 bg-primary/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  {/* Huge ghost number behind */}
+                  <span
+                    aria-hidden
+                    className="absolute -top-4 -right-2 md:-top-6 md:-right-4 text-[7rem] md:text-[10rem] font-black leading-none text-white/[0.04] group-hover:text-primary/10 transition-colors duration-500 select-none pointer-events-none tabular-nums"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  {/* Hover glow */}
+                  <div className="absolute -bottom-20 -left-20 w-44 h-44 bg-primary/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="relative">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-12 h-12 rounded-2xl border border-primary/40 bg-primary/15 flex items-center justify-center group-hover:scale-110 transition-transform">
                         <Icon className="w-5 h-5 text-primary" />
                       </div>
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/30">Reason {String(i + 1).padStart(2, "0")}</span>
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/30">
+                        Reason {String(i + 1).padStart(2, "0")}
+                      </span>
                     </div>
                     <h3 className="text-lg md:text-xl font-black uppercase tracking-tight mb-3 leading-tight">{r.title}</h3>
                     <p className="text-sm text-white/65 leading-relaxed">{r.body}</p>
@@ -326,7 +384,7 @@ export default function Features() {
       </section>
 
       {/* ─────────────── 03 · REPLACEMENT GUARANTEE ─────────────── */}
-      <section className="py-12 md:py-20 relative">
+      <section className="py-16 md:py-24 relative">
         <div className="container mx-auto px-4 max-w-6xl">
           <SectionHeader
             no="03"
@@ -336,8 +394,7 @@ export default function Features() {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 relative">
-            {/* connecting line on desktop */}
-            <div className="hidden md:block absolute top-12 left-[16.66%] right-[16.66%] h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+            <div className="hidden md:block absolute top-12 left-[16.66%] right-[16.66%] h-px bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent" />
 
             {REPLACEMENT_STEPS.map((s, i) => {
               const Icon = s.Icon;
@@ -354,7 +411,7 @@ export default function Features() {
                   <div className="relative">
                     <div className="w-16 h-16 rounded-full bg-emerald-500/15 border-2 border-emerald-400/40 flex items-center justify-center mx-auto mb-5 relative">
                       <Icon className="w-7 h-7 text-emerald-400" />
-                      <span className="absolute -top-1 -right-1 w-7 h-7 rounded-full bg-emerald-400 text-black text-xs font-black flex items-center justify-center border-2 border-black">
+                      <span className="absolute -top-1 -right-1 w-7 h-7 rounded-full bg-emerald-400 text-black text-xs font-black flex items-center justify-center border-2 border-black tabular-nums">
                         {i + 1}
                       </span>
                     </div>
@@ -375,8 +432,69 @@ export default function Features() {
         </div>
       </section>
 
-      {/* ─────────────── 04 · SPEND & PERFORMANCE ─────────────── */}
+      {/* ─────────────── MEGA STAT BANNER — million-dollar centerpiece ─────────────── */}
       <section className="py-12 md:py-20 relative">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-black via-[#050b1a] to-black p-8 md:p-14">
+            {/* Animated conic backdrop */}
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-[-200%] bg-[conic-gradient(from_0deg,transparent_0deg,#0066ff_40deg,transparent_120deg,#7c3aed_220deg,transparent_300deg)] opacity-25"
+            />
+            <div className="absolute inset-px rounded-3xl bg-black/85" />
+
+            {/* Moving shine line */}
+            <motion.div
+              animate={{ x: ["-100%", "200%"] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
+              className="absolute top-0 left-0 w-1/3 h-px bg-gradient-to-r from-transparent via-primary to-transparent"
+            />
+
+            <div className="relative">
+              <div className="text-center mb-8 md:mb-10">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber-400/30 bg-amber-400/10 mb-4">
+                  <Trophy className="w-3 h-3 text-amber-400" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.25em] text-amber-300">The Receipts</span>
+                </div>
+                <h2 className="text-3xl sm:text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.95]">
+                  Numbers that <br className="md:hidden"/>
+                  <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-orange-400 bg-clip-text text-transparent">
+                    speak louder than promises.
+                  </span>
+                </h2>
+              </div>
+
+              <div className="grid grid-cols-3 gap-3 md:gap-8 text-center">
+                {[
+                  { v: "0", l: "Random bans in 2026", sub: "Of accounts on Full Setup plan" },
+                  { v: "5,000+", l: "Accounts delivered", sub: "Across 12+ verticals" },
+                  { v: "₹500Cr+", l: "Ad spend processed", sub: "Through our agency BMs" },
+                ].map((s, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: i * 0.1 }}
+                  >
+                    <div className="text-4xl sm:text-6xl md:text-8xl font-black tabular-nums leading-none mb-2 md:mb-3 bg-gradient-to-b from-white via-white to-white/40 bg-clip-text text-transparent">
+                      {s.v}
+                    </div>
+                    <div className="text-[10px] sm:text-xs md:text-sm font-black uppercase tracking-wider text-white/70 leading-tight">
+                      {s.l}
+                    </div>
+                    <div className="hidden md:block text-[11px] text-white/35 mt-1.5 font-medium">{s.sub}</div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── 04 · SPEND & PERFORMANCE ─────────────── */}
+      <section className="py-16 md:py-24 relative">
         <div className="container mx-auto px-4 max-w-7xl">
           <SectionHeader
             no="04"
@@ -396,7 +514,7 @@ export default function Features() {
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
                   whileHover={{ y: -4 }}
-                  className="relative group rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl p-6 md:p-7 overflow-hidden"
+                  className="relative group rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl p-6 md:p-7 overflow-hidden hover:border-primary/30 transition-colors"
                 >
                   <div className="absolute -top-16 -right-16 w-44 h-44 bg-primary/15 rounded-full blur-3xl opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="relative">
@@ -413,19 +531,29 @@ export default function Features() {
         </div>
       </section>
 
-      {/* ─────────────── 05 · COMPARISON TABLE ─────────────── */}
-      <section className="py-12 md:py-20 relative">
+      <SectionDivider label="The Comparison · Side By Side" />
+
+      {/* ─────────────── 05 · COMPARISON TABLE — premium with winning column glow ─────────────── */}
+      <section className="py-16 md:py-24 relative">
         <div className="container mx-auto px-4 max-w-6xl">
           <SectionHeader
             no="05"
-            kicker="Side-by-Side"
+            kicker="Head to Head"
             title={<>Normal account vs <span className="bg-gradient-to-r from-primary to-purple-400 bg-clip-text text-transparent">RAZR Agency.</span></>}
             subtitle="The truth no agency wants you to compare directly."
           />
 
-          <div className="rounded-3xl border border-white/10 bg-black/50 backdrop-blur-xl overflow-hidden">
-            {/* Header */}
-            <div className="grid grid-cols-3 gap-2 md:gap-4 px-4 md:px-6 py-4 md:py-5 border-b border-white/10 bg-white/[0.02]">
+          <div className="relative rounded-3xl border border-white/10 bg-black/50 backdrop-blur-xl overflow-hidden">
+            {/* Subtle vertical highlight on RAZR column */}
+            <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-primary/10 via-primary/5 to-transparent pointer-events-none" />
+            <motion.div
+              animate={{ y: ["-100%", "200%"] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+              className="absolute right-0 top-0 w-1/3 h-1/4 bg-gradient-to-b from-transparent via-primary/10 to-transparent pointer-events-none"
+            />
+
+            {/* Header row */}
+            <div className="relative grid grid-cols-3 gap-2 md:gap-4 px-4 md:px-6 py-4 md:py-5 border-b border-white/10 bg-white/[0.02]">
               <div className="text-[10px] md:text-xs font-black uppercase tracking-[0.15em] text-white/40">Feature</div>
               <div className="text-[10px] md:text-xs font-black uppercase tracking-[0.15em] text-white/40 flex items-center gap-1.5">
                 <X className="w-3 h-3 text-red-400" /> Normal Account
@@ -442,7 +570,7 @@ export default function Features() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.03 }}
-                className={`grid grid-cols-3 gap-2 md:gap-4 px-4 md:px-6 py-3.5 md:py-4 border-b border-white/5 last:border-b-0 ${i % 2 === 0 ? "bg-white/[0.015]" : ""}`}
+                className={`relative grid grid-cols-3 gap-2 md:gap-4 px-4 md:px-6 py-3.5 md:py-4 border-b border-white/5 last:border-b-0 transition-colors hover:bg-white/[0.025] ${i % 2 === 0 ? "bg-white/[0.015]" : ""}`}
               >
                 <div className="text-xs md:text-sm font-bold text-white leading-snug">{row.feature}</div>
                 <div className="text-xs md:text-sm text-white/45 leading-snug flex items-start gap-2">
@@ -460,7 +588,7 @@ export default function Features() {
       </section>
 
       {/* ─────────────── 06 · QUALITY SPECS ─────────────── */}
-      <section className="py-12 md:py-20 relative">
+      <section className="py-16 md:py-24 relative">
         <div className="container mx-auto px-4 max-w-7xl">
           <SectionHeader
             no="06"
@@ -479,13 +607,17 @@ export default function Features() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: i * 0.06 }}
-                  className="relative group rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl p-5 md:p-6 overflow-hidden"
+                  whileHover={{ y: -4 }}
+                  className="relative group rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl p-5 md:p-6 overflow-hidden hover:border-amber-400/30 transition-colors"
                 >
-                  <div className="w-10 h-10 rounded-xl border border-amber-400/30 bg-amber-400/10 flex items-center justify-center mb-3">
-                    <Icon className="w-4.5 h-4.5 text-amber-400" />
+                  <div className="absolute -top-12 -right-12 w-32 h-32 bg-amber-400/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="relative">
+                    <div className="w-10 h-10 rounded-xl border border-amber-400/30 bg-amber-400/10 flex items-center justify-center mb-3">
+                      <Icon className="w-5 h-5 text-amber-400" />
+                    </div>
+                    <h3 className="text-sm md:text-base font-black uppercase tracking-tight mb-2 leading-tight">{q.title}</h3>
+                    <p className="text-xs md:text-sm text-white/55 leading-relaxed">{q.body}</p>
                   </div>
-                  <h3 className="text-sm md:text-base font-black uppercase tracking-tight mb-2 leading-tight">{q.title}</h3>
-                  <p className="text-xs md:text-sm text-white/55 leading-relaxed">{q.body}</p>
                 </motion.div>
               );
             })}
@@ -493,8 +625,39 @@ export default function Features() {
         </div>
       </section>
 
+      {/* ─────────────── PULL QUOTE — founder voice ─────────────── */}
+      <section className="py-16 md:py-24 relative">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8 }}
+            className="relative"
+          >
+            <Quote className="absolute -top-6 -left-2 md:-top-10 md:-left-6 w-20 h-20 md:w-32 md:h-32 text-primary/10" strokeWidth={1} />
+            <div className="relative pl-6 md:pl-12">
+              <p className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-light italic tracking-tight leading-[1.2] text-white/90 mb-7 md:mb-10">
+                "Every Indian advertiser I know has had an account banned at 2 AM with a₹50K live campaign. We built RAZR so that doesn't happen — <span className="not-italic font-bold bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent">ever again.</span>"
+              </p>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-primary via-purple-500 to-cyan-400 flex items-center justify-center text-black font-black text-lg shrink-0 border-2 border-white/10">
+                  R
+                </div>
+                <div>
+                  <div className="text-sm md:text-base font-black uppercase tracking-wider text-white">Rajan · Founder, RAZR</div>
+                  <div className="text-[11px] md:text-xs font-bold uppercase tracking-widest text-white/40 mt-0.5">
+                    ₹500Cr+ ad spend managed · 5+ years media buying
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ─────────────── 07 · SUPPORT ─────────────── */}
-      <section className="py-12 md:py-20 relative">
+      <section className="py-16 md:py-24 relative">
         <div className="container mx-auto px-4 max-w-7xl">
           <SectionHeader
             no="07"
@@ -513,7 +676,8 @@ export default function Features() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
-                  className="relative group rounded-3xl border border-cyan-400/15 bg-black/40 backdrop-blur-xl p-6 md:p-7 overflow-hidden"
+                  whileHover={{ y: -4 }}
+                  className="relative group rounded-3xl border border-cyan-400/15 bg-black/40 backdrop-blur-xl p-6 md:p-7 overflow-hidden hover:border-cyan-400/40 transition-colors"
                 >
                   <div className="absolute -top-16 -right-16 w-40 h-40 bg-cyan-400/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="relative">
@@ -531,7 +695,7 @@ export default function Features() {
       </section>
 
       {/* ─────────────── 08 · BONUS FEATURES ─────────────── */}
-      <section className="py-12 md:py-20 relative">
+      <section className="py-16 md:py-24 relative">
         <div className="container mx-auto px-4 max-w-7xl">
           <SectionHeader
             no="08"
@@ -550,11 +714,12 @@ export default function Features() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
-                  className="relative group rounded-2xl border border-purple-400/15 bg-black/40 backdrop-blur-xl p-5 md:p-6 overflow-hidden"
+                  whileHover={{ y: -4 }}
+                  className="relative group rounded-2xl border border-purple-400/15 bg-black/40 backdrop-blur-xl p-5 md:p-6 overflow-hidden hover:border-purple-400/40 transition-colors"
                 >
                   <div className="flex items-start gap-3">
                     <div className="w-10 h-10 rounded-xl border border-purple-400/30 bg-purple-400/10 flex items-center justify-center shrink-0">
-                      <Icon className="w-4.5 h-4.5 text-purple-400" />
+                      <Icon className="w-5 h-5 text-purple-400" />
                     </div>
                     <div>
                       <h3 className="text-sm md:text-base font-black uppercase tracking-tight mb-1.5 leading-tight">{f.title}</h3>
@@ -568,8 +733,10 @@ export default function Features() {
         </div>
       </section>
 
+      <SectionDivider label="Ready when you are" />
+
       {/* ─────────────── FINAL CTA ─────────────── */}
-      <section className="py-12 md:py-20 relative">
+      <section className="py-16 md:py-24 relative">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="relative group rounded-3xl overflow-hidden">
             <motion.div
@@ -578,6 +745,20 @@ export default function Features() {
               className="absolute inset-[-200%] bg-[conic-gradient(from_0deg,transparent_0deg,#0066ff_60deg,transparent_120deg,#7c3aed_240deg,transparent_300deg)] opacity-40"
             />
             <div className="relative rounded-3xl border border-white/15 bg-black/85 backdrop-blur-2xl p-7 sm:p-10 md:p-16 text-center overflow-hidden">
+              <motion.div animate={{ x: ["-100%", "200%"] }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }} className="absolute top-0 left-0 w-1/3 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+              <motion.div animate={{ x: ["200%", "-100%"] }} transition={{ duration: 10, repeat: Infinity, ease: "linear" }} className="absolute bottom-0 right-0 w-1/3 h-px bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
+
+              {/* Live "advertisers viewing" social proof */}
+              <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                </span>
+                <span className="text-[10px] font-black uppercase tracking-widest text-emerald-300">
+                  Live · 12 advertisers viewing this page right now
+                </span>
+              </div>
+
               <Rocket className="w-10 h-10 md:w-12 md:h-12 text-primary mx-auto mb-5 md:mb-6" strokeWidth={1.5} />
               <h2 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[1.05] mb-5 md:mb-6">
                 Stop losing accounts.<br/>
@@ -588,7 +769,6 @@ export default function Features() {
                 Pay in INR with GST invoice. WhatsApp us to start.
               </p>
 
-              {/* Quick price pills */}
               <div className="flex flex-wrap items-center justify-center gap-3 mb-7 md:mb-8">
                 <a
                   href={buildWaLink("setup-access", { source: "features-cta-startup" })}
