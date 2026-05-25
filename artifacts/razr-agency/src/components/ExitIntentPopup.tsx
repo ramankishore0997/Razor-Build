@@ -173,12 +173,12 @@ export default function ExitIntentPopup() {
                 </h2>
 
                 <p className="text-base text-white/70 leading-relaxed mb-6">
-                  Get a <span className="text-white font-black">₹5,000 setup discount</span> on your first agency account — claim it now via WhatsApp before slots fill up this week.
+                  Get a <span className="text-white font-black">₹1,000 discount</span> on Lifetime Access — drop the price from ₹4,999 to ₹3,999. Claim via WhatsApp before slots fill up this week.
                 </p>
 
                 <ul className="space-y-2.5 mb-7">
                   {[
-                    "₹5,000 OFF on Setup Access tier",
+                    "₹1,000 OFF on Lifetime Access (₹4,999 → ₹3,999)",
                     "Same-day activation guaranteed",
                     "Free 15-min onboarding call with our team",
                   ].map((b, i) => (

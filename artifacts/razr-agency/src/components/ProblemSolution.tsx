@@ -28,7 +28,7 @@ const GAINS = [
   },
   {
     title: "Lifetime replacement",
-    body: "If a Full Access account dies without policy violation, balance and access transfer instantly to a fresh asset. Zero downtime.",
+    body: "If a Lifetime Access account dies without policy violation, balance and access transfer instantly to a fresh asset. Zero downtime.",
   },
   {
     title: "24/7 dedicated managers",

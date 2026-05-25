@@ -13,12 +13,12 @@ const CAT_ICONS: Record<string, typeof Zap> = {
 };
 
 const faqs = [
-  { cat: "Activation", q: "How long does activation take?", a: "Setup Access takes 24-48 hours. Full Access receives same-day activation — typically within 1 hour of payment confirmation." },
+  { cat: "Activation", q: "How long does activation take?", a: "Lifetime Access is activated same-day — typically within 60 minutes of payment confirmation. WhatsApp us right after paying and we'll send credentials." },
   { cat: "Activation", q: "Do I need my own Business Manager?", a: "No, we provide the account within our verified Business Manager and grant you admin/employee access as required. You retain full operational control." },
   { cat: "Activation", q: "Can I use my existing cards?", a: "Yes, you can attach your own payment methods. We also offer pre-warmed agency cards for an additional layer of stability." },
-  { cat: "Support", q: "What happens if I get restricted?", a: "We have a lifetime replacement guarantee for Full Access. If restricted without policy violation, we replace it free — and transfer remaining balance where technically possible." },
+  { cat: "Support", q: "What happens if I get restricted?", a: "Every Lifetime Access plan includes free lifetime replacement. If your account is restricted without policy violation, we replace it free — and transfer remaining balance where technically possible. New account assigned within 24 hours." },
   { cat: "Support", q: "How fast do you respond?", a: "Our Telegram and WhatsApp support typically responds in under 12 minutes during business hours, and within a few hours off-hours." },
-  { cat: "Scaling", q: "What are the daily spending limits?", a: "Full Access accounts typically start with no daily limit or a very high tier ($5k+), depending on availability and your specific needs." },
+  { cat: "Scaling", q: "What are the daily spending limits?", a: "Lifetime Access accounts typically start with no daily limit or a very high tier (₹1 Lakh+ / $5k+) from Day 1 — no warmup, no caps." },
   { cat: "Scaling", q: "Can I run crypto / nutra / gray-hat?", a: "Yes — we provide both Blackhat and Whitehat accounts on Meta and Google. Gray-hat verticals like crypto, nutra, and aggressive D2C offers are fully supported on our blackhat infrastructure." },
   { cat: "Platforms", q: "Do you only provide Meta accounts?", a: "No — we provide both Meta (Facebook & Instagram) and Google Ads agency accounts. Same premium quality, same lifetime replacement guarantee, same unlimited spend from day 1." },
   { cat: "Replacements", q: "How does balance transfer work?", a: "If an account goes down without policy violation, we assist in transferring unspent funds to your replacement account. Process typically completes within 24 hours." },

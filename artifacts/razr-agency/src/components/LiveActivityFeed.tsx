@@ -10,13 +10,13 @@ type Event = {
 };
 
 const EVENTS: Event[] = [
-  { icon: CheckCircle2, title: "Full Access activated", meta: "Mumbai advertiser • 2 min ago", color: "text-emerald-400" },
+  { icon: CheckCircle2, title: "Lifetime Access activated", meta: "Mumbai advertiser • 2 min ago", color: "text-emerald-400" },
   { icon: Zap, title: "BM delivered", meta: "Delhi agency • 6 min ago", color: "text-primary" },
   { icon: Headphones, title: "Support session joined", meta: "Bangalore brand • 9 min ago", color: "text-cyan-400" },
   { icon: Shield, title: "Account replaced", meta: "Lifetime guarantee • 14 min ago", color: "text-purple-400" },
   { icon: TrendingUp, title: "Spend cap unlocked", meta: "$50k/day live • 22 min ago", color: "text-amber-400" },
   { icon: Globe2, title: "Onboarding complete", meta: "Dubai advertiser • 31 min ago", color: "text-pink-400" },
-  { icon: CheckCircle2, title: "Setup Access granted", meta: "Pune advertiser • 38 min ago", color: "text-emerald-400" },
+  { icon: CheckCircle2, title: "Lifetime Access granted", meta: "Pune advertiser • 38 min ago", color: "text-emerald-400" },
   { icon: Zap, title: "Google Ads MCC linked", meta: "Hyderabad agency • 47 min ago", color: "text-primary" },
 ];
 

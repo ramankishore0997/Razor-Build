@@ -8,7 +8,7 @@ const TIMELINE = [
   { year: "2022", title: "First Network", body: "Partnered with a tier-1 Meta agency. Quietly tested with 12 power users across crypto, DTC, and mobile apps." },
   { year: "2023", title: "Expansion", body: "Added Google Ads agency accounts. Scaled to 150+ clients. Lifetime replacement policy formalized." },
   { year: "2024", title: "Global Reach", body: "Operations across 40+ countries. 500+ active advertisers running uncapped budgets daily." },
-  { year: "2025", title: "Premium Tier", body: "Launched Full Access with same-day activation and dedicated success managers. Industry-leading 12-min support response." },
+  { year: "2025", title: "Premium Tier", body: "Launched Lifetime Access with same-day activation and dedicated success managers. Industry-leading 12-min support response." },
 ];
 
 const VALUES = [

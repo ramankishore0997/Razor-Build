@@ -70,29 +70,19 @@ export default function Home() {
                   </Link>
                 </div>
 
-                {/* PRICING TEASER — quick pills with prefilled WhatsApp */}
+                {/* PRICING TEASER — single lifetime pill */}
                 <div className="mt-7 flex flex-wrap items-center gap-2 md:gap-3">
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mr-1">Plans from</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mr-1">One Plan</span>
                   <a
-                    href={buildWaLink("setup-access", { source: "hero-price-pill-startup" })}
+                    href={buildWaLink("setup-access", { source: "hero-price-pill-lifetime" })}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-400/30 bg-cyan-400/10 hover:bg-cyan-400/20 hover:border-cyan-400/60 backdrop-blur transition-colors"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.9)] animate-pulse" />
-                    <span className="text-xs font-black text-white">₹1,999</span>
-                    <span className="text-[10px] font-bold text-white/60 uppercase tracking-wider">Startup · 1 Acc · 5% Dep</span>
-                  </a>
-                  <a
-                    href={buildWaLink("full-access", { source: "hero-price-pill-full" })}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/40 bg-primary/15 hover:bg-primary/25 hover:border-primary/70 backdrop-blur transition-colors shadow-[0_8px_24px_-8px_rgba(0,102,255,0.5)]"
+                    data-cta="hero-price-pill-lifetime"
+                    className="group inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/40 bg-primary/15 hover:bg-primary/25 hover:border-primary/70 backdrop-blur transition-colors shadow-[0_8px_24px_-8px_rgba(0,102,255,0.5)]"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,102,255,0.9)] animate-pulse" />
-                    <span className="text-xs font-black text-white">₹2,999</span>
-                    <span className="text-[10px] font-bold text-white/70 uppercase tracking-wider">Full · 1 Acc · 0% Dep</span>
-                    <span className="text-[9px] font-black uppercase tracking-widest text-primary ml-0.5">★ Popular</span>
+                    <span className="text-sm font-black text-white tabular-nums">₹4,999</span>
+                    <span className="text-[10px] font-bold text-white/70 uppercase tracking-wider">Lifetime Access · Replacement Incl.</span>
                   </a>
                   <a
                     href="#pricing-home"

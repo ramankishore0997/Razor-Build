@@ -49,7 +49,7 @@ const REPLACEMENT_STEPS = [
 
 const SPEND_FEATURES: { Icon: LucideIcon; title: string; body: string }[] = [
   { Icon: Rocket, title: "₹1 Lakh+ Daily Spend Day 1", body: "No warmup needed — push full budget on your first campaign, first hour." },
-  { Icon: TrendingUp, title: "No Daily / Lifetime Caps", body: "Full Setup plan removes all spend ceilings. Scale to any number you want." },
+  { Icon: TrendingUp, title: "No Daily / Lifetime Caps", body: "Lifetime Access removes all spend ceilings. Scale to any number you want." },
   { Icon: Globe2, title: "Multi-Region Targeting", body: "US, UK, Australia, EU, India, Middle East — all geographies unlocked." },
   { Icon: Wallet, title: "Multi-Currency Campaigns", body: "Run in USD, EUR, INR, AED — switch per campaign, not per account." },
   { Icon: Layers, title: "Multi-Pixel on Single BM", body: "Track multiple websites and funnels from one Business Manager." },
@@ -82,7 +82,7 @@ const SUPPORT_FEATURES: { Icon: LucideIcon; title: string; body: string }[] = [
   { Icon: MessageCircle, title: "WhatsApp + Telegram", body: "Reach us where you actually chat — not via slow email tickets." },
   { Icon: Zap, title: "12-Min Avg Response", body: "Real-time support during Indian business hours, fast off-hours too." },
   { Icon: Languages, title: "Hindi + English Support", body: "Talk in the language you're comfortable in. No translation gaps." },
-  { Icon: Headphones, title: "Free Onboarding Call", body: "30-min strategy + setup call included with Full Setup plan." },
+  { Icon: Headphones, title: "Free Onboarding Call", body: "30-min strategy + setup call included with Lifetime Access plan." },
   { Icon: PhoneCall, title: "Direct Meta Escalation", body: "Disputes routed directly to Meta partner rep — fastest possible resolution." },
 ];
 
@@ -467,7 +467,7 @@ export default function Features() {
 
               <div className="grid grid-cols-3 gap-3 md:gap-8 text-center">
                 {[
-                  { v: "0", l: "Random bans in 2026", sub: "Of accounts on Full Setup plan" },
+                  { v: "0", l: "Random bans in 2026", sub: "Across all Lifetime Access accounts" },
                   { v: "5,000+", l: "Accounts delivered", sub: "Across 12+ verticals" },
                   { v: "₹500Cr+", l: "Ad spend processed", sub: "Through our agency BMs" },
                 ].map((s, i) => (
@@ -771,27 +771,15 @@ export default function Features() {
 
               <div className="flex flex-wrap items-center justify-center gap-3 mb-7 md:mb-8">
                 <a
-                  href={buildWaLink("setup-access", { source: "features-cta-startup" })}
+                  href={buildWaLink("setup-access", { source: "features-cta-lifetime" })}
                   target="_blank"
                   rel="noopener noreferrer"
-                  data-cta="features-cta-startup"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-400/40 bg-cyan-400/10 hover:bg-cyan-400/20 hover:border-cyan-400/70 transition-colors"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-                  <span className="text-sm font-black text-white">₹1,999</span>
-                  <span className="text-[10px] font-bold text-white/60 uppercase tracking-wider">Startup · 5% Dep</span>
-                </a>
-                <a
-                  href={buildWaLink("full-access", { source: "features-cta-full" })}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-cta="features-cta-full"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/50 bg-primary/15 hover:bg-primary/25 hover:border-primary/80 transition-colors shadow-[0_8px_24px_-8px_rgba(0,102,255,0.5)]"
+                  data-cta="features-cta-lifetime"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-primary/50 bg-primary/15 hover:bg-primary/25 hover:border-primary/80 transition-colors shadow-[0_8px_24px_-8px_rgba(0,102,255,0.5)]"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                  <span className="text-sm font-black text-white">₹2,999</span>
-                  <span className="text-[10px] font-bold text-white/70 uppercase tracking-wider">Full · 0% Dep</span>
-                  <span className="text-[9px] font-black uppercase tracking-widest text-primary">★ Popular</span>
+                  <span className="text-base font-black text-white tabular-nums">₹4,999</span>
+                  <span className="text-[10px] font-bold text-white/70 uppercase tracking-wider">Lifetime Access · Replacement Incl.</span>
                 </a>
               </div>
 
