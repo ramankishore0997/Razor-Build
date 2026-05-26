@@ -4,7 +4,6 @@ import { Link } from "wouter";
 import FloatingOrbs from "@/components/FloatingOrbs";
 import TrustWall from "@/components/TrustWall";
 import IndianTrustStrip from "@/components/IndianTrustStrip";
-import PricingSection from "@/components/PricingSection";
 import HolographicCTA from "@/components/HolographicCTA";
 import LightBeams from "@/components/LightBeams";
 import ProblemSolution from "@/components/ProblemSolution";
@@ -70,29 +69,18 @@ export default function Home() {
                   </Link>
                 </div>
 
-                {/* PRICING TEASER — single lifetime pill */}
+                {/* TRUST PILL — replaces pricing teaser */}
                 <div className="mt-7 flex flex-wrap items-center gap-2 md:gap-3">
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mr-1">One Plan</span>
                   <a
-                    href={buildWaLink("setup-access", { source: "hero-price-pill-lifetime" })}
+                    href={buildWaLink("setup-access", { source: "hero-trust-pill" })}
                     target="_blank"
                     rel="noopener noreferrer"
-                    data-cta="hero-price-pill-lifetime"
+                    data-cta="hero-trust-pill"
                     className="group inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/40 bg-primary/15 hover:bg-primary/25 hover:border-primary/70 backdrop-blur transition-colors shadow-[0_8px_24px_-8px_rgba(0,102,255,0.5)]"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,102,255,0.9)] animate-pulse" />
-                    <span className="text-sm font-black text-white tabular-nums">₹4,999</span>
-                    <span className="text-[10px] font-bold text-white/70 uppercase tracking-wider">Lifetime Access · Replacement Incl.</span>
-                  </a>
-                  <a
-                    href="#pricing-home"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      document.getElementById("pricing-home")?.scrollIntoView({ behavior: "smooth", block: "start" });
-                    }}
-                    className="text-[10px] font-bold text-white/50 hover:text-white uppercase tracking-wider underline-offset-4 hover:underline"
-                  >
-                    See details
+                    <span className="text-xs font-black text-white uppercase tracking-wider">Lifetime Access</span>
+                    <span className="text-[10px] font-bold text-white/70 uppercase tracking-wider">· Replacement Incl. · 60-min Setup</span>
                   </a>
                 </div>
 
@@ -121,10 +109,6 @@ export default function Home() {
 
       {/* PROBLEM / SOLUTION COMPARISON */}
       <ProblemSolution />
-
-      {/* PRICING — moved up so users see ₹ plans early + can WhatsApp instantly */}
-      <div id="pricing-home" />
-      <PricingSection />
 
       {/* ACCESS FLOW JOURNEY — Request → Review → Activation → Scale */}
       <AccessFlowJourney />

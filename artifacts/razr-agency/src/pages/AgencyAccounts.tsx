@@ -1,7 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
-import PricingSection from "@/components/PricingSection";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -647,9 +646,6 @@ export default function AgencyAccounts() {
           </div>
         </div>
       </section>
-
-      {/* ═══════════════ PRICING ═══════════════ */}
-      <PricingSection />
 
       {/* ═══════════════ FINAL CTA ═══════════════ */}
       <section className="py-12 md:py-20 relative">

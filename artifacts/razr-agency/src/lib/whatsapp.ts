@@ -26,9 +26,9 @@ const TEMPLATES: Record<WaIntent, (e: IntentExtras) => string> = {
   general: () =>
     "Hi RAZR — I'd like to know more about your Meta & Google Agency Ad Accounts.",
   "setup-access": () =>
-    "Hi RAZR — I want to get the LIFETIME ACCESS plan (₹4,999 one-time, 1 Meta Agency Account, lifetime replacement guarantee). Please share next steps.",
+    "Hi RAZR — I want LIFETIME ACCESS to a Meta Agency Ad Account (1 account, lifetime replacement guarantee). Please share next steps and pricing.",
   "full-access": () =>
-    "Hi RAZR — I want to get the LIFETIME ACCESS plan (₹4,999 one-time, 1 Meta Agency Account, lifetime replacement guarantee). Please share onboarding details.",
+    "Hi RAZR — I want LIFETIME ACCESS to a Meta Agency Ad Account (1 account, lifetime replacement guarantee). Please share onboarding details and pricing.",
   "book-call": (e) =>
     `Hi RAZR — I'd like to BOOK A 15-MIN STRATEGY CALL${e.slot ? ` on ${e.slot}` : ""}. Please confirm.`,
   "roi-tier": (e) =>
@@ -36,7 +36,7 @@ const TEMPLATES: Record<WaIntent, (e: IntentExtras) => string> = {
   "case-study": (e) =>
     `Hi RAZR — I just read your case study${e.caseName ? ` on ${e.caseName}` : ""}. I'd like similar results — can we talk?`,
   "exit-discount": () =>
-    "Hi RAZR — I'd like to claim the LIMITED-TIME ₹500 setup discount. Please send details.",
+    "Hi RAZR — I'd like to claim my PRIORITY ONBOARDING SLOT this week. Please send details.",
   "urgency-slot": () =>
     "Hi RAZR — I want to CLAIM A SLOT THIS WEEK before onboarding closes. Please confirm availability.",
   "founder-call": () =>

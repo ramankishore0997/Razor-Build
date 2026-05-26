@@ -241,11 +241,11 @@ export default function Features() {
                 <ArrowRight className="w-4 h-4" />
               </a>
               <Link
-                href="/plans"
-                data-cta="features-hero-plans"
+                href="/contact"
+                data-cta="features-hero-contact"
                 className="btn-premium tap-spring inline-flex items-center justify-center gap-3 px-7 md:px-8 py-3.5 md:py-4 rounded-full border border-white/20 text-white font-black text-xs md:text-sm uppercase tracking-widest hover:bg-white/5 hover:border-white/40"
               >
-                View Pricing
+                Talk to Sales
               </Link>
             </div>
           </motion.div>
@@ -766,22 +766,8 @@ export default function Features() {
               </h2>
               <p className="text-base md:text-lg text-white/60 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
                 Activated in under an hour. Lifetime replacement included.
-                Pay in INR with GST invoice. WhatsApp us to start.
+                GST invoice. WhatsApp us to start.
               </p>
-
-              <div className="flex flex-wrap items-center justify-center gap-3 mb-7 md:mb-8">
-                <a
-                  href={buildWaLink("setup-access", { source: "features-cta-lifetime" })}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-cta="features-cta-lifetime"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-primary/50 bg-primary/15 hover:bg-primary/25 hover:border-primary/80 transition-colors shadow-[0_8px_24px_-8px_rgba(0,102,255,0.5)]"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                  <span className="text-base font-black text-white tabular-nums">₹4,999</span>
-                  <span className="text-[10px] font-bold text-white/70 uppercase tracking-wider">Lifetime Access · Replacement Incl.</span>
-                </a>
-              </div>
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                 <a

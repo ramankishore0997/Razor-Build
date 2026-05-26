@@ -173,12 +173,12 @@ export default function ExitIntentPopup() {
                 </h2>
 
                 <p className="text-base text-white/70 leading-relaxed mb-6">
-                  Get a <span className="text-white font-black">₹1,000 discount</span> on Lifetime Access — drop the price from ₹4,999 to ₹3,999. Claim via WhatsApp before slots fill up this week.
+                  Claim a <span className="text-white font-black">priority onboarding slot</span> this week — skip the waitlist, get activated same-day, and lock your account before slots fill up.
                 </p>
 
                 <ul className="space-y-2.5 mb-7">
                   {[
-                    "₹1,000 OFF on Lifetime Access (₹4,999 → ₹3,999)",
+                    "Priority onboarding slot — skip the waitlist",
                     "Same-day activation guaranteed",
                     "Free 15-min onboarding call with our team",
                   ].map((b, i) => (
@@ -198,7 +198,7 @@ export default function ExitIntentPopup() {
                     className="group relative inline-flex items-center justify-center gap-2 flex-1 px-6 py-4 rounded-2xl bg-[#25D366] text-white font-black text-sm uppercase tracking-widest hover:scale-[1.02] transition-transform shadow-[0_10px_40px_rgba(37,211,102,0.4)]"
                   >
                     <SiWhatsapp className="text-xl" />
-                    Claim ₹5,000 OFF
+                    Claim My Slot
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                   </a>
                   <button
