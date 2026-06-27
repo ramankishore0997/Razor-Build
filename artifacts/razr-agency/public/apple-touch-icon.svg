@@ -1,39 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
   <defs>
-    <linearGradient id="body" x1="0.1" y1="0" x2="0.9" y2="1">
-      <stop offset="0%" stop-color="#1c1f2e"/>
-      <stop offset="40%" stop-color="#0a0d18"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0d18"/>
       <stop offset="100%" stop-color="#000000"/>
     </linearGradient>
-    <linearGradient id="neon" x1="0" y1="0" x2="1" y2="1">
+    <linearGradient id="letter" x1="0" y1="0" x2="0.5" y2="1">
       <stop offset="0%" stop-color="#00d4ff"/>
-      <stop offset="55%" stop-color="#0066ff"/>
+      <stop offset="50%" stop-color="#0066ff"/>
       <stop offset="100%" stop-color="#0040cc"/>
     </linearGradient>
-    <linearGradient id="silver" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.5"/>
-      <stop offset="45%" stop-color="#ffffff" stop-opacity="0"/>
-    </linearGradient>
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
       <feGaussianBlur stdDeviation="3" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <clipPath id="clip">
-      <path d="M 34 6 L 146 6 L 174 34 L 174 146 L 146 174 L 34 174 L 6 146 L 6 34 Z"/>
-    </clipPath>
   </defs>
-  <path d="M 34 6 L 146 6 L 174 34 L 174 146 L 146 174 L 34 174 L 6 146 L 6 34 Z" fill="url(#body)" stroke="rgba(255,255,255,0.1)" stroke-width="2"/>
-  <path d="M 36 12 L 144 12 L 168 36 L 168 144 L 144 168 L 36 168 L 12 144 L 12 36 Z" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.4"/>
-  <path d="M 34 6 L 146 6 L 174 34 L 174 78 L 6 78 L 6 34 Z" fill="url(#silver)"/>
-  <g clip-path="url(#clip)" filter="url(#glow)" transform="translate(0 0) scale(2.8125)">
-    <path d="M 12 14 L 18 14 L 18 50 L 12 50 Z" fill="url(#neon)"/>
-    <path d="M 18 14 L 30 14 L 33 17 L 33 23 L 30 26 L 18 26 L 18 20 L 28 20 L 28 20 Z" fill="url(#neon)"/>
-    <path d="M 24 26 L 30 26 L 36 38 L 30 38 Z" fill="url(#neon)"/>
-    <path d="M 30 38 L 36 38 L 36 50 L 30 50 Z" fill="url(#neon)"/>
-    <path d="M 36 38 L 42 38 L 39 44 L 33 44 Z" fill="url(#neon)" opacity="0.85"/>
-    <path d="M 42 38 L 48 26 L 52 26 L 52 50 L 46 50 L 46 38 Z" fill="url(#neon)"/>
-    <path d="M 46 14 L 52 14 L 52 26 L 46 26 Z" fill="url(#neon)"/>
+
+  <rect width="180" height="180" rx="40" ry="40" fill="url(#bg)"/>
+  <rect x="2" y="2" width="176" height="176" rx="38" ry="38" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="3"/>
+  <rect x="2" y="2" width="176" height="55" rx="38" ry="38" fill="rgba(255,255,255,0.04)"/>
+
+  <g filter="url(#glow)">
+    <polygon points="38,140 62,140 90,48 76,48" fill="url(#letter)"/>
+    <polygon points="118,140 142,140 104,48 90,48" fill="url(#letter)"/>
+    <rect x="56" y="96" width="68" height="16" rx="3" fill="url(#letter)"/>
   </g>
-  <path d="M 158 6 L 174 6 L 174 22" fill="none" stroke="#00a3ff" stroke-width="4" stroke-linecap="square" opacity="0.9"/>
-  <circle cx="22" cy="158" r="4.5" fill="#0066ff"/>
+
+  <circle cx="158" cy="28" r="7" fill="#0066ff" opacity="0.9"/>
 </svg>
