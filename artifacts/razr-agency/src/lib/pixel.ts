@@ -16,7 +16,7 @@ function fire(event: string, params?: Record<string, unknown>) {
 }
 
 export function trackLead(params?: Record<string, unknown>) {
-  fire("Lead", { content_category: "whatsapp_click", ...params });
+  fire("Lead", { content_category: "telegram_click", ...params });
 }
 
 export function trackInitiateCheckout(params?: Record<string, unknown>) {

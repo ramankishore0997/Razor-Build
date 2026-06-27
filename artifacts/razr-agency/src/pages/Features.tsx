@@ -42,7 +42,7 @@ const REASONS: { Icon: LucideIcon; title: string; body: string }[] = [
 ];
 
 const REPLACEMENT_STEPS = [
-  { Icon: MessageCircle, title: "You Report", body: "Message us on WhatsApp the moment an account is restricted — anytime, any day." },
+  { Icon: MessageCircle, title: "You Report", body: "Message us on Telegram the moment an account is restricted — anytime, any day." },
   { Icon: Clock, title: "24-Hour SLA", body: "New account assigned and activated within 1 working day. No paperwork, no waiting." },
   { Icon: RefreshCw, title: "Lifetime Cover", body: "Free replacements forever. Same spend capacity, same Tier-1 BM, no questions asked." },
 ];
@@ -79,7 +79,7 @@ const QUALITY_SPECS: { Icon: LucideIcon; title: string; body: string }[] = [
 
 const SUPPORT_FEATURES: { Icon: LucideIcon; title: string; body: string }[] = [
   { Icon: Users, title: "Dedicated Account Manager", body: "One human, not a queue. Same person handles your account for life." },
-  { Icon: MessageCircle, title: "WhatsApp + Telegram", body: "Reach us where you actually chat — not via slow email tickets." },
+  { Icon: MessageCircle, title: "Telegram", body: "Reach us where you actually chat — not via slow email tickets." },
   { Icon: Zap, title: "12-Min Avg Response", body: "Real-time support during Indian business hours, fast off-hours too." },
   { Icon: Languages, title: "Hindi + English Support", body: "Talk in the language you're comfortable in. No translation gaps." },
   { Icon: Headphones, title: "Free Onboarding Call", body: "30-min strategy + setup call included with Lifetime Access plan." },
@@ -234,10 +234,10 @@ export default function Features() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-cta="features-hero-wa"
-                className="btn-premium tap-spring inline-flex items-center justify-center gap-3 px-7 md:px-8 py-3.5 md:py-4 rounded-full bg-white text-black font-black text-xs md:text-sm uppercase tracking-widest hover:bg-emerald-400 hover:text-black transition-colors"
+                className="btn-premium tap-spring inline-flex items-center justify-center gap-3 px-7 md:px-8 py-3.5 md:py-4 rounded-full bg-white text-black font-black text-xs md:text-sm uppercase tracking-widest hover:bg-[#229ED9] hover:text-white transition-colors"
               >
                 <MessageCircle className="w-4 h-4" />
-                Chat on WhatsApp
+                Chat on Telegram
                 <ArrowRight className="w-4 h-4" />
               </a>
               <Link
@@ -325,7 +325,7 @@ export default function Features() {
           </div>
 
           <p className="mt-8 text-center text-xs md:text-sm text-white/40">
-            Niche not listed? <a href={buildWaLink("general", { source: "features-niche-ask" })} target="_blank" rel="noopener noreferrer" data-cta="features-niche-ask" className="text-primary font-bold hover:underline">Ask on WhatsApp →</a> (most are allowed)
+            Niche not listed? <a href={buildWaLink("general", { source: "features-niche-ask" })} target="_blank" rel="noopener noreferrer" data-cta="features-niche-ask" className="text-primary font-bold hover:underline">Ask on Telegram →</a> (most are allowed)
           </p>
         </div>
       </section>
@@ -539,7 +539,7 @@ export default function Features() {
           <SectionHeader
             no="05"
             kicker="Head to Head"
-            title={<>Normal account vs <span className="bg-gradient-to-r from-primary to-purple-400 bg-clip-text text-transparent">RAZR Agency.</span></>}
+            title={<>Normal account vs <span className="bg-gradient-to-r from-primary to-purple-400 bg-clip-text text-transparent">Admiz Agency.</span></>}
             subtitle="The truth no agency wants you to compare directly."
           />
 
@@ -559,7 +559,7 @@ export default function Features() {
                 <X className="w-3 h-3 text-red-400" /> Normal Account
               </div>
               <div className="text-[10px] md:text-xs font-black uppercase tracking-[0.15em] text-primary flex items-center gap-1.5">
-                <ShieldCheck className="w-3 h-3" /> RAZR Agency
+                <ShieldCheck className="w-3 h-3" /> Admiz Agency
               </div>
             </div>
 
@@ -638,14 +638,14 @@ export default function Features() {
             <Quote className="absolute -top-6 -left-2 md:-top-10 md:-left-6 w-20 h-20 md:w-32 md:h-32 text-primary/10" strokeWidth={1} />
             <div className="relative pl-6 md:pl-12">
               <p className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-light italic tracking-tight leading-[1.2] text-white/90 mb-7 md:mb-10">
-                "Every Indian advertiser I know has had an account banned at 2 AM with a₹50K live campaign. We built RAZR so that doesn't happen — <span className="not-italic font-bold bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent">ever again.</span>"
+                "Every Indian advertiser I know has had an account banned at 2 AM with a ₹50K live campaign. We built Admiz so that doesn't happen — <span className="not-italic font-bold bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent">ever again.</span>"
               </p>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-primary via-purple-500 to-cyan-400 flex items-center justify-center text-black font-black text-lg shrink-0 border-2 border-white/10">
                   R
                 </div>
                 <div>
-                  <div className="text-sm md:text-base font-black uppercase tracking-wider text-white">Rajan · Founder, RAZR</div>
+                  <div className="text-sm md:text-base font-black uppercase tracking-wider text-white">Rajan · Founder, Admiz Agency</div>
                   <div className="text-[11px] md:text-xs font-bold uppercase tracking-widest text-white/40 mt-0.5">
                     ₹500Cr+ ad spend managed · 5+ years media buying
                   </div>
@@ -766,7 +766,7 @@ export default function Features() {
               </h2>
               <p className="text-base md:text-lg text-white/60 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
                 Activated in under an hour. Lifetime replacement included.
-                GST invoice. WhatsApp us to start.
+                GST invoice. Message us on Telegram to start.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
@@ -775,10 +775,10 @@ export default function Features() {
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cta="features-final-wa"
-                  className="btn-premium tap-spring inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 md:py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest hover:bg-emerald-400 hover:text-black transition-colors duration-300"
+                  className="btn-premium tap-spring inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 md:py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest hover:bg-[#229ED9] hover:text-white transition-colors duration-300"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  Chat on WhatsApp <ArrowRight className="w-4 h-4" />
+                  Chat on Telegram <ArrowRight className="w-4 h-4" />
                 </a>
                 <Link
                   href="/contact"

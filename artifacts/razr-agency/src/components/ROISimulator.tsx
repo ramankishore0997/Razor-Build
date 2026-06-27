@@ -17,7 +17,7 @@ export default function ROISimulator() {
   const stats = useMemo(() => {
     // Conservative agency-tier assumptions
     const standardRoas = 1.8;   // typical personal/fresh BM
-    const agencyRoas = 4.2;     // RAZR agency-tier accounts
+    const agencyRoas = 4.2;     // Admiz agency-tier accounts
     const standardRevenue = budget * standardRoas;
     const agencyRevenue = budget * agencyRoas;
     const uplift = agencyRevenue - standardRevenue;
@@ -139,7 +139,7 @@ export default function ROISimulator() {
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
                     <Zap className="w-3.5 h-3.5 text-primary" />
-                    <span className="text-[11px] font-black uppercase tracking-wider text-primary">RAZR Agency Tier</span>
+                    <span className="text-[11px] font-black uppercase tracking-wider text-primary">Admiz Agency Tier</span>
                     <span className="text-[10px] text-primary/70">{stats.agencyRoas}x ROAS</span>
                   </div>
                   <div className="text-xl md:text-2xl font-black tabular-nums bg-gradient-to-r from-primary via-purple-400 to-cyan-400 bg-clip-text text-transparent">

@@ -28,7 +28,7 @@ const SECTIONS = [
   },
   {
     title: "3. How to Request a Refund",
-    body: "Contact us via WhatsApp at +91 70653 39146 or Telegram @razrsupport with: (a) your order details, (b) screenshots demonstrating the issue, and (c) a clear description of what happened. Our team will review and respond within 24 hours.",
+    body: "Contact us via Telegram @AdmizAgency with: (a) your order details, (b) screenshots demonstrating the issue, and (c) a clear description of what happened. Our team will review and respond within 24 hours.",
   },
   {
     title: "4. Refund Processing Time",
@@ -40,7 +40,7 @@ const SECTIONS = [
   },
   {
     title: "6. Disputes",
-    body: "We are committed to fair resolution. If you disagree with a refund decision, you may escalate the matter to our senior support team via email at scale@razr.marketing. We will conduct a final review and respond within 5 business days.",
+    body: "We are committed to fair resolution. If you disagree with a refund decision, you may escalate the matter to our senior support team via email at scale@admiz.agency. We will conduct a final review and respond within 5 business days.",
   },
 ];
 
@@ -54,7 +54,7 @@ export default function Refund() {
             Refund <span className="text-primary">Policy</span>
           </h1>
           <p className="text-muted-foreground text-lg mb-10">
-            Last updated: May 23, 2026 — razr.marketing
+            Last updated: June 27, 2026 — admiz.agency
           </p>
 
           {/* Eligible / Not Eligible Grid */}
@@ -106,15 +106,15 @@ export default function Refund() {
               Need help with an order?
             </h3>
             <p className="text-muted-foreground mb-8">
-              Our team responds within 12 minutes on WhatsApp and Telegram.
+              Our team responds within 12 minutes on Telegram.
             </p>
             <a
-              href="https://wa.me/917065339146"
+              href="https://t.me/AdmizAgency"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block px-10 py-5 bg-primary text-black font-black text-base uppercase tracking-widest hover:bg-white transition-colors"
             >
-              Chat on WhatsApp
+              Chat on Telegram
             </a>
           </div>
         </div>

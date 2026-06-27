@@ -13,11 +13,11 @@ const CAT_ICONS: Record<string, typeof Zap> = {
 };
 
 const faqs = [
-  { cat: "Activation", q: "How long does activation take?", a: "Lifetime Access is activated same-day — typically within 60 minutes of payment confirmation. WhatsApp us right after paying and we'll send credentials." },
+  { cat: "Activation", q: "How long does activation take?", a: "Lifetime Access is activated same-day — typically within 60 minutes of payment confirmation. Message us on Telegram right after paying and we'll send credentials." },
   { cat: "Activation", q: "Do I need my own Business Manager?", a: "No, we provide the account within our verified Business Manager and grant you admin/employee access as required. You retain full operational control." },
   { cat: "Activation", q: "Can I use my existing cards?", a: "Yes, you can attach your own payment methods. We also offer pre-warmed agency cards for an additional layer of stability." },
   { cat: "Support", q: "What happens if I get restricted?", a: "Every Lifetime Access plan includes free lifetime replacement. If your account is restricted without policy violation, we replace it free — and transfer remaining balance where technically possible. New account assigned within 24 hours." },
-  { cat: "Support", q: "How fast do you respond?", a: "Our Telegram and WhatsApp support typically responds in under 12 minutes during business hours, and within a few hours off-hours." },
+  { cat: "Support", q: "How fast do you respond?", a: "Our Telegram support typically responds in under 12 minutes during business hours, and within a few hours off-hours." },
   { cat: "Scaling", q: "What are the daily spending limits?", a: "Lifetime Access accounts typically start with no daily limit or a very high tier (₹1 Lakh+ / $5k+) from Day 1 — no warmup, no caps." },
   { cat: "Scaling", q: "Can I run crypto / nutra / gray-hat?", a: "Yes — we provide both Blackhat and Whitehat accounts on Meta and Google. Gray-hat verticals like crypto, nutra, and aggressive D2C offers are fully supported on our blackhat infrastructure." },
   { cat: "Platforms", q: "Do you only provide Meta accounts?", a: "No — we provide both Meta (Facebook & Instagram) and Google Ads agency accounts. Same premium quality, same lifetime replacement guarantee, same unlimited spend from day 1." },
@@ -182,12 +182,12 @@ export default function Faq() {
                 <p className="text-sm text-white/60">Talk to our team — average response 12 minutes.</p>
               </div>
               <a
-                href="https://wa.me/917065339146"
+                href="https://t.me/AdmizAgency"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-4 rounded-full bg-primary text-black font-black text-sm uppercase tracking-widest hover:bg-white transition-colors shrink-0"
               >
-                Chat on WhatsApp
+                Chat on Telegram
               </a>
             </div>
           </div>

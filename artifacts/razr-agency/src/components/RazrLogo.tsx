@@ -204,7 +204,7 @@ export default function RazrLogo({
             fontFamily: "'Space Grotesk', system-ui, sans-serif",
           }}
         >
-          RAZR
+          ADMIZ
           <span
             className="font-light"
             style={{
@@ -214,7 +214,7 @@ export default function RazrLogo({
               fontStyle: "italic",
             }}
           >
-            Marketing
+            Agency
           </span>
         </span>
       </span>
@@ -236,7 +236,7 @@ export default function RazrLogo({
             fontFamily: "'Space Grotesk', system-ui, sans-serif",
           }}
         >
-          RAZR
+          ADMIZ
         </span>
         <span
           className="font-bold uppercase"
@@ -247,7 +247,7 @@ export default function RazrLogo({
             lineHeight: 1,
           }}
         >
-          Marketing
+          Agency
         </span>
       </span>
     </span>

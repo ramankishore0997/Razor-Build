@@ -70,19 +70,19 @@ function Router() {
 }
 
 function App() {
-  // Force dark mode + capture UTM attribution + global WhatsApp click tracking
+  // Force dark mode + capture UTM attribution + global Telegram click tracking
   useEffect(() => {
     document.documentElement.classList.add("dark");
     captureAttribution();
 
-    // Delegated click listener — fires Pixel events on every WhatsApp button click:
+    // Delegated click listener — fires Pixel events on every Telegram/contact button click:
     //  • Lead       → Meta's standard high-intent conversion event
-    //  • Subscribe  → fires alongside Lead on the same WhatsApp click
+    //  • Subscribe  → fires alongside Lead on the same click
     // 1-second dedupe protects against rapid double-clicks.
     let lastWaClickAt = 0;
     const onClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
-      const waAnchor = target?.closest?.('a[href*="wa.me/"]') as HTMLAnchorElement | null;
+      const waAnchor = target?.closest?.('a[href*="t.me/"]') as HTMLAnchorElement | null;
       if (!waAnchor) return;
 
       const now = Date.now();
@@ -93,7 +93,7 @@ function App() {
         waAnchor.getAttribute('data-cta') ||
         waAnchor.getAttribute('aria-label') ||
         waAnchor.textContent?.trim().slice(0, 60) ||
-        'whatsapp-cta';
+        'telegram-cta';
       const href = waAnchor.href.slice(0, 120);
       const path = window.location.pathname;
 

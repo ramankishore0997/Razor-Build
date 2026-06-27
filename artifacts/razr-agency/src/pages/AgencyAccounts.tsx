@@ -500,7 +500,7 @@ export default function AgencyAccounts() {
                     <span className="bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent">Meta agency accounts.</span>
                   </h3>
                 </div>
-                <a href="https://wa.me/917065339146" target="_blank" rel="noopener noreferrer" className="shrink-0 inline-flex items-center gap-3 px-7 md:px-9 py-4 md:py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest hover:bg-primary hover:text-white transition-colors duration-300">
+                <a href="https://t.me/AdmizAgency" target="_blank" rel="noopener noreferrer" className="shrink-0 inline-flex items-center gap-3 px-7 md:px-9 py-4 md:py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest hover:bg-primary hover:text-white transition-colors duration-300">
                   Get Meta Access <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
@@ -575,7 +575,7 @@ export default function AgencyAccounts() {
                     <span className="bg-gradient-to-r from-cyan-400 to-primary bg-clip-text text-transparent">Google agency accounts.</span>
                   </h3>
                 </div>
-                <a href="https://wa.me/917065339146" target="_blank" rel="noopener noreferrer" className="shrink-0 inline-flex items-center gap-3 px-7 md:px-9 py-4 md:py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest hover:bg-cyan-400 hover:text-black transition-colors duration-300">
+                <a href="https://t.me/AdmizAgency" target="_blank" rel="noopener noreferrer" className="shrink-0 inline-flex items-center gap-3 px-7 md:px-9 py-4 md:py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest hover:bg-cyan-400 hover:text-black transition-colors duration-300">
                   Get Google Access <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
@@ -668,7 +668,7 @@ export default function AgencyAccounts() {
                 Pick Meta, Google, or both — our team activates accounts in under 60 minutes. No commitment to start, no sales pitch.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-                <a href="https://wa.me/917065339146" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 md:py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest hover:bg-primary hover:text-white transition-colors duration-300">
+                <a href="https://t.me/AdmizAgency" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 md:py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest hover:bg-primary hover:text-white transition-colors duration-300">
                   Get Started <ArrowRight className="w-4 h-4" />
                 </a>
                 <Link href="/contact" className="inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 md:py-5 rounded-full border border-white/20 text-white font-black text-sm uppercase tracking-widest hover:bg-white/5 transition-colors duration-300">

@@ -3,11 +3,11 @@ import PageWrapper from "@/components/layout/PageWrapper";
 const SECTIONS = [
   {
     title: "1. Acceptance of Terms",
-    body: "By accessing or using razr.marketing services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.",
+    body: "By accessing or using Admiz Agency services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.",
   },
   {
     title: "2. Services Provided",
-    body: "razr.marketing provides premium Meta (Facebook & Instagram) and Google agency advertising accounts, including account provisioning, Business Manager access, billing setup, and ongoing technical support. We offer both Whitehat (policy-compliant) and Blackhat (aggressive vertical) account options.",
+    body: "Admiz Agency provides premium Meta (Facebook & Instagram) and Google agency advertising accounts, including account provisioning, Business Manager access, billing setup, and ongoing technical support. We offer both Whitehat (policy-compliant) and Blackhat (aggressive vertical) account options.",
   },
   {
     title: "3. Client Responsibilities",
@@ -27,7 +27,7 @@ const SECTIONS = [
   },
   {
     title: "7. Limitation of Liability",
-    body: "razr.marketing is not liable for indirect, incidental, or consequential damages including lost ad spend, lost revenue, or business interruption. Our total liability is limited to the amount you paid for the affected service in the preceding 30 days.",
+    body: "Admiz Agency is not liable for indirect, incidental, or consequential damages including lost ad spend, lost revenue, or business interruption. Our total liability is limited to the amount you paid for the affected service in the preceding 30 days.",
   },
   {
     title: "8. Platform Policy Changes",
@@ -43,7 +43,7 @@ const SECTIONS = [
   },
   {
     title: "11. Contact",
-    body: "For any questions about these Terms of Service, contact us via WhatsApp at +91 70653 39146, Telegram @razrsupport, or email scale@razr.marketing.",
+    body: "For any questions about these Terms of Service, contact us via Telegram @AdmizAgency or email scale@admiz.agency.",
   },
 ];
 
@@ -57,7 +57,7 @@ export default function Terms() {
             Terms of <span className="text-primary">Service</span>
           </h1>
           <p className="text-muted-foreground text-lg mb-10">
-            Last updated: May 23, 2026 — razr.marketing
+            Last updated: June 27, 2026 — admiz.agency
           </p>
 
           <div className="space-y-10">

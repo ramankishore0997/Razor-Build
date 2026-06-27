@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Gift, Clock, ArrowRight, CheckCircle2 } from "lucide-react";
-import { SiWhatsapp } from "react-icons/si";
+import { SiTelegram } from "react-icons/si";
 import { buildWaLink } from "@/lib/whatsapp";
 
-const SHOWN_KEY = "razr_exit_intent_shown_at";
+const SHOWN_KEY = "admiz_exit_intent_shown_at";
 const SUPPRESS_HOURS = 24;
 const ACTIVATION_DELAY_MS = 12_000;
 
@@ -195,9 +195,9 @@ export default function ExitIntentPopup() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={close}
-                    className="group relative inline-flex items-center justify-center gap-2 flex-1 px-6 py-4 rounded-2xl bg-[#25D366] text-white font-black text-sm uppercase tracking-widest hover:scale-[1.02] transition-transform shadow-[0_10px_40px_rgba(37,211,102,0.4)]"
+                    className="group relative inline-flex items-center justify-center gap-2 flex-1 px-6 py-4 rounded-2xl bg-[#229ED9] text-white font-black text-sm uppercase tracking-widest hover:scale-[1.02] transition-transform shadow-[0_10px_40px_rgba(34,158,217,0.4)]"
                   >
-                    <SiWhatsapp className="text-xl" />
+                    <SiTelegram className="text-xl" />
                     Claim My Slot
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                   </a>

@@ -3,7 +3,7 @@ import PageWrapper from "@/components/layout/PageWrapper";
 const SECTIONS = [
   {
     title: "1. Information We Collect",
-    body: "We collect information you provide directly to us when you contact us via WhatsApp, Telegram, email, or our contact form. This includes your name, email address, WhatsApp number, Telegram handle, business details, and any messages you send us. We also collect basic technical information such as IP address and browser type when you visit our website.",
+    body: "We collect information you provide directly to us when you contact us via Telegram, email, or our contact form. This includes your name, email address, Telegram handle, business details, and any messages you send us. We also collect basic technical information such as IP address and browser type when you visit our website.",
   },
   {
     title: "2. How We Use Your Information",
@@ -15,7 +15,7 @@ const SECTIONS = [
   },
   {
     title: "4. Data Security",
-    body: "We use industry-standard security measures including encrypted communications (HTTPS), secure messaging platforms (WhatsApp end-to-end encryption, Telegram), and restricted internal access to protect your data. However, no method of transmission over the internet is 100% secure.",
+    body: "We use industry-standard security measures including encrypted communications (HTTPS) and secure messaging platforms (Telegram end-to-end encryption) to protect your data. However, no method of transmission over the internet is 100% secure.",
   },
   {
     title: "5. Data Retention",
@@ -23,7 +23,7 @@ const SECTIONS = [
   },
   {
     title: "6. Your Rights",
-    body: "You have the right to access, correct, or request deletion of your personal information. To exercise these rights, contact us via WhatsApp at +91 70653 39146 or email scale@razr.marketing.",
+    body: "You have the right to access, correct, or request deletion of your personal information. To exercise these rights, contact us via Telegram @AdmizAgency or email scale@admiz.agency.",
   },
   {
     title: "7. Cookies",
@@ -35,7 +35,7 @@ const SECTIONS = [
   },
   {
     title: "9. Contact Us",
-    body: "For any questions about this Privacy Policy or our data practices, reach out to us on WhatsApp at +91 70653 39146, Telegram @razrsupport, or email scale@razr.marketing.",
+    body: "For any questions about this Privacy Policy or our data practices, reach out to us on Telegram @AdmizAgency or email scale@admiz.agency.",
   },
 ];
 
@@ -49,7 +49,7 @@ export default function Privacy() {
             Privacy <span className="text-primary">Policy</span>
           </h1>
           <p className="text-muted-foreground text-lg mb-10">
-            Last updated: May 23, 2026 — razr.marketing
+            Last updated: June 27, 2026 — admiz.agency
           </p>
 
           <div className="space-y-10">

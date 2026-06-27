@@ -8,7 +8,7 @@ const STEPS = [
     step: "01",
     icon: MessageCircle,
     title: "Initial Contact & Vetting",
-    desc: "Reach out via Telegram or WhatsApp. We respond within minutes. Brief review of your vertical and spend goals to confirm fit.",
+    desc: "Reach out via Telegram. We respond within minutes. Brief review of your vertical and spend goals to confirm fit.",
     bullets: ["Share your niche / vertical", "Discuss target daily spend", "Confirm policy compliance"],
     accent: "from-blue-500/30 to-cyan-500/20",
     duration: "5–15 min",
@@ -115,7 +115,7 @@ export default function HowItWorks() {
               <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4">Ready to start step 01?</h2>
               <p className="text-white/60 mb-8 max-w-xl mx-auto">Send us a message and we'll have your scaling plan ready before you finish your coffee.</p>
               <a
-                href="https://wa.me/917065339146"
+                href="https://t.me/AdmizAgency"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-10 py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest hover:bg-primary hover:text-white transition-colors duration-300"

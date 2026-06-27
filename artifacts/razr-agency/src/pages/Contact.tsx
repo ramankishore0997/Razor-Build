@@ -4,32 +4,29 @@ import { trackContact, trackLead } from "@/lib/pixel";
 import { getAttributionLabel } from "@/lib/utm";
 import { motion } from "framer-motion";
 import { Sparkles, MessageCircle, Mail, ArrowUpRight, Activity, Clock, Users, Zap } from "lucide-react";
-import { SiTelegram, SiWhatsapp } from "react-icons/si";
+import { SiTelegram } from "react-icons/si";
 
-const CONTACT_EMAIL = "scale@razr.marketing";
-const TELEGRAM_HANDLE = "razrsupport";
-const WHATSAPP_NUMBER = "917065339146";
+const CONTACT_EMAIL = "scale@admiz.agency";
+const TELEGRAM_HANDLE = "AdmizAgency";
+const TELEGRAM_URL = `https://t.me/${TELEGRAM_HANDLE}`;
 
 export default function Contact() {
   const [name, setName] = useState("");
   const [telegram, setTelegram] = useState("");
-  const [whatsapp, setWhatsapp] = useState("");
   const [goal, setGoal] = useState("");
   const [focus, setFocus] = useState<string | null>(null);
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // Fire Pixel events for ad campaign optimization
     trackContact({ source: "contact_form" });
     trackLead({ intent: "contact-form", source: "contact-page" });
 
     const attribution = getAttributionLabel();
     const lines = [
-      `Hi RAZR team — new scaling request`,
+      `Hi Admiz Agency — new scaling request`,
       ``,
       `*Name / Company:* ${name || "—"}`,
       `*Telegram:* ${telegram || "—"}`,
-      `*WhatsApp:* ${whatsapp || "—"}`,
       ``,
       `*Goal:*`,
       `${goal || "—"}`,
@@ -37,19 +34,17 @@ export default function Contact() {
     if (attribution) {
       lines.push(``, `[ad source: ${attribution}]`);
     }
-    const text = encodeURIComponent(lines.join("\n"));
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank", "noopener,noreferrer");
+    // Open Telegram — user can paste the message manually
+    window.open(TELEGRAM_URL, "_blank", "noopener,noreferrer");
   };
 
   return (
     <PageWrapper>
-      {/* Ambient glows */}
       <div className="absolute top-32 left-1/4 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-purple-500/15 rounded-full blur-[140px] pointer-events-none" />
 
       <section className="pt-28 pb-16 relative">
         <div className="container mx-auto px-4 max-w-7xl">
-          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -120,7 +115,7 @@ export default function Contact() {
 
               {/* Telegram */}
               <ContactChannel
-                href={`https://t.me/${TELEGRAM_HANDLE}`}
+                href={TELEGRAM_URL}
                 icon={<SiTelegram className="w-6 h-6 text-[#229ED9]" />}
                 title="Telegram"
                 value={`@${TELEGRAM_HANDLE}`}
@@ -129,28 +124,16 @@ export default function Contact() {
                 accent="from-[#229ED9]/40 to-blue-500/20"
               />
 
-              {/* WhatsApp */}
-              <ContactChannel
-                href={`https://wa.me/${WHATSAPP_NUMBER}`}
-                icon={<SiWhatsapp className="w-6 h-6 text-[#25D366]" />}
-                title="WhatsApp"
-                value="+91 70653 39146"
-                badge="Preferred"
-                delay={0.2}
-                accent="from-[#25D366]/40 to-emerald-500/20"
-              />
-
               {/* Email */}
               <ContactChannel
                 href={`mailto:${CONTACT_EMAIL}`}
                 icon={<Mail className="w-6 h-6 text-primary" />}
                 title="Email"
                 value={CONTACT_EMAIL}
-                delay={0.25}
+                delay={0.2}
                 accent="from-primary/40 to-purple-500/20"
               />
 
-              {/* Floating mini info card */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -182,7 +165,6 @@ export default function Contact() {
                   className="absolute inset-[-200%] bg-[conic-gradient(from_0deg,transparent_0deg,#0066ff_60deg,transparent_120deg,#7c3aed_240deg,transparent_300deg)] opacity-30"
                 />
                 <div className="relative rounded-3xl border border-white/15 bg-black/70 backdrop-blur-2xl p-8 md:p-10 overflow-hidden">
-                  {/* moving border lights */}
                   <motion.div
                     animate={{ x: ["-100%", "200%"] }}
                     transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
@@ -197,11 +179,11 @@ export default function Contact() {
                   <div className="flex items-center justify-between mb-8">
                     <div>
                       <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight mb-1">New Request</h2>
-                      <p className="text-sm text-white/50">We'll receive your request on WhatsApp instantly</p>
+                      <p className="text-sm text-white/50">We'll receive your request on Telegram instantly</p>
                     </div>
-                    <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10">
-                      <SiWhatsapp className="w-3 h-3 text-emerald-400" />
-                      <span className="text-[10px] font-black uppercase tracking-wider text-emerald-300">via WhatsApp</span>
+                    <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#229ED9]/30 bg-[#229ED9]/10">
+                      <SiTelegram className="w-3 h-3 text-[#229ED9]" />
+                      <span className="text-[10px] font-black uppercase tracking-wider text-[#229ED9]">via Telegram</span>
                     </div>
                   </div>
 
@@ -218,30 +200,17 @@ export default function Contact() {
                       />
                     </PremiumField>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <PremiumField label="Telegram" focused={focus === "tg"}>
-                        <input
-                          value={telegram}
-                          onChange={(e) => setTelegram(e.target.value)}
-                          onFocus={() => setFocus("tg")}
-                          onBlur={() => setFocus(null)}
-                          type="text"
-                          placeholder="@yourhandle"
-                          className="w-full bg-transparent outline-none text-base font-medium text-white placeholder:text-white/20"
-                        />
-                      </PremiumField>
-                      <PremiumField label="WhatsApp" focused={focus === "wa"}>
-                        <input
-                          value={whatsapp}
-                          onChange={(e) => setWhatsapp(e.target.value)}
-                          onFocus={() => setFocus("wa")}
-                          onBlur={() => setFocus(null)}
-                          type="text"
-                          placeholder="+91 ..."
-                          className="w-full bg-transparent outline-none text-base font-medium text-white placeholder:text-white/20"
-                        />
-                      </PremiumField>
-                    </div>
+                    <PremiumField label="Your Telegram handle" focused={focus === "tg"}>
+                      <input
+                        value={telegram}
+                        onChange={(e) => setTelegram(e.target.value)}
+                        onFocus={() => setFocus("tg")}
+                        onBlur={() => setFocus(null)}
+                        type="text"
+                        placeholder="@yourhandle"
+                        className="w-full bg-transparent outline-none text-base font-medium text-white placeholder:text-white/20"
+                      />
+                    </PremiumField>
 
                     <PremiumField label="Your goal" focused={focus === "goal"}>
                       <textarea
@@ -264,11 +233,11 @@ export default function Contact() {
                         type="submit"
                         whileHover={{ scale: 1.04 }}
                         whileTap={{ scale: 0.97 }}
-                        className="relative group/btn inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#25D366] text-black font-black text-sm uppercase tracking-widest overflow-hidden shadow-[0_10px_40px_rgba(37,211,102,0.4)]"
+                        className="relative group/btn inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#229ED9] text-white font-black text-sm uppercase tracking-widest overflow-hidden shadow-[0_10px_40px_rgba(34,158,217,0.4)]"
                       >
-                        <span className="absolute inset-0 bg-gradient-to-r from-emerald-400 via-[#25D366] to-emerald-500 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
-                        <SiWhatsapp className="relative w-5 h-5" />
-                        <span className="relative">Send on WhatsApp</span>
+                        <span className="absolute inset-0 bg-gradient-to-r from-[#229ED9] via-blue-400 to-[#229ED9] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
+                        <SiTelegram className="relative w-5 h-5" />
+                        <span className="relative">Send on Telegram</span>
                       </motion.button>
                     </div>
                   </form>
@@ -296,21 +265,10 @@ function PremiumField({ label, focused, children }: { label: string; focused: bo
 }
 
 function ContactChannel({
-  href,
-  icon,
-  title,
-  value,
-  badge,
-  delay,
-  accent,
+  href, icon, title, value, badge, delay, accent,
 }: {
-  href: string;
-  icon: React.ReactNode;
-  title: string;
-  value: string;
-  badge?: string;
-  delay: number;
-  accent: string;
+  href: string; icon: React.ReactNode; title: string; value: string;
+  badge?: string; delay: number; accent: string;
 }) {
   const external = href.startsWith("http");
   return (

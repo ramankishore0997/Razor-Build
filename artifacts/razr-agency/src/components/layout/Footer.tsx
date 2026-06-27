@@ -1,6 +1,9 @@
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
+import { SiTelegram } from "react-icons/si";
 import StarfieldFooter from "@/components/StarfieldFooter";
+
+const TELEGRAM_URL = "https://t.me/AdmizAgency";
 
 export default function Footer() {
   return (
@@ -17,9 +20,9 @@ export default function Footer() {
                 Join our newsletter for weekly insights on Meta & Google policy changes, scaling strategies, and agency infrastructure.
               </p>
               <div className="flex items-center gap-2 max-w-md border-b border-white/20 pb-2">
-                <input 
-                  type="email" 
-                  placeholder="Email address" 
+                <input
+                  type="email"
+                  placeholder="Email address"
                   className="bg-transparent border-none outline-none flex-1 text-white placeholder:text-muted-foreground"
                 />
                 <button className="text-white hover:text-primary transition-colors p-2">
@@ -54,13 +57,21 @@ export default function Footer() {
         <div className="flex flex-col items-center border-t border-white/5 pt-16">
           <div className="w-full text-center">
             <h1 className="text-[12vw] md:text-[15vw] font-black tracking-tighter leading-none bg-clip-text text-transparent bg-gradient-to-b from-white to-white/10 select-none">
-              RAZR
+              ADMIZ
             </h1>
           </div>
           <div className="w-full flex flex-col md:flex-row justify-between items-center mt-8 text-xs font-medium tracking-widest text-muted-foreground uppercase gap-4">
-            <span>&copy; {new Date().getFullYear()} RAZR.MARKETING</span>
+            <span>&copy; {new Date().getFullYear()} ADMIZ AGENCY</span>
             <span className="text-primary">PERFORMANCE. WITHOUT COMPROMISE.</span>
-            <a href="https://wa.me/917065339146" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">WHATSAPP +91 70653 39146</a>
+            <a
+              href={TELEGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 hover:text-primary transition-colors"
+            >
+              <SiTelegram className="text-[#229ED9]" />
+              @ADMIZAGENCY
+            </a>
           </div>
         </div>
       </div>

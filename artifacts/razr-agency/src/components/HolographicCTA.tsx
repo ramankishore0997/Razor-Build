@@ -75,7 +75,7 @@ export default function HolographicCTA() {
                   className="group/btn relative inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 md:py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest overflow-hidden hover:bg-primary hover:text-white transition-colors duration-300"
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-primary via-purple-500 to-primary opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" />
-                  <span className="relative">Chat on WhatsApp</span>
+                  <span className="relative">Chat on Telegram</span>
                   <ArrowRight className="relative w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                 </a>
                 <Link

@@ -8,7 +8,7 @@ const QS = [
   { q: "What's the actual daily spend limit?", a: "There is none on our agency accounts. We've tested up to $50k/day on single accounts without throttling. Scale as fast as your offer allows." },
   { q: "What if my account gets restricted?", a: "Lifetime free replacement. We swap the account, transfer balance where technically possible, and restore your campaigns. Zero questions, zero fees." },
   { q: "Which verticals are accepted?", a: "E-commerce, lead gen, SaaS, info products, crypto, nutra, gambling. Both whitehat and blackhat structures available." },
-  { q: "What's included in support?", a: "Direct Telegram + WhatsApp access to our internal media buyers. 12-minute average response. Real humans, not a ticketing system." },
+  { q: "What's included in support?", a: "Direct Telegram access to our internal media buyers. 12-minute average response. Real humans, not a ticketing system." },
 ];
 
 export default function FaqPreview() {

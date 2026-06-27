@@ -46,7 +46,7 @@ const PILLARS: Pillar[] = [
   },
   {
     Icon: MessageCircle, step: "Pillar 04", title: "Support",
-    body: "Direct Telegram + WhatsApp to our internal media buyers. 12-minute average response. Not a ticketing system.",
+    body: "Direct Telegram access to our internal media buyers. 12-minute average response. Not a ticketing system.",
     bullets: ["12-min avg response", "Direct to media buyers", "24/7 coverage"],
     accent: "from-purple-500/40 to-fuchsia-500/20",
   },
@@ -226,7 +226,7 @@ export default function Solutions() {
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-8 md:mb-12">
             <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-3">The Difference</div>
-            <h2 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tighter">Before vs <span className="bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent">RAZR.</span></h2>
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tighter">Before vs <span className="bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent">Admiz.</span></h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
@@ -265,7 +265,7 @@ export default function Solutions() {
                 <motion.div animate={{ x: ["-100%", "200%"] }} transition={{ duration: 7, repeat: Infinity, ease: "linear" }} className="absolute top-0 left-0 w-1/3 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
                 <div className="relative">
                   <div className="flex items-center justify-between mb-6">
-                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">With RAZR</div>
+                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">With Admiz</div>
                     <div className="flex items-center gap-2 text-xs text-white/60"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> Live</div>
                   </div>
                   <h3 className="text-2xl font-black uppercase tracking-tight mb-6">Scaling operator</h3>
@@ -346,8 +346,8 @@ export default function Solutions() {
               </h2>
               <p className="text-base md:text-lg text-white/60 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">We'll match you with the right setup in under 10 minutes. No commitment, no sales pitch.</p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-                <a href="https://wa.me/917065339146" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 md:py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest hover:bg-primary hover:text-white transition-colors duration-300">
-                  Chat on WhatsApp <ArrowRight className="w-4 h-4" />
+                <a href="https://t.me/AdmizAgency" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 md:py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest hover:bg-primary hover:text-white transition-colors duration-300">
+                  Chat on Telegram <ArrowRight className="w-4 h-4" />
                 </a>
                 <Link href="/contact" className="inline-flex items-center justify-center gap-3 px-8 md:px-10 py-4 md:py-5 rounded-full border border-white/20 text-white font-black text-sm uppercase tracking-widest hover:bg-white/5 transition-colors duration-300">
                   Get Custom Plan <ArrowUpRight className="w-4 h-4" />

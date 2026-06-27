@@ -70,7 +70,7 @@ export default function About() {
 
           <div className="relative pl-6 md:pl-12 border-l-4 border-primary mb-16">
             <h1 className="text-4xl md:text-6xl lg:text-[4.5rem] font-serif italic leading-[1.05] text-white/90">
-              "We started <span className="not-italic font-black text-primary">razr.marketing</span> because we lived the frustration ourselves."
+              "We started <span className="not-italic font-black text-primary">Admiz Agency</span> because we lived the frustration ourselves."
             </h1>
             <p className="mt-6 text-sm uppercase tracking-[0.2em] text-white/40 font-bold">— Founding team, 2021</p>
           </div>
@@ -87,7 +87,7 @@ export default function About() {
                   The problem wasn't our strategy or creatives. The problem was <strong className="text-white font-normal">infrastructure</strong>. Standard self-serve Business Managers are built for local bakeries, not performance marketers spending 5-figures a day.
                 </p>
                 <p>
-                  Agency ad accounts aren't a "hack" — they're the professional-grade infrastructure that large global agencies use every day. We built razr.marketing to democratize that access.
+                  Agency ad accounts aren't a &quot;hack&quot; — they're the professional-grade infrastructure that large global agencies use every day. We built Admiz Agency to democratize that access.
                 </p>
               </div>
             </div>

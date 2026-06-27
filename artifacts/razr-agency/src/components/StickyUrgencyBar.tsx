@@ -4,7 +4,7 @@ import { Flame, X, ArrowRight } from "lucide-react";
 import { buildWaLink } from "@/lib/whatsapp";
 import { msUntilSundayMidnightIST, formatCountdown } from "@/lib/ist-time";
 
-const DISMISS_KEY = "razr_topbar_dismissed_at";
+const DISMISS_KEY = "admiz_topbar_dismissed_at";
 const DISMISS_TTL_HOURS = 12;
 const BAR_HEIGHT_PX = 40;
 

@@ -6,7 +6,7 @@ const STEPS = [
     n: "01",
     icon: Send,
     title: "Request",
-    desc: "Tell us your spend, niche, and goals on WhatsApp. Takes 3 minutes — no forms, no email tag.",
+    desc: "Tell us your spend, niche, and goals on Telegram. Takes 3 minutes — no forms, no email tag.",
     time: "Step 1 • 3 min",
     color: "from-primary to-cyan-400",
   },

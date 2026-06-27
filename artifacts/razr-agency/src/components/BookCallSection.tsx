@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Clock, ArrowRight, CheckCircle2, Video } from "lucide-react";
-import { SiWhatsapp } from "react-icons/si";
+import { SiTelegram } from "react-icons/si";
 import { buildWaLink } from "@/lib/whatsapp";
 import { generateIstSlots, type IstSlot } from "@/lib/ist-time";
 
@@ -129,12 +129,12 @@ export default function BookCallSection() {
                   rel="noopener noreferrer"
                   className={`group relative w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest transition-all ${
                     selected
-                      ? "bg-[#25D366] text-white hover:scale-[1.01] shadow-[0_10px_40px_rgba(37,211,102,0.4)]"
-                      : "bg-white text-black hover:bg-[#25D366] hover:text-white"
+                      ? "bg-[#229ED9] text-white hover:scale-[1.01] shadow-[0_10px_40px_rgba(34,158,217,0.4)]"
+                      : "bg-white text-black hover:bg-[#229ED9] hover:text-white"
                   }`}
                 >
-                  <SiWhatsapp className="text-lg" />
-                  {selected ? "Confirm Booking via WhatsApp" : "Book Call via WhatsApp"}
+                  <SiTelegram className="text-lg" />
+                  {selected ? "Confirm Booking via Telegram" : "Book Call via Telegram"}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </a>
 

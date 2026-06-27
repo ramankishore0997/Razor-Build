@@ -100,7 +100,7 @@ export default function CaseStudyTimeline() {
             <motion.div animate={{ x: ["-100%", "200%"] }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }} className="absolute top-0 left-0 w-1/3 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
             <Quote className="w-10 h-10 text-primary mb-5 opacity-60" />
             <blockquote className="text-xl md:text-2xl font-light text-white/90 leading-relaxed mb-6 italic">
-              "We were stuck at $2k/day for 6 months on our self-serve BM. Switched to RAZR, hit $50k/day in under 6 months. Same product, same ad team. The infrastructure was the entire problem."
+              "We were stuck at $2k/day for 6 months on our self-serve BM. Switched to Admiz, hit $50k/day in under 6 months. Same product, same ad team. The infrastructure was the entire problem."
             </blockquote>
             <div className="flex items-center justify-between gap-4 flex-wrap">
               <div className="flex items-center gap-4">

@@ -32,7 +32,7 @@ const GAINS = [
   },
   {
     title: "24/7 dedicated managers",
-    body: "Real humans on Telegram & WhatsApp. Median 12-minute response. Direct escalation to Meta & Google internal contacts.",
+    body: "Real humans on Telegram. Median 12-minute response. Direct escalation to Meta & Google internal contacts.",
   },
   {
     title: "Premium trust signals",
@@ -62,7 +62,7 @@ export default function ProblemSolution() {
             <span className="bg-gradient-to-r from-primary via-purple-400 to-cyan-400 bg-clip-text text-transparent">the platform.</span>
           </h2>
           <p className="text-base md:text-xl text-white/60 leading-relaxed">
-            Every advertiser hits the same walls. We built RAZR to remove them — permanently.
+            Every advertiser hits the same walls. We built Admiz to remove them — permanently.
           </p>
         </motion.div>
 
@@ -85,7 +85,7 @@ export default function ProblemSolution() {
                 </div>
                 <div>
                   <div className="text-[10px] font-black uppercase tracking-[0.2em] text-red-400/80">Status Quo</div>
-                  <div className="text-xl md:text-2xl font-black uppercase tracking-tight">Without RAZR</div>
+                  <div className="text-xl md:text-2xl font-black uppercase tracking-tight">Without Admiz</div>
                 </div>
               </div>
 
@@ -122,7 +122,7 @@ export default function ProblemSolution() {
                 </div>
                 <div>
                   <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/90">The Upgrade</div>
-                  <div className="text-xl md:text-2xl font-black uppercase tracking-tight">With RAZR</div>
+                  <div className="text-xl md:text-2xl font-black uppercase tracking-tight">With Admiz</div>
                 </div>
               </div>
 
