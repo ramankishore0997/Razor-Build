@@ -2,7 +2,6 @@ import { Link, useLocation } from "wouter";
 import { motion, AnimatePresence, useScroll, useSpring, useMotionValue, useTransform } from "framer-motion";
 import { useState, useEffect, useRef, type MouseEvent } from "react";
 import { Menu, X, ArrowRight, Home, Sparkles, Layers, Workflow, Building2, HelpCircle, MessageCircle, Briefcase, Megaphone } from "lucide-react";
-import RazrLogo from "@/components/RazrLogo";
 
 const navLinks = [
   { name: "Home", href: "/", icon: Home },
@@ -127,8 +126,21 @@ export default function Navbar() {
           <div className="relative flex items-center gap-2">
             {/* Logo */}
             <Link href="/" className="flex items-center pl-2 pr-3 group">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <RazrLogo size={28} />
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                <span className="flex flex-col leading-[1] select-none">
+                  <span
+                    className="font-black tracking-[-0.05em] bg-gradient-to-r from-white via-white/95 to-white/70 bg-clip-text text-transparent"
+                    style={{ fontSize: 16, fontFamily: "'Space Grotesk', sans-serif" }}
+                  >
+                    ADMIZ
+                  </span>
+                  <span
+                    className="font-black uppercase tracking-[0.3em] text-primary/90"
+                    style={{ fontSize: 6.5 }}
+                  >
+                    AGENCY
+                  </span>
+                </span>
               </motion.div>
             </Link>
 
