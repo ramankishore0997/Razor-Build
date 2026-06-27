@@ -1,13 +1,13 @@
 import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
-import { Home, Layers, Compass, Workflow, MessageCircle, HelpCircle } from "lucide-react";
+import { Home, Layers, Compass, Megaphone, MessageCircle, HelpCircle } from "lucide-react";
 import { useState } from "react";
 
 const ITEMS = [
   { icon: Home, label: "Home", href: "/" },
   { icon: Layers, label: "Features", href: "/features" },
   { icon: Compass, label: "Solutions", href: "/solutions" },
-  { icon: Workflow, label: "Process", href: "/how-it-works" },
+  { icon: Megaphone, label: "Run Ads", href: "/advertise" },
   { icon: HelpCircle, label: "FAQ", href: "/faq" },
   { icon: MessageCircle, label: "Contact", href: "/contact" },
 ];

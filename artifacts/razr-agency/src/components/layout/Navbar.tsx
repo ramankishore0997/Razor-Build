@@ -1,7 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { motion, AnimatePresence, useScroll, useSpring, useMotionValue, useTransform } from "framer-motion";
 import { useState, useEffect, useRef, type MouseEvent } from "react";
-import { Menu, X, ArrowRight, Home, Sparkles, Layers, Workflow, Building2, HelpCircle, MessageCircle, Briefcase } from "lucide-react";
+import { Menu, X, ArrowRight, Home, Sparkles, Layers, Workflow, Building2, HelpCircle, MessageCircle, Briefcase, Megaphone } from "lucide-react";
 import RazrLogo from "@/components/RazrLogo";
 
 const navLinks = [
@@ -10,6 +10,7 @@ const navLinks = [
   { name: "Solutions", href: "/solutions", icon: Layers },
   { name: "Accounts", href: "/agency-accounts", icon: Briefcase },
   { name: "Process", href: "/how-it-works", icon: Workflow },
+  { name: "Run Ads", href: "/advertise", icon: Megaphone },
   { name: "About", href: "/about", icon: Building2 },
   { name: "FAQ", href: "/faq", icon: HelpCircle },
   { name: "Contact", href: "/contact", icon: MessageCircle },
